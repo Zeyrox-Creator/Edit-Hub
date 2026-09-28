@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Editing Materials Hub - PNGs, overlays, effects, presets, fonts, SFX and templates.">
+  <title>Editing Materials Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="#"><span class="brand-mark">✦</span> Edit<span>Hub</span></a>
+    <nav>
+      <a href="#materials">Materials</a>
+      <a href="#categories">Categories</a>
+      <a href="#admin">Admin</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">CREATOR RESOURCE LIBRARY</p>
+        <h1>Everything you need to <span>edit better.</span></h1>
+        <p class="hero-text">Find overlays, PNGs, effects, presets, fonts, SFX and templates in one clean library.</p>
+        <div class="search-wrap">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Search materials...">
+          <kbd>Ctrl K</kbd>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#materials">Browse materials</a>
+          <a class="btn ghost" href="#categories">Explore categories</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="orb"></div>
+        <div class="floating-card card-a">✦ <b>4K Overlays</b><small>Ready to use</small></div>
+        <div class="floating-card card-b">⚡ <b>Fast downloads</b><small>Creator friendly</small></div>
+        <div class="hero-logo">EH</div>
+      </div>
+    </section>
+
+    <section id="categories" class="section">
+      <div class="section-head"><div><p class="eyebrow">BROWSE</p><h2>Categories</h2></div></div>
+      <div id="categoryGrid" class="category-grid"></div>
+    </section>
+
+    <section id="materials" class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">LIBRARY</p><h2>Materials</h2></div>
+        <div class="filters">
+          <select id="sortSelect">
+            <option value="newest">Newest</option>
+            <option value="name">Name A–Z</option>
+            <option value="downloads">Most downloaded</option>
+          </select>
+        </div>
+      </div>
+      <div id="chips" class="chips"></div>
+      <div id="materialsGrid" class="materials-grid"></div>
+      <div id="emptyState" class="empty hidden">No materials found. Try another search or category.</div>
+    </section>
+
+    <section id="admin" class="section admin-section">
+      <div class="section-head"><div><p class="eyebrow">OPTIONAL</p><h2>Admin upload</h2></div></div>
+      <div class="admin-panel">
+        <div>
+          <h3>Add your own material</h3>
+          <p>For this starter version, uploaded items are saved in this browser using local storage. Connect a backend later for permanent online uploads.</p>
+        </div>
+        <form id="uploadForm">
+          <input id="matName" required placeholder="Material name">
+          <select id="matCategory" required></select>
+          <input id="matUrl" required placeholder="Direct file/image URL">
+          <input id="matPreview" placeholder="Preview image URL (optional)">
+          <button class="btn primary" type="submit">+ Add material</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><a class="brand" href="#"><span class="brand-mark">✦</span> Edit<span>Hub</span></a><p>Built for creators.</p></div>
+    <p>© <span id="year"></span> EditHub</p>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
