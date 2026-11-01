@@ -1,32 +1,23 @@
 
-// EDIT BY ZEYROX - EditHub
+// EDIT BY ZEYROX - Category Upgrade
 
-const categories = [
-  { name: "AI Edit Prompt", sub: "Trending", icon: "✨" },
-  { name: "AI Edit Prompt", sub: "Gaming", icon: "🎮" },
-  { name: "AI Edit Prompt", sub: "Natural", icon: "🌿" },
-  { name: "AI Edit Prompt", sub: "Logo", icon: "💠" },
-
-  { name: "AI Template", sub: "Trending", icon: "🔥" },
-  { name: "AI Template", sub: "Gaming", icon: "🎮" },
-  { name: "AI Template", sub: "Natural", icon: "🌄" },
-  { name: "AI Template", sub: "Logo", icon: "💠" },
-
-  { name: "PNG Material", sub: "Trending", icon: "🖼️" },
-  { name: "PNG Material", sub: "Gaming", icon: "🎯" },
-  { name: "PNG Material", sub: "Natural", icon: "🌳" },
-  { name: "PNG Material", sub: "Logo", icon: "⭐" },
-
-  { name: "VFX Material", sub: "Trending", icon: "⚡" },
-  { name: "VFX Material", sub: "Gaming", icon: "🎮" },
-  { name: "VFX Material", sub: "Natural", icon: "🌊" },
-  { name: "VFX Material", sub: "Logo", icon: "💎" }
+const mainCategories = [
+  { name: "AI Edit Prompt", icon: "✨" },
+  { name: "AI Template", icon: "🎨" },
+  { name: "PNG Material", icon: "🖼️" },
+  { name: "VFX Material", icon: "⚡" }
 ];
 
-// Materials list
-// New materials can be added here later.
+const subCategories = [
+  { name: "Trending", icon: "🔥" },
+  { name: "Gaming", icon: "🎮" },
+  { name: "Natural", icon: "🌿" },
+  { name: "Logo", icon: "💠" }
+];
+
 const materials = [];
 
+let selectedMain = null;
 let activeCategory = "All";
 
 const categoryGrid = document.getElementById("categoryGrid");
@@ -37,24 +28,55 @@ const sortSelect = document.getElementById("sortSelect");
 const emptyState = document.getElementById("emptyState");
 const themeBtn = document.getElementById("themeBtn");
 
-// Category cards
-function showCategories() {
+// Show 4 Main Categories
+function showMainCategories() {
+  selectedMain = null;
   categoryGrid.innerHTML = "";
 
-  categories.forEach(category => {
+  mainCategories.forEach(category => {
     const card = document.createElement("div");
     card.className = "category";
 
     card.innerHTML = `
       <div class="cat-icon">${category.icon}</div>
       <h3>${category.name}</h3>
-      <p>${category.sub}</p>
+      <p>Explore ${category.name}</p>
     `;
 
     card.addEventListener("click", () => {
-      activeCategory = category.name + " / " + category.sub;
+      selectedMain = category.name;
+      showSubCategories();
+    });
+
+    categoryGrid.appendChild(card);
+  });
+}
+
+// Show 4 Subcategories
+function showSubCategories() {
+  categoryGrid.innerHTML = "";
+
+  const back = document.createElement("button");
+  back.className = "category category-back";
+  back.textContent = "← Back to Categories";
+  back.addEventListener("click", showMainCategories);
+  categoryGrid.appendChild(back);
+
+  subCategories.forEach(category => {
+    const card = document.createElement("div");
+    card.className = "category";
+
+    card.innerHTML = `
+      <div class="cat-icon">${category.icon}</div>
+      <h3>${category.name}</h3>
+      <p>${selectedMain}</p>
+    `;
+
+    card.addEventListener("click", () => {
+      activeCategory = selectedMain + " / " + category.name;
       showChips();
       showMaterials();
+
       document.getElementById("materials").scrollIntoView({
         behavior: "smooth"
       });
@@ -64,13 +86,16 @@ function showCategories() {
   });
 }
 
-// Category filters
+// Category Filters
 function showChips() {
   chips.innerHTML = "";
 
-  const allCategories = ["All", ...categories.map(
-    c => c.name + " / " + c.sub
-  )];
+  const allCategories = [
+    "All",
+    ...mainCategories.flatMap(main =>
+      subCategories.map(sub => main.name + " / " + sub.name)
+    )
+  ];
 
   allCategories.forEach(name => {
     const chip = document.createElement("button");
@@ -91,7 +116,7 @@ function showChips() {
   });
 }
 
-// Material cards
+// Show Materials
 function showMaterials() {
   materialsGrid.innerHTML = "";
 
@@ -153,7 +178,7 @@ searchInput.addEventListener("input", showMaterials);
 // Sorting
 sortSelect.addEventListener("change", showMaterials);
 
-// Theme toggle
+// Theme Toggle
 themeBtn.addEventListener("click", () => {
   document.body.classList.toggle("light");
 
@@ -166,29 +191,18 @@ themeBtn.addEventListener("click", () => {
   );
 });
 
-// Remember theme
+// Remember Theme
 if (localStorage.getItem("edithub-theme") === "light") {
   document.body.classList.add("light");
   themeBtn.textContent = "☀";
 }
 
-// Toast message
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2500);
-}
-
-// Footer year
+// Footer Year
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
-// Start website
-showCategories();
+// Start
+showMainCategories();
 showChips();
 showMaterials();
-
+                         
