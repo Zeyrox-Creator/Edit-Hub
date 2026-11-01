@@ -2,171 +2,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#08090d">
-  <meta name="description" content="EDIT BY ZEYROX - Everything You Need to Edit Better.">
-  <title>EDIT BY ZEYROX</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDIT BY ZEYROX</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#080810;color:white;
+  font-family:Arial,sans-serif;
+  min-height:100vh;
+}
+header{
+  padding:15px 6%;display:flex;
+  justify-content:space-between;align-items:center;
+  background:#11111d;border-bottom:1px solid #292039;
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:bold}
+.brand img{width:42px;height:42px;object-fit:contain}
+.brand span{color:#a45cff}
+button{cursor:pointer;font:inherit}
+.theme{
+  background:#211632;color:white;border:1px solid #7040a8;
+  padding:10px 13px;border-radius:10px;
+}
+.page{max-width:1100px;width:90%;margin:35px auto}
+.hidden{display:none!important}
+
+.hero{
+  text-align:center;padding:45px 15px;
+  border-radius:20px;margin-bottom:35px;
+  background:linear-gradient(135deg,#21113c,#101020);
+  border:1px solid #6936a6;
+}
+.hero h1{font-size:clamp(27px,5vw,45px);margin-bottom:12px}
+.hero h1 span{color:#b477ff}
+.hero p{color:#c3b5d5;line-height:1.6}
+
+h2{font-size:23px;margin-bottom:22px}
+.grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.category{
+  min-height:145px;padding:20px;
+  border:1px solid #7542b4;border-radius:17px;
+  background:linear-gradient(135deg,#291747,#151222);
+  color:white;text-align:left;
+  transition:.2s;
+}
+.category:hover{
+  transform:translateY(-4px);
+  background:linear-gradient(135deg,#7135b5,#32145c);
+  box-shadow:0 8px 25px #7135b544;
+}
+.category .emoji{font-size:30px;display:block;margin-bottom:12px}
+.category h3{font-size:16px;margin-bottom:7px}
+.category p{font-size:12px;color:#c9b9dd}
+
+.back{
+  padding:12px 17px;margin-bottom:25px;
+  border:1px solid #7944b9;border-radius:10px;
+  background:#211632;color:white;
+}
+.back:hover{background:#7036b2}
+
+.search{
+  width:100%;padding:14px;margin:10px 0 20px;
+  background:#151321;color:white;
+  border:1px solid #56347b;border-radius:10px;
+}
+.material{
+  padding:15px;background:#171321;
+  border:1px solid #4c326b;border-radius:14px;
+}
+.material img{
+  width:100%;height:145px;object-fit:cover;
+  border-radius:9px;
+}
+.material h3{margin:12px 0}
+.material a{
+  display:inline-block;margin-top:12px;
+  padding:10px 15px;background:#813ed0;
+  color:white;text-decoration:none;border-radius:8px;
+}
+.empty{color:#bbaacb;padding:20px;text-align:center}
+
+footer{
+  margin-top:50px;padding:25px;text-align:center;
+  background:#11111d;color:#aaa;
+}
+footer span{color:#a45cff}
+
+.light{
+  background:#f5f1fb;color:#171020;
+}
+.light header,.light footer{background:#fff}
+.light .hero{background:#e8d9ff}
+.light .category{color:#211331}
+.light .category p{color:#59446e}
+.light .material{background:#fff}
+.light .search{background:#fff;color:#171020}
+
+@media(max-width:500px){
+  header{padding:12px 4%}
+  .brand{font-size:13px}
+  .brand img{width:35px;height:35px}
+  .page{width:92%;margin:25px auto}
+  .hero{padding:35px 14px}
+  .category{min-height:125px;padding:14px}
+  .category h3{font-size:13px}
+  .category .emoji{font-size:25px}
+  .material img{height:110px}
+}
+</style>
 </head>
 
 <body>
 
-<header class="navbar">
-  <a class="brand" href="#" id="homeLogo">
-    <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Zeyrox Logo">
-    <span>EDIT BY <b>ZEYROX</b></span>
-  </a>
-
-  <nav>
-    <a href="#" id="navHome">Home</a>
-    <a href="#categories">Resources</a>
-  </nav>
-
-  <button class="icon-btn" id="themeBtn">☾</button>
+<header>
+  <div class="brand">
+    <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Logo">
+    <div>EDIT BY <span>ZEYROX</span></div>
+  </div>
+  <button class="theme" id="themeBtn">☾</button>
 </header>
 
-<main>
-
-  <!-- HOME PAGE -->
-  <div id="homePage">
-
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">WELCOME TO YOUR CREATIVE WORLD</p>
-
-        <h1>EDIT BY <span>ZEYROX</span></h1>
-
-        <p class="hero-text">
-          Everything You Need to Edit Better.
-        </p>
-
-        <div class="search-wrap">
-          <span>⌕</span>
-          <input id="searchInput" type="search"
-          placeholder="Search your editing resources...">
-        </div>
-
-        <a class="btn primary" href="#categories">
-          Explore Resources →
-        </a>
-      </div>
-
-      <div class="hero-card">
-        <div class="orb"></div>
-        <div class="hero-logo">Z</div>
-        <div class="floating-card card-a">✦ <b>Premium Resources</b></div>
-        <div class="floating-card card-b">⚡ <b>Creator Collection</b></div>
-      </div>
-    </section>
-
-    <section id="categories" class="section">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">EXPLORE COLLECTIONS</p>
-          <h2>Resources Library</h2>
-          <p class="hero-text">Choose your editing category</p>
-        </div>
-      </div>
-
-      <div id="categoryGrid" class="category-grid"></div>
-    </section>
-
-  </div>
-
-  <!-- SUBCATEGORY PAGE -->
-  <section id="subcategoryPage" class="section hidden">
-    <button id="backHome" class="back-btn">← Back to Home</button>
-
-    <p class="eyebrow">EXPLORE COLLECTION</p>
-    <h2 id="subcategoryTitle">Categories</h2>
-    <p class="hero-text">Choose a collection to continue</p>
-
-    <div id="subcategoryGrid" class="category-grid"></div>
+<!-- HOMEPAGE -->
+<main id="homePage" class="page">
+  <section class="hero">
+    <h1>EDIT BY <span>ZEYROX</span></h1>
+    <p>Everything You Need to Edit Better.</p>
   </section>
 
-  <!-- MATERIALS PAGE -->
-  <section id="materialsPage" class="section hidden">
-    <button id="backSubcategory" class="back-btn">
-      ← Back to Subcategories
-    </button>
+  <h2>Explore Categories</h2>
+  <div class="grid" id="categoryGrid"></div>
 
-    <p class="eyebrow">YOUR CREATIVE COLLECTION</p>
-    <h2 id="materialsTitle">Materials</h2>
-
-    <div class="search-wrap">
-      <span>⌕</span>
-      <input id="materialSearch" type="search"
-      placeholder="Search materials...">
-    </div>
-
-    <div class="filters">
-      <select id="sortSelect">
-        <option value="newest">Newest</option>
-        <option value="name">Name A-Z</option>
-        <option value="downloads">Most Downloaded</option>
-      </select>
-    </div>
-
-    <div id="materialsGrid" class="materials-grid"></div>
-
-    <div id="emptyState" class="empty hidden">
-      No materials found. Check back soon!
-    </div>
-  </section>
-
-  <!-- EXISTING PNG MATERIALS -->
-  <section class="section" id="existingMaterials">
-    <p class="eyebrow">FEATURED RESOURCES</p>
+  <section style="margin-top:40px">
     <h2>Featured PNG Materials</h2>
-
-    <div class="materials">
-      <div class="material-card">
-        <img src="materials/png/chaotenkitty-neon-7440942_1920.png"
-        alt="Neon Material">
+    <div class="grid">
+      <div class="material">
+        <img src="materials/png/chaotenkitty-neon-7440942_1920.png" alt="Neon material">
         <h3>Neon Material</h3>
-        <a href="materials/png/chaotenkitty-neon-7440942_1920.png" download>
-          Download
-        </a>
       </div>
-
-      <div class="material-card">
-        <img src="materials/png/geralt-art-7036652_1920.jpg"
-        alt="Editing Material">
-        <h3>Editing Material 2</h3>
-        <a href="materials/png/geralt-art-7036652_1920.jpg" download>
-          Download
-        </a>
+      <div class="material">
+        <img src="materials/png/geralt-art-7036652_1920.jpg" alt="Art material">
+        <h3>Art Material</h3>
       </div>
-
-      <div class="material-card">
-        <img src="materials/png/tungnguyen0905-technology-6701424_1920.jpg"
-        alt="Technology Material">
+      <div class="material">
+        <img src="materials/png/tungnguyen0905-technology-6701424_1920.jpg" alt="Technology material">
         <h3>Technology Material</h3>
-        <a href="materials/png/tungnguyen0905-technology-6701424_1920.jpg" download>
-          Download
-        </a>
       </div>
     </div>
   </section>
-
 </main>
 
-<footer>
-  <div>
-    <a class="brand" href="#">
-      EDIT BY <b>ZEYROX</b>
-    </a>
-    <p>Everything You Need to Edit Better.</p>
-  </div>
+<!-- SUBCATEGORY PAGE -->
+<section id="subcategoryPage" class="page hidden">
+  <button class="back" id="backHome">← Back to Home</button>
+  <h2 id="subcategoryTitle">Subcategories</h2>
+  <div class="grid" id="subcategoryGrid"></div>
+</section>
 
-  <p>© <span id="year"></span> EDIT BY ZEYROX</p>
+<!-- MATERIALS PAGE -->
+<section id="materialsPage" class="page hidden">
+  <button class="back" id="backSubcategory">← Back to Subcategories</button>
+  <h2 id="materialsTitle">Materials</h2>
+  <input class="search" id="materialSearch" placeholder="Search materials...">
+  <div class="grid" id="materialsGrid"></div>
+  <p class="empty hidden" id="emptyState">No materials added yet. Coming soon!</p>
+</section>
+
+<footer>
+  © <span id="year"></span> EDIT BY ZEYROX. All Rights Reserved.
 </footer>
 
-<div id="toast" class="toast"></div>
+<script>
+const mainCategories=[
+  {name:"AI Edit Prompt",icon:"✨"},
+  {name:"AI Template",icon:"🎨"},
+  {name:"PNG Material",icon:"🖼️"},
+  {name:"VFX Material",icon:"⚡"}
+];
 
-<script src="script.js"></script>
+const subCategories=[
+  {name:"Trending",icon:"🔥"},
+  {name:"Gaming",icon:"🎮"},
+  {name:"Natural",icon:"🌿"},
+  {name:"Logo",icon:"💠"}
+];
+
+const materials=[];
+
+let selectedMain="";
+let selectedSub="";
+
+const home=document.getElementById("homePage");
+const subPage=document.getElementById("subcategoryPage");
+const matPage=document.getElementById("materialsPage");
+
+function showPage(page){
+  home.classList.add("hidden");
+  subPage.classList.add("hidden");
+  matPage.classList.add("hidden");
+  page.classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+
+function makeCard(icon,name,description,callback){
+  const card=document.createElement("button");
+  card.className="category";
+  card.innerHTML=`
+    <span class="emoji">${icon}</span>
+    <h3>${name}</h3>
+    <p>${description}</p>
+  `;
+  card.addEventListener("click",callback);
+  return card;
+}
+
+mainCategories.forEach(item=>{
+  document.getElementById("categoryGrid").appendChild(
+    makeCard(item.icon,item.name,"Explore resources",()=>{
+      selectedMain=item.name;
+      document.getElementById("subcategoryTitle").textContent=item.name;
+      const grid=document.getElementById("subcategoryGrid");
+      grid.innerHTML="";
+
+      subCategories.forEach(sub=>{
+        grid.appendChild(
+          makeCard(sub.icon,sub.name,"Explore "+sub.name,()=>{
+            selectedSub=sub.name;
+            openMaterials();
+          })
+        );
+      });
+
+      showPage(subPage);
+    })
+  );
+});
+
+function openMaterials(){
+  document.getElementById("materialsTitle").textContent=
+    selectedMain+" / "+selectedSub;
+
+  document.getElementById("materialSearch").value="";
+  renderMaterials();
+  showPage(matPage);
+}
+
+function renderMaterials(){
+  const grid=document.getElementById("materialsGrid");
+  const empty=document.getElementById("emptyState");
+  const query=document.getElementById("materialSearch").value.toLowerCase();
+
+  grid.innerHTML="";
+
+  const found=materials.filter(item=>
+    item.main===selectedMain &&
+    item.sub===selectedSub &&
+    item.name.toLowerCase().includes(query)
+  );
+
+  if(found.length===0){
+    empty.classList.remove("hidden");
+    return;
+  }
+
+  empty.classList.add("hidden");
+
+  found.forEach(item=>{
+    const card=document.createElement("div");
+    card.className="material";
+    card.innerHTML=`
+      <img src="${item.image}" alt="${item.name}">
+      <h3>${item.name}</h3>
+      <a href="${item.download}" download>⬇ Download</a>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+document.getElementById("backHome").onclick=()=>showPage(home);
+document.getElementById("backSubcategory").onclick=()=>showPage(subPage);
+document.getElementById("materialSearch").addEventListener("input",renderMaterials);
+
+document.getElementById("themeBtn").onclick=()=>{
+  document.body.classList.toggle("light");
+};
+
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
 
 </body>
 </html>
-  
