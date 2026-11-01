@@ -1,5 +1,5 @@
 
-// EDIT BY ZEYROX - Category Upgrade
+// EDIT BY ZEYROX - Website Navigation System
 
 const mainCategories = [
   { name: "AI Edit Prompt", icon: "✨" },
@@ -15,194 +15,223 @@ const subCategories = [
   { name: "Logo", icon: "💠" }
 ];
 
+// Add new materials here when ready.
 const materials = [];
 
-let selectedMain = null;
-let activeCategory = "All";
+let selectedMain = "";
+let selectedSub = "";
+
+const homePage = document.getElementById("homePage");
+const subcategoryPage = document.getElementById("subcategoryPage");
+const materialsPage = document.getElementById("materialsPage");
 
 const categoryGrid = document.getElementById("categoryGrid");
+const subcategoryGrid = document.getElementById("subcategoryGrid");
 const materialsGrid = document.getElementById("materialsGrid");
-const chips = document.getElementById("chips");
-const searchInput = document.getElementById("searchInput");
+
+const subcategoryTitle = document.getElementById("subcategoryTitle");
+const materialsTitle = document.getElementById("materialsTitle");
+
+const materialSearch = document.getElementById("materialSearch");
 const sortSelect = document.getElementById("sortSelect");
 const emptyState = document.getElementById("emptyState");
+
 const themeBtn = document.getElementById("themeBtn");
 
-// Show 4 Main Categories
+// SHOW HOME PAGE
+function showHome() {
+  homePage.classList.remove("hidden");
+  subcategoryPage.classList.add("hidden");
+  materialsPage.classList.add("hidden");
+
+  selectedMain = "";
+  selectedSub = "";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// SHOW MAIN CATEGORIES
 function showMainCategories() {
-  selectedMain = null;
   categoryGrid.innerHTML = "";
 
   mainCategories.forEach(category => {
-    const card = document.createElement("div");
-    card.className = "category";
+    const card = document.createElement("button");
+    card.className = "category-card";
 
     card.innerHTML = `
-      <div class="cat-icon">${category.icon}</div>
+      <span class="category-icon">${category.icon}</span>
       <h3>${category.name}</h3>
-      <p>Explore ${category.name}</p>
+      <p>Explore ${category.name} resources</p>
     `;
 
     card.addEventListener("click", () => {
-      selectedMain = category.name;
-      showSubCategories();
+      openSubcategories(category.name);
     });
 
     categoryGrid.appendChild(card);
   });
 }
 
-// Show 4 Subcategories
-function showSubCategories() {
-  categoryGrid.innerHTML = "";
+// OPEN SUBCATEGORIES PAGE
+function openSubcategories(mainName) {
+  selectedMain = mainName;
 
-  const back = document.createElement("button");
-  back.className = "category category-back";
-  back.textContent = "← Back to Categories";
-  back.addEventListener("click", showMainCategories);
-  categoryGrid.appendChild(back);
+  homePage.classList.add("hidden");
+  materialsPage.classList.add("hidden");
+  subcategoryPage.classList.remove("hidden");
+
+  subcategoryTitle.textContent = mainName;
+  subcategoryGrid.innerHTML = "";
 
   subCategories.forEach(category => {
-    const card = document.createElement("div");
-    card.className = "category";
+    const card = document.createElement("button");
+    card.className = "category-card";
 
     card.innerHTML = `
-      <div class="cat-icon">${category.icon}</div>
+      <span class="category-icon">${category.icon}</span>
       <h3>${category.name}</h3>
-      <p>${selectedMain}</p>
+      <p>Explore ${category.name} materials</p>
     `;
 
     card.addEventListener("click", () => {
-      activeCategory = selectedMain + " / " + category.name;
-      showChips();
-      showMaterials();
-
-      document.getElementById("materials").scrollIntoView({
-        behavior: "smooth"
-      });
+      openMaterials(category.name);
     });
 
-    categoryGrid.appendChild(card);
+    subcategoryGrid.appendChild(card);
   });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Category Filters
-function showChips() {
-  chips.innerHTML = "";
+// OPEN MATERIALS PAGE
+function openMaterials(subName) {
+  selectedSub = subName;
 
-  const allCategories = [
-    "All",
-    ...mainCategories.flatMap(main =>
-      subCategories.map(sub => main.name + " / " + sub.name)
-    )
-  ];
+  homePage.classList.add("hidden");
+  subcategoryPage.classList.add("hidden");
+  materialsPage.classList.remove("hidden");
 
-  allCategories.forEach(name => {
-    const chip = document.createElement("button");
-    chip.className = "chip";
-    chip.textContent = name;
+  materialsTitle.textContent = selectedMain + " / " + selectedSub;
 
-    if (name === activeCategory) {
-      chip.classList.add("active");
-    }
+  materialSearch.value = "";
+  sortSelect.value = "newest";
 
-    chip.addEventListener("click", () => {
-      activeCategory = name;
-      showChips();
-      showMaterials();
-    });
+  showMaterials();
 
-    chips.appendChild(chip);
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Show Materials
+// DISPLAY MATERIALS
 function showMaterials() {
   materialsGrid.innerHTML = "";
 
-  const searchText = searchInput.value.toLowerCase();
+  const searchText = materialSearch.value.toLowerCase();
 
   let filtered = materials.filter(item => {
-    const matchesSearch =
-      item.title.toLowerCase().includes(searchText);
-
-    const matchesCategory =
-      activeCategory === "All" ||
-      (item.category + " / " + item.sub) === activeCategory;
-
-    return matchesSearch && matchesCategory;
+    return (
+      item.main === selectedMain &&
+      item.sub === selectedSub &&
+      (
+        item.name.toLowerCase().includes(searchText) ||
+        item.description.toLowerCase().includes(searchText)
+      )
+    );
   });
 
   if (sortSelect.value === "name") {
-    filtered.sort((a, b) => a.title.localeCompare(b.title));
-  }
-
-  if (sortSelect.value === "newest") {
-    filtered.sort((a, b) => b.date - a.date);
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   if (sortSelect.value === "downloads") {
     filtered.sort((a, b) => b.downloads - a.downloads);
   }
 
+  if (sortSelect.value === "newest") {
+    filtered.sort((a, b) => b.date - a.date);
+  }
+
+  if (filtered.length === 0) {
+    emptyState.classList.remove("hidden");
+    return;
+  }
+
+  emptyState.classList.add("hidden");
+
   filtered.forEach(item => {
     const card = document.createElement("div");
-    card.className = "material";
+    card.className = "material-card";
 
     card.innerHTML = `
-      <div class="thumb">
-        <img src="${item.image}" alt="${item.title}">
-        <span class="type">${item.category}</span>
-      </div>
-      <div class="material-body">
-        <h3>${item.title}</h3>
-        <div class="meta">
-          <span>${item.sub}</span>
-          <span>${item.downloads} Downloads</span>
-        </div>
-        <a class="download" href="${item.file}" download>
-          Download
-        </a>
-      </div>
+      <img src="${item.image}" alt="${item.name}">
+      <h3>${item.name}</h3>
+      <p>${item.description}</p>
+      <a href="${item.download}" download>⬇ Download</a>
     `;
 
     materialsGrid.appendChild(card);
   });
-
-  emptyState.classList.toggle("hidden", filtered.length !== 0);
 }
 
-// Search
-searchInput.addEventListener("input", showMaterials);
+// BACK BUTTONS
+document.getElementById("backHome").addEventListener("click", showHome);
 
-// Sorting
-sortSelect.addEventListener("change", showMaterials);
+document.getElementById("backSubcategory").addEventListener("click", () => {
+  materialsPage.classList.add("hidden");
+  subcategoryPage.classList.remove("hidden");
 
-// Theme Toggle
-themeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-
-  themeBtn.textContent =
-    document.body.classList.contains("light") ? "☀" : "☾";
-
-  localStorage.setItem(
-    "edithub-theme",
-    document.body.classList.contains("light") ? "light" : "dark"
-  );
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Remember Theme
-if (localStorage.getItem("edithub-theme") === "light") {
-  document.body.classList.add("light");
-  themeBtn.textContent = "☀";
+// HOME NAVIGATION
+document.getElementById("homeLogo").addEventListener("click", event => {
+  event.preventDefault();
+  showHome();
+});
+
+document.getElementById("navHome").addEventListener("click", event => {
+  event.preventDefault();
+  showHome();
+});
+
+// SEARCH MATERIALS
+materialSearch.addEventListener("input", showMaterials);
+sortSelect.addEventListener("change", showMaterials);
+
+// HOME SEARCH
+document.getElementById("searchInput").addEventListener("input", event => {
+  const query = event.target.value.toLowerCase();
+
+  categoryGrid.querySelectorAll(".category-card").forEach(card => {
+    card.style.display = card.textContent.toLowerCase().includes(query)
+      ? ""
+      : "none";
+  });
+});
+
+// THEME TOGGLE
+function applyTheme() {
+  const savedTheme = localStorage.getItem("edithub-theme");
+
+  if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+    themeBtn.textContent = "☀";
+  } else {
+    document.body.classList.remove("light-theme");
+    themeBtn.textContent = "☾";
+  }
 }
 
-// Footer Year
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+themeBtn.addEventListener("click", () => {
+  const isLight = document.body.classList.toggle("light-theme");
 
-// Start
+  localStorage.setItem("edithub-theme", isLight ? "light" : "dark");
+  themeBtn.textContent = isLight ? "☀" : "☾";
+});
+
+// FOOTER YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// INITIALIZE WEBSITE
 showMainCategories();
-showChips();
-showMaterials();
-                         
+applyTheme();
+showHome();
