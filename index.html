@@ -1,98 +1,172 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Welcome to EDIT BY ZEYROX - Your Editing Materials Hub.">
-  <title>EDIT BY ZEYROX - Editing Materials Hub</title>
+  <meta name="theme-color" content="#08090d">
+  <meta name="description" content="EDIT BY ZEYROX - Everything You Need to Edit Better.">
+  <title>EDIT BY ZEYROX</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="navbar">
-    <a class="brand" href="#"><span class="brand-mark"><img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Zeyrox Logo" style="width:40px;height:40px;object-fit:contain;"></span> Edit<span>Hub</span></a>
-    <nav>
-      <a href="#materials">Materials</a>
-      <a href="#categories">Categories</a>
-      
-    </nav>
-    <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
-  </header>
 
-  <main>
-    <section class="materials">
-    <h2>EDIT BY ZEYROX - PNG MATERIALS</h2>
+<header class="navbar">
+  <a class="brand" href="#" id="homeLogo">
+    <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Zeyrox Logo">
+    <span>EDIT BY <b>ZEYROX</b></span>
+  </a>
 
-    <div class="material-card">
-        <img src="materials/png/chaotenkitty-neon-7440942_1920.png" alt="Neon Editing Material">
-        <h3>Neon Material</h3>
-        <a href="materials/png/chaotenkitty-neon-7440942_1920.png" download>Download</a>
-    </div>
+  <nav>
+    <a href="#" id="navHome">Home</a>
+    <a href="#categories">Resources</a>
+  </nav>
 
-    <div class="material-card">
-        <img src="materials/png/geralt-art-7036652_1920.jpg" alt="Editing Material">
-        <h3>Editing Material 2</h3>
-        <a href="materials/png/geralt-art-7036652_1920.jpg" download>Download</a>
-    </div>
+  <button class="icon-btn" id="themeBtn">☾</button>
+</header>
 
-    <div class="material-card">
-        <img src="materials/png/tungnguyen0905-technology-6701424_1920.jpg" alt="Technology Material">
-        <h3>Technology Material</h3>
-        <a href="materials/png/tungnguyen0905-technology-6701424_1920.jpg" download>Download</a>
-    </div>
-    </section>
+<main>
+
+  <!-- HOME PAGE -->
+  <div id="homePage">
+
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">CREATOR RESOURCE LIBRARY</p>
-        <h1>Everything you need to <span>edit better.</span></h1>
-        <p class="hero-text">Find overlays, PNGs, effects, presets, fonts, SFX and templates in one clean library.</p>
+        <p class="eyebrow">WELCOME TO YOUR CREATIVE WORLD</p>
+
+        <h1>EDIT BY <span>ZEYROX</span></h1>
+
+        <p class="hero-text">
+          Everything You Need to Edit Better.
+        </p>
+
         <div class="search-wrap">
           <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="Search materials...">
-          <kbd>Ctrl K</kbd>
+          <input id="searchInput" type="search"
+          placeholder="Search your editing resources...">
         </div>
-        <div class="hero-actions">
-          <a class="btn primary" href="#materials">Browse materials</a>
-          <a class="btn ghost" href="#categories">Explore categories</a>
-        </div>
+
+        <a class="btn primary" href="#categories">
+          Explore Resources →
+        </a>
       </div>
+
       <div class="hero-card">
         <div class="orb"></div>
-        <div class="floating-card card-a">✦ <b>4K Overlays</b><small>Ready to use</small></div>
-        <div class="floating-card card-b">⚡ <b>Fast downloads</b><small>Creator friendly</small></div>
-        <div class="hero-logo">EH</div>
+        <div class="hero-logo">Z</div>
+        <div class="floating-card card-a">✦ <b>Premium Resources</b></div>
+        <div class="floating-card card-b">⚡ <b>Creator Collection</b></div>
       </div>
     </section>
 
     <section id="categories" class="section">
-      <div class="section-head"><div><p class="eyebrow">BROWSE</p><h2>Categories</h2></div></div>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">EXPLORE COLLECTIONS</p>
+          <h2>Resources Library</h2>
+          <p class="hero-text">Choose your editing category</p>
+        </div>
+      </div>
+
       <div id="categoryGrid" class="category-grid"></div>
     </section>
 
-    <section id="materials" class="section">
-      <div class="section-head">
-        <div><p class="eyebrow">LIBRARY</p><h2>Materials</h2></div>
-        <div class="filters">
-          <select id="sortSelect">
-            <option value="newest">Newest</option>
-            <option value="name">Name A–Z</option>
-            <option value="downloads">Most downloaded</option>
-          </select>
-        </div>
+  </div>
+
+  <!-- SUBCATEGORY PAGE -->
+  <section id="subcategoryPage" class="section hidden">
+    <button id="backHome" class="back-btn">← Back to Home</button>
+
+    <p class="eyebrow">EXPLORE COLLECTION</p>
+    <h2 id="subcategoryTitle">Categories</h2>
+    <p class="hero-text">Choose a collection to continue</p>
+
+    <div id="subcategoryGrid" class="category-grid"></div>
+  </section>
+
+  <!-- MATERIALS PAGE -->
+  <section id="materialsPage" class="section hidden">
+    <button id="backSubcategory" class="back-btn">
+      ← Back to Subcategories
+    </button>
+
+    <p class="eyebrow">YOUR CREATIVE COLLECTION</p>
+    <h2 id="materialsTitle">Materials</h2>
+
+    <div class="search-wrap">
+      <span>⌕</span>
+      <input id="materialSearch" type="search"
+      placeholder="Search materials...">
+    </div>
+
+    <div class="filters">
+      <select id="sortSelect">
+        <option value="newest">Newest</option>
+        <option value="name">Name A-Z</option>
+        <option value="downloads">Most Downloaded</option>
+      </select>
+    </div>
+
+    <div id="materialsGrid" class="materials-grid"></div>
+
+    <div id="emptyState" class="empty hidden">
+      No materials found. Check back soon!
+    </div>
+  </section>
+
+  <!-- EXISTING PNG MATERIALS -->
+  <section class="section" id="existingMaterials">
+    <p class="eyebrow">FEATURED RESOURCES</p>
+    <h2>Featured PNG Materials</h2>
+
+    <div class="materials">
+      <div class="material-card">
+        <img src="materials/png/chaotenkitty-neon-7440942_1920.png"
+        alt="Neon Material">
+        <h3>Neon Material</h3>
+        <a href="materials/png/chaotenkitty-neon-7440942_1920.png" download>
+          Download
+        </a>
       </div>
-      <div id="chips" class="chips"></div>
-      <div id="materialsGrid" class="materials-grid"></div>
-      <div id="emptyState" class="empty hidden">No materials found. Try another search or category.</div>
-    </section>
 
-    
-  </main>
+      <div class="material-card">
+        <img src="materials/png/geralt-art-7036652_1920.jpg"
+        alt="Editing Material">
+        <h3>Editing Material 2</h3>
+        <a href="materials/png/geralt-art-7036652_1920.jpg" download>
+          Download
+        </a>
+      </div>
 
-  <footer>
-    <div><a class="brand" href="#"><span class="brand-mark">✦</span> Edit<span>Hub</span></a><p>Built for creators.</p></div>
-    <p>© <span id="year"></span> EditHub</p>
-  </footer>
+      <div class="material-card">
+        <img src="materials/png/tungnguyen0905-technology-6701424_1920.jpg"
+        alt="Technology Material">
+        <h3>Technology Material</h3>
+        <a href="materials/png/tungnguyen0905-technology-6701424_1920.jpg" download>
+          Download
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <div id="toast" class="toast"></div>
-  <script src="script.js"></script>
+</main>
+
+<footer>
+  <div>
+    <a class="brand" href="#">
+      EDIT BY <b>ZEYROX</b>
+    </a>
+    <p>Everything You Need to Edit Better.</p>
+  </div>
+
+  <p>© <span id="year"></span> EDIT BY ZEYROX</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
+  
