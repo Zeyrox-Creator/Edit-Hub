@@ -5,7 +5,91 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EDIT BY ZEYROX</title>
+/* AI PROMPT GALLERY */
+.prompt-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 25px;
+}
 
+.prompt-card {
+  background: #171323;
+  border: 1px solid #6d28d9;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.prompt-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.prompt-card h3 {
+  font-size: 15px;
+  margin: 10px 0 4px;
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.prompt-header h2 {
+  font-size: 18px;
+  text-align: center;
+}
+
+.prompt-detail {
+  max-width: 480px;
+  margin: 22px auto;
+  text-align: center;
+}
+
+.prompt-detail h3 {
+  font-size: 20px;
+}
+
+.prompt-detail img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.copy-btn {
+  margin: 15px 0;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 10px;
+  background: #8b5cf6;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.prompt-text {
+  background: #171323;
+  border: 1px solid #6d28d9;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media(max-width: 500px) {
+  .prompt-gallery {
+    gap: 10px;
+  }
+}
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -172,7 +256,91 @@ footer span{color:#a45cff}
   <div class="grid" id="materialsGrid"></div>
   <p class="empty hidden" id="emptyState">No materials added yet. Coming soon!</p>
 </section>
+/* AI PROMPT GALLERY */
+.prompt-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 25px;
+}
 
+.prompt-card {
+  background: #171323;
+  border: 1px solid #6d28d9;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.prompt-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.prompt-card h3 {
+  font-size: 15px;
+  margin: 10px 0 4px;
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.prompt-header h2 {
+  font-size: 18px;
+  text-align: center;
+}
+
+.prompt-detail {
+  max-width: 480px;
+  margin: 22px auto;
+  text-align: center;
+}
+
+.prompt-detail h3 {
+  font-size: 20px;
+}
+
+.prompt-detail img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.copy-btn {
+  margin: 15px 0;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 10px;
+  background: #8b5cf6;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.prompt-text {
+  background: #171323;
+  border: 1px solid #6d28d9;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media(max-width: 500px) {
+  .prompt-gallery {
+    gap: 10px;
+  }
+}
 <footer>
   © <span id="year"></span> EDIT BY ZEYROX. All Rights Reserved.
 </footer>
@@ -193,7 +361,7 @@ const subCategories=[
 ];
 
 const materials=[];
-
+const prompts = [];
 let selectedMain="";
 let selectedSub="";
 
@@ -205,6 +373,10 @@ function showPage(page){
   home.classList.add("hidden");
   subPage.classList.add("hidden");
   matPage.classList.add("hidden");
+
+  document.getElementById("promptGalleryPage").classList.add("hidden");
+  document.getElementById("promptDetailPage").classList.add("hidden");
+
   page.classList.remove("hidden");
   window.scrollTo(0,0);
 }
@@ -229,14 +401,19 @@ mainCategories.forEach(item=>{
       const grid=document.getElementById("subcategoryGrid");
       grid.innerHTML="";
 
-      subCategories.forEach(sub=>{
-        grid.appendChild(
-          makeCard(sub.icon,sub.name,"Explore "+sub.name,()=>{
-            selectedSub=sub.name;
-            openMaterials();
-          })
-        );
-      });
+subCategories.forEach(sub=>{
+  grid.appendChild(
+    makeCard(sub.icon,sub.name,"Explore "+sub.name,()=>{
+      selectedSub=sub.name;
+
+      if(selectedMain==="AI Edit Prompt"){
+        openPromptGallery();
+      } else {
+        openMaterials();
+      }
+    })
+  );
+});
 
       showPage(subPage);
     })
@@ -283,7 +460,67 @@ function renderMaterials(){
     grid.appendChild(card);
   });
 }
+function openPromptGallery(){
+  document.getElementById("promptCategoryTitle").textContent=selectedSub;
 
+  const grid=document.getElementById("promptGallery");
+  grid.innerHTML="";
+
+  const found=prompts.filter(item=>item.category===selectedSub);
+
+  if(found.length===0){
+    grid.innerHTML="<p class='empty'>No prompts added yet.</p>";
+  }
+
+  found.forEach(item=>{
+    const card=document.createElement("button");
+    card.className="prompt-card";
+    card.innerHTML=`
+      <img src="${item.image}" alt="${item.name}">
+      <h3>${item.name}</h3>
+    `;
+
+    card.onclick=()=>openPromptDetail(item);
+    grid.appendChild(card);
+  });
+
+  showPage(document.getElementById("promptGalleryPage"));
+}
+
+function openPromptDetail(item){
+  document.getElementById("detailCategory").textContent=item.category;
+  document.getElementById("detailImageName").textContent=item.name;
+  document.getElementById("detailImage").src=item.image;
+  document.getElementById("detailPrompt").textContent=item.prompt;
+
+  showPage(document.getElementById("promptDetailPage"));
+}
+
+document.getElementById("backPromptHome").onclick=()=>showPage(subPage);
+
+document.getElementById("backPromptGallery").onclick=()=>openPromptGallery();
+
+document.getElementById("copyPrompt").onclick=()=>{
+  const prompt=document.getElementById("detailPrompt").textContent;
+
+  navigator.clipboard.writeText(prompt).then(()=>{
+    document.getElementById("copyPrompt").textContent="✓ Copied!";
+  }).catch(()=>{
+    alert("Copy not supported. Please select and copy the prompt.");
+  });
+};
+
+document.getElementById("sharePrompt").onclick=()=>{
+  const name=document.getElementById("detailImageName").textContent;
+  const prompt=document.getElementById("detailPrompt").textContent;
+
+  if(navigator.share){
+    navigator.share({title:name,text:prompt});
+  }else{
+    navigator.clipboard.writeText(name+"\n"+prompt);
+    alert("Copied for sharing!");
+  }
+};
 document.getElementById("backHome").onclick=()=>showPage(home);
 document.getElementById("backSubcategory").onclick=()=>showPage(subPage);
 document.getElementById("materialSearch").addEventListener("input",renderMaterials);
