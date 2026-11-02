@@ -256,92 +256,46 @@ footer span{color:#a45cff}
   <input class="search" id="materialSearch" placeholder="Search materials...">
   <div class="grid" id="materialsGrid"></div>
   <p class="empty hidden" id="emptyState">No materials added yet. Coming soon!</p>
+<!-- AI PROMPT GALLERY -->
+<section id="promptGalleryPage" class="page hidden">
+
+  <div class="prompt-header">
+    <button class="back" id="backPromptHome">← Back</button>
+    <h2 id="promptCategoryTitle">Gaming</h2>
+    <span></span>
+  </div>
+
+  <div class="grid prompt-gallery" id="promptGallery"></div>
+
 </section>
-/* AI PROMPT GALLERY */
-.prompt-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 25px;
-}
 
-.prompt-card {
-  background: #171323;
-  border: 1px solid #6d28d9;
-  border-radius: 14px;
-  padding: 12px;
-  text-align: center;
-  cursor: pointer;
-}
 
-.prompt-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 10px;
-}
+<!-- AI PROMPT DETAIL -->
+<section id="promptDetailPage" class="page hidden">
 
-.prompt-card h3 {
-  font-size: 15px;
-  margin: 10px 0 4px;
-}
+  <div class="prompt-header">
+    <button class="back" id="backPromptGallery">← Back</button>
+    <h2 id="detailCategory">Gaming</h2>
+    <button class="back" id="sharePrompt">↗</button>
+  </div>
 
-.prompt-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
+  <div class="prompt-detail">
 
-.prompt-header h2 {
-  font-size: 18px;
-  text-align: center;
-}
+    <h3 id="detailImageName">Night Sky</h3>
 
-.prompt-detail {
-  max-width: 480px;
-  margin: 22px auto;
-  text-align: center;
-}
+    <img id="detailImage" src="" alt="AI Preview">
 
-.prompt-detail h3 {
-  font-size: 20px;
-}
+    <button class="copy-btn" id="copyPrompt">
+      📋 1 Click Copy
+    </button>
 
-.prompt-detail img {
-  width: 100%;
-  max-height: 380px;
-  object-fit: contain;
-  border-radius: 14px;
-}
+    <div class="prompt-text" id="detailPrompt">
+      Your AI prompt will appear here.
+    </div>
 
-.copy-btn {
-  margin: 15px 0;
-  padding: 12px 24px;
-  border: 0;
-  border-radius: 10px;
-  background: #8b5cf6;
-  color: white;
-  font-size: 15px;
-  cursor: pointer;
-}
+  </div>
 
-.prompt-text {
-  background: #171323;
-  border: 1px solid #6d28d9;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: left;
-  font-size: 14px;
-  line-height: 1.6;
-  overflow-wrap: anywhere;
-}
-
-@media(max-width: 500px) {
-  .prompt-gallery {
-    gap: 10px;
-  }
-}
+</section>
 <footer>
   © <span id="year"></span> EDIT BY ZEYROX. All Rights Reserved.
 </footer>
@@ -420,7 +374,17 @@ subCategories.forEach(sub=>{
     })
   );
 });
+function showPage(page){
+  home.classList.add("hidden");
+  subPage.classList.add("hidden");
+  matPage.classList.add("hidden");
 
+  document.getElementById("promptGalleryPage").classList.add("hidden");
+  document.getElementById("promptDetailPage").classList.add("hidden");
+
+  page.classList.remove("hidden");
+  window.scrollTo(0,0);
+}
 function openMaterials(){
   document.getElementById("materialsTitle").textContent=
     selectedMain+" / "+selectedSub;
