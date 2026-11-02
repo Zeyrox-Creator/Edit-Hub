@@ -281,7 +281,12 @@ footer span{color:#a45cff}
     <h2 id="promptCategoryTitle">Gaming</h2>
     <span></span>
   </div>
-
+<input
+  type="text"
+  id="promptSearch"
+  class="search"
+  placeholder="🔍 Search AI Prompts..."
+>
   <div class="grid prompt-gallery" id="promptGallery"></div>
 
 </section>
@@ -468,7 +473,15 @@ function openPromptGallery(){
 
   showPage(document.getElementById("promptGalleryPage"));
 }
+document.getElementById("promptSearch").addEventListener("input", function(){
+  const searchValue = this.value.toLowerCase();
 
+  document.querySelectorAll("#promptGallery .prompt-card").forEach(card=>{
+    card.style.display = card.textContent.toLowerCase().includes(searchValue)
+      ? ""
+      : "none";
+  });
+});
 function openPromptDetail(item){
   document.getElementById("detailCategory").textContent=item.category;
   document.getElementById("detailImageName").textContent=item.name;
