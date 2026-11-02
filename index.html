@@ -470,10 +470,11 @@ function openPromptGallery(){
     card.onclick=()=>openPromptDetail(item);
     grid.appendChild(card);
   });
+const search = document.getElementById("promptSearch");
 
-  showPage(document.getElementById("promptGalleryPage"));
-}
-document.getElementById("promptSearch").addEventListener("input", function(){
+search.value = "";
+
+search.oninput = function(){
   const searchValue = this.value.toLowerCase();
 
   document.querySelectorAll("#promptGallery .prompt-card").forEach(card=>{
@@ -481,7 +482,10 @@ document.getElementById("promptSearch").addEventListener("input", function(){
       ? ""
       : "none";
   });
-});
+};
+  showPage(document.getElementById("promptGalleryPage"));
+}
+
 function openPromptDetail(item){
   document.getElementById("detailCategory").textContent=item.category;
   document.getElementById("detailImageName").textContent=item.name;
