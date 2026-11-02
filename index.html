@@ -4,1064 +4,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090411">
+<meta name="theme-color" content="#090611">
 <title>EDIT BY ZEYROX</title>
 
 <style>
-/* ================= BASE ================= */
-
-:root{
-  --bg:#08040f;
-  --panel:#110a20;
-  --purple:#b52cff;
-  --pink:#ff28df;
-  --text:#ffffff;
-  --muted:#c5b5d8;
-  --border:#44215e;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-  min-height:100vh;
-}
-
-button,input{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.page{
-  display:none;
-  animation:pageIn .3s ease;
-}
-
-.page.active{
-  display:block;
-}
-
-@keyframes pageIn{
-  from{opacity:0;transform:translateY(8px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ================= HEADER ================= */
-
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:13px 5%;
-  background:#10091b;
-  border-bottom:1px solid #47205f;
-  position:sticky;
-  top:0;
-  z-index:50;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:0;
-}
-
-.brand img{
-  width:48px;
-  height:48px;
-  object-fit:contain;
-}
-
-.brand h2{
-  font-size:18px;
-  background:linear-gradient(90deg,#ff31e8,#fff,#a33cff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  font-weight:900;
-}
-
-.brand p{
-  font-size:11px;
-  color:#d5c5e5;
-  margin-top:5px;
-}
-
-.menu-button{
-  width:43px;
-  height:43px;
-  border:1px solid #a72cff;
-  background:#170b27;
-  border-radius:10px;
-  color:white;
-  font-size:23px;
-  box-shadow:0 0 12px #9c26ff55;
-}
-
-/* ================= GENERAL LAYOUT ================= */
-
-main{
-  width:92%;
-  max-width:1100px;
-  margin:25px auto;
-  min-height:65vh;
-}
-
-button:focus-visible,
-input:focus-visible{
-  outline:2px solid #e28bff;
-  outline-offset:3px;
-}
-
-.section-title{
-  font-size:25px;
-  margin-bottom:8px;
-}
-
-.section-subtitle{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:22px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:16px;
-}
-
-/* ================= HOME HERO ================= */
-
-.hero{
-  position:relative;
-  overflow:hidden;
-  min-height:370px;
-  padding:35px 22px;
-  margin-bottom:30px;
-  border:1px solid #6825a0;
-  border-radius:20px;
-  background:
-    radial-gradient(ellipse at 10% 80%,#7800e777,transparent 45%),
-    radial-gradient(ellipse at 95% 10%,#c000ff55,transparent 40%),
-    linear-gradient(135deg,#160a28,#08040f 70%);
-  box-shadow:0 0 25px #9d23ff35,inset 0 0 35px #9b2cff18;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:250px;
-  height:250px;
-  border-radius:50%;
-  border:2px solid #d82dff44;
-  right:-100px;
-  top:30px;
-  box-shadow:0 0 35px #a52bff55;
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:650px;
-}
-
-.hero-welcome{
-  font-size:clamp(24px,5vw,40px);
-  font-style:italic;
-  color:white;
-  margin-bottom:5px;
-}
-
-.hero-name{
-  font-size:clamp(38px,9vw,76px);
-  line-height:1;
-  font-weight:1000;
-  letter-spacing:-2px;
-  background:linear-gradient(100deg,#fff,#ec32ff,#9d40ff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  text-shadow:0 0 25px #b72cff55;
-}
-
-.hero-tagline{
-  display:inline-block;
-  margin-top:20px;
-  padding:10px 18px;
-  border:1px solid #ed34ff;
-  background:#220b38;
-  border-radius:8px;
-  font-size:clamp(17px,4vw,25px);
-  font-weight:900;
-  font-style:italic;
-  letter-spacing:1px;
-  box-shadow:0 0 16px #d12aff66;
-}
-
-.hero-description{
-  color:#d6c5e7;
-  margin-top:15px;
-  font-size:14px;
-}
-
-.explore-button{
-  margin-top:23px;
-  padding:13px 25px;
-  border-radius:30px;
-  color:white;
-  border:1px solid #f044ff;
-  background:linear-gradient(90deg,#5910a0,#a51bda);
-  font-weight:bold;
-  box-shadow:0 0 18px #c02aff77;
-}
-
-.explore-button:hover{
-  transform:scale(1.04);
-}
-
-/* ================= HOME CATEGORY CARDS ================= */
-
-.home-card{
-  min-height:145px;
-  padding:17px 12px;
-  border-radius:16px;
-  background:#100a1d;
-  border:1px solid var(--card-color);
-  box-shadow:0 0 13px color-mix(in srgb,var(--card-color) 35%,transparent);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  transition:.25s;
-  position:relative;
-  overflow:hidden;
-  text-align:left;
-}
-
-.home-card::before{
-  content:"";
-  position:absolute;
-  width:130px;
-  height:130px;
-  right:-60px;
-  top:-60px;
-  border-radius:50%;
-  background:var(--card-color);
-  filter:blur(55px);
-  opacity:.3;
-}
-
-.home-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 24px var(--card-color);
-}
-
-.home-card-top{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  position:relative;
-}
-
-.home-icon{
-  font-size:34px;
-}
-
-.home-card h3{
-  font-size:clamp(15px,3.5vw,21px);
-  font-weight:900;
-  color:var(--card-color);
-  overflow-wrap:anywhere;
-}
-
-.home-card-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:5px;
-  position:relative;
-}
-
-.home-card p{
-  font-size:11px;
-  color:#e1d3ed;
-}
-
-.arrow-circle{
-  width:34px;
-  height:34px;
-  flex-shrink:0;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  border:1px solid var(--card-color);
-  color:var(--card-color);
-  font-size:22px;
-  box-shadow:0 0 10px var(--card-color);
-}
-
-.home-bottom{
-  text-align:center;
-  margin:35px 0 10px;
-  padding:20px 5px;
-  border-top:1px solid #8d2bc4;
-}
-
-.home-bottom h3{
-  font-size:22px;
-  letter-spacing:4px;
-  color:#e13aff;
-  text-shadow:0 0 12px #bb2aff;
-}
-
-/* ================= SUBCATEGORY PAGE ================= */
-
-.page-heading{
-  text-align:center;
-  margin:25px 0 30px;
-}
-
-.page-heading .crown{
-  color:#f02dff;
-  font-size:34px;
-  text-shadow:0 0 15px #d02cff;
-}
-
-.page-heading h1{
-  font-size:clamp(30px,7vw,55px);
-  font-style:italic;
-  font-weight:1000;
-  background:linear-gradient(90deg,#fff,#d54aff,#fff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  margin:10px 0;
-}
-
-.page-heading p{
-  font-size:13px;
-  letter-spacing:4px;
-  color:#eee2f8;
-}
-
-.page-header{
-  display:grid;
-  grid-template-columns:85px 1fr 85px;
-  align-items:center;
-  gap:8px;
-}
-
-.back-button{
-  padding:11px 12px;
-  border:1px solid #c12cff;
-  border-radius:9px;
-  background:#190b29;
-  color:white;
-  box-shadow:0 0 12px #b12cff55;
-  white-space:nowrap;
-}
-
-.sub-card{
-  position:relative;
-  overflow:hidden;
-  min-height:195px;
-  border:1px solid var(--sub-color);
-  border-radius:17px;
-  padding:15px 8px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:13px;
-  background:
-    radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--sub-color) 25%,transparent),transparent 60%),
-    #100a1b;
-  box-shadow:0 0 15px color-mix(in srgb,var(--sub-color) 55%,transparent);
-  transition:.25s;
-}
-
-.sub-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 25px var(--sub-color);
-}
-
-.sub-icon{
-  font-size:48px;
-  filter:drop-shadow(0 0 12px var(--sub-color));
-}
-
-.sub-card h3{
-  font-size:clamp(18px,4vw,25px);
-  font-style:italic;
-  font-weight:1000;
-  color:var(--sub-color);
-  text-shadow:0 0 12px var(--sub-color);
-}
-
-.sub-arrow{
-  width:36px;
-  height:36px;
-  border:1px solid var(--sub-color);
-  border-radius:50%;
-  color:var(--sub-color);
-  display:grid;
-  place-items:center;
-  font-size:22px;
-  box-shadow:0 0 12px var(--sub-color);
-}
-
-.sub-footer{
-  text-align:center;
-  padding:25px 0;
-  color:#ed37ff;
-  font-size:19px;
-  font-weight:bold;
-  letter-spacing:4px;
-}
-
-/* ================= GALLERY ================= */
-
-.gallery-header{
-  display:grid;
-  grid-template-columns:85px minmax(0,1fr) 85px;
-  align-items:center;
-  gap:8px;
-  margin-bottom:16px;
-}
-
-.gallery-header h2{
-  text-align:center;
-  font-size:20px;
-  color:#e9b6ff;
-}
-
-.search{
-  width:100%;
-  padding:14px 15px;
-  margin:10px 0 20px;
-  border:1px solid #a43bd0;
-  border-radius:10px;
-  background:#140c20;
-  color:white;
-  font-size:15px;
-}
-
-.search::placeholder{
-  color:#b9a6cb;
-}
-
-.prompt-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:15px;
-}
-
-.prompt-card{
-  padding:0;
-  overflow:hidden;
-  border:1px solid #7133a0;
-  border-radius:13px;
-  background:#160d23;
-  color:white;
-  text-align:left;
-}
-
-.prompt-card img{
-  display:block;
-  width:100%;
-  height:145px;
-  object-fit:cover;
-}
-
-.prompt-card h3{
-  padding:12px;
-  font-size:15px;
-}
-
-.empty{
-  grid-column:1/-1;
-  padding:35px 15px;
-  border:1px dashed #8a46b4;
-  border-radius:13px;
-  text-align:center;
-  color:#d4c1e6;
-  background:#130b1d;
-}
-
-.empty h3{
-  margin-bottom:8px;
-  color:#e8b0ff;
-}
-
-/* ================= DETAIL PAGE ================= */
-
-.detail-box{
-  padding:18px;
-  border:1px solid #7134a0;
-  border-radius:15px;
-  background:#150c20;
-}
-
-.detail-box h2{
-  color:#e7b5ff;
-  font-size:23px;
-}
-
-.detail-image{
-  display:block;
-  width:100%;
-  max-height:380px;
-  object-fit:contain;
-  margin:18px auto;
-  border-radius:10px;
-}
-
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin:15px 0;
-}
-
-.action-button{
-  padding:12px 17px;
-  border:1px solid #b63aff;
-  border-radius:9px;
-  background:#29123d;
-  color:white;
-}
-
-.prompt-text{
-  padding:16px;
-  border-radius:10px;
-  border:1px solid #513168;
-  background:#0b0711;
-  color:#eee2fa;
-  line-height:1.7;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-}
-
-/* ================= MATERIALS ================= */
-
-.material-card{
-  padding:12px;
-  background:#150c20;
-  border:1px solid #65348c;
-  border-radius:13px;
-  text-align:center;
-}
-
-.material-card img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
-  border-radius:9px;
-}
-
-.material-card h3{
-  font-size:15px;
-  margin:12px 0;
-  color:#e9b6ff;
-}
-
-.download-button{
-  padding:10px 15px;
-  background:#361450;
-  border:1px solid #b13bff;
-  color:white;
-  border-radius:8px;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-  text-align:center;
-  padding:22px 10px;
-  border-top:1px solid #54246e;
-  color:#c6b5d8;
-  font-size:12px;
-  margin-top:35px;
-}
-
-.footer-tagline{
-  font-size:18px;
-  color:#e139ff;
-  letter-spacing:3px;
-  font-weight:bold;
-  margin-bottom:12px;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:520px){
-  header{padding:11px 4%}
-  .brand img{width:43px;height:43px}
-  .brand h2{font-size:15px}
-  .brand p{font-size:10px}
-  main{width:92%;margin:20px auto}
-  .hero{min-height:330px;padding:30px 17px}
-  .grid{gap:11px}
-  .home-card{min-height:135px;padding:13px 9px}
-  .home-icon{font-size:29px}
-  .sub-card{min-height:165px}
-  .sub-icon{font-size:40px}
-  .prompt-grid{gap:10px}
-  .prompt-card img{height:120px}
-}
-
-@media(max-width:350px){
-  .grid{grid-template-columns:1fr}
-  .home-card{min-height:115px}
-}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#090611;--panel:#151020;--line:#38264d;--purple:#923cff;--pink:#ed48d1}
+body{background:var(--bg);color:#fff;font-family:Arial,sans-serif;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-content:space-between;background:#0d0917;border-bottom:1px solid #30203f;position:sticky;top:0;z-index:10}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:46px;height:46px;object-fit:contain}
+.brand h2{font-size:18px;letter-spacing:1px}
+.nav-btn,.back-btn{background:#191126;color:white;border:1px solid #7540a8;border-radius:9px;padding:10px 16px}
+.page{display:none;min-height:calc(100vh - 74px);padding:32px 5%}
+.page.active{display:block}
+.hero{min-height:410px;border:1px solid #48266b;border-radius:24px;padding:40px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 0%,#7128a94a,transparent 65%),linear-gradient(135deg,#171023,#0a0711 75%);box-shadow:0 0 35px #8d37ff20}
+.hero-logo{width:95px;height:95px;object-fit:contain;margin-bottom:18px}
+.hero h1{font-size:clamp(34px,7vw,65px);font-weight:900}
+.gradient{background:linear-gradient(90deg,#b66aff,#ed55d6,#6b9cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{margin-top:17px;color:#d8c4ee;font-size:17px;letter-spacing:4px}
+.explore{margin-top:30px;padding:15px 36px;border:0;border-radius:11px;color:white;font-weight:bold;background:linear-gradient(100deg,#853aff,#d93bd0);box-shadow:0 0 24px #9b3dff55}
+.section-title{text-align:center;font-size:27px;margin:40px 0 24px}
+.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.category-card{min-height:155px;padding:22px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#151020;border:1px solid var(--line);border-radius:17px;text-align:center;cursor:pointer;transition:.2s}
+.category-card:hover,.sub-card:hover{transform:translateY(-5px);border-color:#b15aff}
+.category-icon{font-size:35px}
+.category-card h3{font-size:18px}
+.cat1 h3{color:#ff86cb}.cat2 h3{color:#b28cff}.cat3 h3{color:#67e9bb}.cat4 h3{color:#ffc16f}
+.page-heading{display:flex;align-items:center;gap:15px;margin-bottom:30px}
+.page-heading h2{font-size:25px}
+.sub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.sub-card{min-height:180px;padding:27px;border:1px solid #ffffff25;border-radius:19px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;transition:.2s}
+.sub-card h3{font-size:27px;margin-bottom:12px}
+.sub-card p{color:#eee}
+.trending{background:linear-gradient(135deg,#60300d,#e18a25)}
+.gaming{background:linear-gradient(135deg,#102b63,#167be7)}
+.natural{background:linear-gradient(135deg,#12452a,#20a66b)}
+.logo-card{background:linear-gradient(135deg,#472064,#b23bd1)}
+.search{width:100%;padding:14px;margin-bottom:20px;background:#151020;border:1px solid #50366a;border-radius:10px;color:white;outline:none}
+.search:focus{border-color:#b15aff}
+.item-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.item{padding:18px;background:#151020;border:1px solid var(--line);border-radius:14px}
+.item h3{margin-bottom:10px}
+.item p{font-size:13px;color:#b9abc9;margin-bottom:10px}
+.action{display:inline-block;padding:10px 14px;border:0;border-radius:8px;background:#853bd4;color:white;text-decoration:none;margin:4px 4px 0 0}
+.empty{grid-column:1/-1;text-align:center;padding:40px 10px;color:#b9abc9}
+.detail-box{padding:25px;background:#151020;border:1px solid var(--line);border-radius:15px}
+.detail-box p{white-space:pre-wrap;line-height:1.6;margin:15px 0;color:#ddd}
+footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f;margin-top:30px}
+@media(max-width:750px){.category-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,1fr)}.hero{min-height:350px}}
+@media(max-width:480px){.sub-grid,.item-grid{grid-template-columns:1fr}.page{padding:24px 4%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}}
 </style>
 </head>
 
 <body>
-
-<!-- ================= HEADER ================= -->
-
 <header>
-  <div class="brand">
-    <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png"
-         alt="EDIT BY ZEYROX Logo">
-    <div>
-      <h2>EDIT BY ZEYROX</h2>
-      <p>Everything You Need to Edit Better.</p>
-    </div>
-  </div>
-
-  <button class="menu-button" id="menuButton" aria-label="Back to home">
-    ☰
-  </button>
+ <div class="brand">
+  <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Logo">
+  <h2>EDIT BY ZEYROX</h2>
+ </div>
+ <button class="nav-btn" onclick="showPage('home')">HOME</button>
 </header>
 
-<main>
-
-<!-- ================= HOME PAGE ================= -->
-
-<section id="homePage" class="page active">
-
-  <div class="hero">
-    <div class="hero-content">
-      <p class="hero-welcome">Welcome to</p>
-      <h1 class="hero-name">EDIT BY<br>ZEYROX</h1>
-      <div class="hero-tagline">EDIT LIKE A PRO</div>
-      <p class="hero-description">
-        Your Ultimate Editing Resource Hub
-      </p>
-      <button class="explore-button" id="exploreButton">
-        Explore Now →
-      </button>
-    </div>
-  </div>
-
-  <h2 class="section-title">Explore Categories</h2>
-  <p class="section-subtitle">
-    Everything you need for your creative editing journey.
-  </p>
-
-  <div class="grid" id="categoryGrid"></div>
-
-  <div class="home-bottom">
-    <h3>EDIT LIKE A PRO</h3>
-  </div>
-
+<!-- HOME -->
+<section id="home" class="page active">
+ <div class="hero">
+  <img class="hero-logo" src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Logo">
+  <h1>EDIT BY <span class="gradient">ZEYROX</span></h1>
+  <p class="tagline">EDIT LIKE A PRO</p>
+  <button class="explore" onclick="showPage('categories')">EXPLORE NOW →</button>
+ </div>
+ <h2 class="section-title">EXPLORE CATEGORIES</h2>
+ <div class="category-grid" id="homeCategories"></div>
 </section>
 
-<!-- ================= SUBCATEGORY PAGE ================= -->
-
-<section id="subcategoryPage" class="page">
-
-  <div class="page-header">
-    <button class="back-button" id="backHome">← Back</button>
-    <span></span>
-    <span></span>
-  </div>
-
-  <div class="page-heading">
-    <div class="crown">♛</div>
-    <h1 id="subcategoryTitle">AI Edit Prompt</h1>
-    <p>CHOOSE A SUBCATEGORY</p>
-  </div>
-
-  <div class="grid" id="subcategoryGrid"></div>
-
-  <div class="sub-footer">EDIT LIKE A PRO</div>
-
+<!-- CATEGORIES -->
+<section id="categories" class="page">
+ <div class="page-heading">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <h2>Categories</h2>
+ </div>
+ <div class="category-grid" id="allCategories"></div>
 </section>
 
-<!-- ================= MATERIALS PAGE ================= -->
-
-<section id="materialsPage" class="page">
-
-  <div class="gallery-header">
-    <button class="back-button" id="backMaterials">← Back</button>
-    <h2 id="materialsTitle">Materials</h2>
-    <span></span>
-  </div>
-
-  <input
-    type="search"
-    id="materialSearch"
-    class="search"
-    placeholder="🔍 Search materials..."
-  >
-
-  <div class="grid" id="materialsGrid"></div>
-
+<!-- SUBCATEGORIES -->
+<section id="subcategories" class="page">
+ <div class="page-heading">
+  <button class="back-btn" onclick="showPage('categories')">← Back</button>
+  <h2 id="categoryHeading">Subcategories</h2>
+ </div>
+ <div class="sub-grid">
+  <div class="sub-card trending" onclick="openGallery('Trending')"><h3>🔥 Trending</h3><p>Explore trending edits</p></div>
+  <div class="sub-card gaming" onclick="openGallery('Gaming')"><h3>🎮 Gaming</h3><p>Explore gaming edits</p></div>
+  <div class="sub-card natural" onclick="openGallery('Natural')"><h3>🌿 Natural</h3><p>Explore natural edits</p></div>
+  <div class="sub-card logo-card" onclick="openGallery('Logo')"><h3>💜 Logo</h3><p>Explore logo edits</p></div>
+ </div>
 </section>
 
-<!-- ================= PROMPT GALLERY ================= -->
-
-<section id="galleryPage" class="page">
-
-  <div class="gallery-header">
-    <button class="back-button" id="backGallery">← Back</button>
-    <h2 id="galleryTitle">Gaming</h2>
-    <span></span>
-  </div>
-
-  <input
-    type="search"
-    id="promptSearch"
-    class="search"
-    placeholder="🔍 Search AI Prompts..."
-  >
-
-  <div class="prompt-grid" id="promptGrid"></div>
-
+<!-- GALLERY -->
+<section id="gallery" class="page">
+ <div class="page-heading">
+  <button class="back-btn" onclick="showPage('subcategories')">← Back</button>
+  <h2 id="galleryHeading">Gallery</h2>
+ </div>
+ <input id="searchInput" class="search" type="search" placeholder="Search materials..." oninput="renderGallery()">
+ <div class="item-grid" id="itemGrid"></div>
 </section>
 
-<!-- ================= PROMPT DETAIL ================= -->
-
-<section id="detailPage" class="page">
-
-  <div class="gallery-header">
-    <button class="back-button" id="backDetail">← Back</button>
-    <h2>Prompt Details</h2>
-    <span></span>
-  </div>
-
-  <div class="detail-box">
-    <h2 id="detailTitle">Prompt Title</h2>
-
-    <img
-      id="detailImage"
-      class="detail-image"
-      src=""
-      alt="Prompt preview"
-    >
-
-    <div class="actions">
-      <button class="action-button" id="copyButton">
-        📋 Copy Prompt
-      </button>
-
-      <button class="action-button" id="shareButton">
-        ↗ Share
-      </button>
-    </div>
-
-    <div id="detailText" class="prompt-text"></div>
-  </div>
-
+<!-- DETAIL -->
+<section id="detail" class="page">
+ <div class="page-heading">
+  <button class="back-btn" onclick="showPage('gallery')">← Back</button>
+  <h2>Material Details</h2>
+ </div>
+ <div class="detail-box">
+  <h2 id="detailTitle"></h2>
+  <p id="detailText"></p>
+  <button class="action" onclick="copyCurrent()">Copy</button>
+  <button class="action" onclick="shareCurrent()">Share</button>
+ </div>
 </section>
 
-</main>
-
-<footer>
-  <div class="footer-tagline">EDIT LIKE A PRO</div>
-  © 2026 EDIT BY ZEYROX. All Rights Reserved.
-</footer>
+<footer>© 2026 EDIT BY ZEYROX</footer>
 
 <script>
-
-/* ================= DATA ================= */
-
-const mainCategories = [
-  {
-    name:"AI Edit Prompt",
-    icon:"🤖",
-    description:"Get creative prompts",
-    color:"#f02bdf"
-  },
-  {
-    name:"AI Template",
-    icon:"🎨",
-    description:"Use amazing templates",
-    color:"#22caff"
-  },
-  {
-    name:"PNG Material",
-    icon:"🖼️",
-    description:"Download PNG assets",
-    color:"#ff31e9"
-  },
-  {
-    name:"VFX Material",
-    icon:"🎬",
-    description:"Add stunning VFX",
-    color:"#ffb51b"
-  }
+const categories=[
+ {name:'AI Edit Prompt',icon:'✨',cls:'cat1'},
+ {name:'AI Template',icon:'🎨',cls:'cat2'},
+ {name:'PNG Material',icon:'🖼️',cls:'cat3'},
+ {name:'VFX Material',icon:'⚡',cls:'cat4'}
 ];
 
-const subCategories = [
-  {name:"Trending",icon:"👑",color:"#ffad00"},
-  {name:"Gaming",icon:"🎮",color:"#16cfff"},
-  {name:"Natural",icon:"🌳",color:"#8cff24"},
-  {name:"Logo",icon:"💠",color:"#ed35ff"}
+function makeCategoryCards(target){
+ document.getElementById(target).innerHTML=categories.map((c,i)=>`
+  <div class="category-card ${c.cls}" onclick="openCategory(${i})">
+   <div class="category-icon">${c.icon}</div><h3>${c.name}</h3>
+  </div>`).join('');
+}
+makeCategoryCards('homeCategories');
+makeCategoryCards('allCategories');
+
+const materials=[
+ {name:'Chaoten Kitty',category:'PNG Material',sub:'Trending',file:'materials/png/chaotenkitty-neon-7440942_1920.png',type:'image'},
+ {name:'Fantasy Artwork',category:'PNG Material',sub:'Natural',file:'materials/png/geralt-art-7036652_1920.jpg',type:'image'},
+ {name:'Technology Background',category:'PNG Material',sub:'Gaming',file:'materials/png/tungnguyen0905-technology-6701424_1920.jpg',type:'image'}
 ];
 
 /*
-ADD YOUR AI PROMPTS HERE.
+ADD YOUR OWN CONTENT HERE.
 
-Example:
-
+Prompt example:
 {
-  category:"Gaming",
-  name:"Neon Gaming Portrait",
-  image:"materials/png/chaotenkitty-neon-7440942_1920.png",
-  text:"Your complete AI prompt goes here."
+ name:'My Prompt',
+ category:'AI Edit Prompt',
+ sub:'Trending',
+ text:'Write your complete prompt here.',
+ type:'prompt'
 }
 
-Available categories:
-Trending, Gaming, Natural, Logo
+Template example:
+{
+ name:'My Template',
+ category:'AI Template',
+ sub:'Trending',
+ file:'materials/templates/my-template.jpg',
+ type:'image'
+}
+
+VFX example:
+{
+ name:'My VFX',
+ category:'VFX Material',
+ sub:'Gaming',
+ file:'materials/vfx/my-vfx.mp4',
+ type:'file'
+}
 */
 
-const prompts = [];
+let selectedCategory='';
+let selectedSub='';
+let currentItem=null;
+let previousPage='gallery';
 
-/* Existing materials */
+const pages=['home','categories','subcategories','gallery','detail'];
 
-const materials = [
-  {
-    category:"PNG Material",
-    name:"Neon Kitty",
-    image:"materials/png/chaotenkitty-neon-7440942_1920.png"
-  },
-  {
-    category:"PNG Material",
-    name:"Fantasy Art",
-    image:"materials/png/geralt-art-7036652_1920.jpg"
-  },
-  {
-    category:"PNG Material",
-    name:"Technology",
-    image:"materials/png/tungnguyen0905-technology-6701424_1920.jpg"
+function showPage(id){
+ pages.forEach(p=>document.getElementById(p).classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function openCategory(index){
+ selectedCategory=categories[index].name;
+ document.getElementById('categoryHeading').textContent=selectedCategory;
+ showPage('subcategories');
+}
+
+function openGallery(sub){
+ selectedSub=sub;
+ document.getElementById('galleryHeading').textContent=selectedCategory+' / '+sub;
+ document.getElementById('searchInput').value='';
+ renderGallery();
+ showPage('gallery');
+}
+
+function renderGallery(){
+ const query=document.getElementById('searchInput').value.toLowerCase();
+ const grid=document.getElementById('itemGrid');
+ const list=materials.filter(x=>
+  x.category===selectedCategory &&
+  x.sub===selectedSub &&
+  x.name.toLowerCase().includes(query)
+ );
+ grid.innerHTML='';
+
+ if(!list.length){
+  grid.innerHTML='<div class="empty">No materials added here yet.</div>';
+  return;
+ }
+
+ list.forEach(item=>{
+  const card=document.createElement('div');
+  card.className='item';
+  const title=document.createElement('h3');
+  title.textContent=item.name;
+  const desc=document.createElement('p');
+  desc.textContent=item.category+' • '+item.sub;
+  card.append(title,desc);
+
+  if(item.type==='prompt'){
+   const view=document.createElement('button');
+   view.className='action';
+   view.textContent='View Prompt';
+   view.onclick=()=>openDetail(item);
+   card.appendChild(view);
+  }else{
+   const link=document.createElement('a');
+   link.className='action';
+   link.href=item.file;
+   link.download='';
+   link.textContent='Download';
+   card.appendChild(link);
+   if(item.type==='image'){
+    const view=document.createElement('button');
+    view.className='action';
+    view.textContent='View Details';
+    view.onclick=()=>openDetail(item);
+    card.appendChild(view);
+   }
   }
-];
-
-let selectedMain = "";
-let selectedSub = "";
-let currentPrompt = null;
-
-/* ================= PAGE CONTROL ================= */
-
-const allPages = document.querySelectorAll(".page");
-
-function showPage(page){
-  allPages.forEach(p=>p.classList.remove("active"));
-  page.classList.add("active");
-  window.scrollTo(0,0);
+  grid.appendChild(card);
+ });
 }
 
-const homePage = document.getElementById("homePage");
-const subcategoryPage = document.getElementById("subcategoryPage");
-const materialsPage = document.getElementById("materialsPage");
-const galleryPage = document.getElementById("galleryPage");
-const detailPage = document.getElementById("detailPage");
-
-/* Header menu and Explore button */
-
-document.getElementById("menuButton").onclick = ()=>{
-  showPage(homePage);
-};
-
-document.getElementById("exploreButton").onclick = ()=>{
-  document.getElementById("categoryGrid").scrollIntoView({
-    behavior:"smooth",
-    block:"center"
-  });
-};
-
-/* ================= HOME CATEGORIES ================= */
-
-const categoryGrid = document.getElementById("categoryGrid");
-
-mainCategories.forEach(item=>{
-
-  const card = document.createElement("button");
-  card.type = "button";
-  card.className = "home-card";
-  card.style.setProperty("--card-color",item.color);
-
-  card.innerHTML = `
-    <div class="home-card-top">
-      <span class="home-icon">${item.icon}</span>
-      <h3>${item.name}</h3>
-    </div>
-
-    <div class="home-card-bottom">
-      <p>${item.description}</p>
-      <span class="arrow-circle">→</span>
-    </div>
-  `;
-
-  card.onclick = ()=>{
-    openSubcategories(item.name);
-  };
-
-  categoryGrid.appendChild(card);
-
-});
-
-/* ================= SUBCATEGORIES ================= */
-
-function openSubcategories(categoryName){
-
-  selectedMain = categoryName;
-
-  document.getElementById("subcategoryTitle").textContent =
-    categoryName;
-
-  const grid = document.getElementById("subcategoryGrid");
-  grid.innerHTML = "";
-
-  subCategories.forEach(sub=>{
-
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = "sub-card";
-
-    card.style.setProperty("--sub-color",sub.color);
-
-    card.innerHTML = `
-      <div class="sub-icon">${sub.icon}</div>
-      <h3>${sub.name}</h3>
-      <span class="sub-arrow">→</span>
-    `;
-
-    card.onclick = ()=>{
-
-      selectedSub = sub.name;
-
-      if(selectedMain === "AI Edit Prompt"){
-        openGallery();
-      }else{
-        openMaterials();
-      }
-
-    };
-
-    grid.appendChild(card);
-
-  });
-
-  showPage(subcategoryPage);
+function openDetail(item){
+ currentItem=item;
+ previousPage='gallery';
+ document.getElementById('detailTitle').textContent=item.name;
+ document.getElementById('detailText').textContent=item.text||item.file||item.name;
+ showPage('detail');
 }
 
-/* Subcategory Back */
-
-document.getElementById("backHome").onclick = ()=>{
-  showPage(homePage);
-};
-
-/* ================= AI PROMPT GALLERY ================= */
-
-function openGallery(){
-
-  document.getElementById("galleryTitle").textContent =
-    selectedSub;
-
-  document.getElementById("promptSearch").value = "";
-
-  renderPrompts("");
-
-  showPage(galleryPage);
+function copyCurrent(){
+ if(!currentItem)return;
+ copyText(currentItem.text||currentItem.name);
 }
 
-function renderPrompts(searchValue){
-
-  const grid = document.getElementById("promptGrid");
-  grid.innerHTML = "";
-
-  const query = searchValue.toLowerCase();
-
-  const found = prompts.filter(item=>{
-
-    const category = (item.category || "").toLowerCase();
-    const name = (item.name || "").toLowerCase();
-    const text = (item.text || "").toLowerCase();
-
-    return category === selectedSub.toLowerCase() &&
-      (name.includes(query) || text.includes(query));
-
-  });
-
-  if(found.length === 0){
-
-    grid.innerHTML = `
-      <div class="empty">
-        <h3>${query ? "No matching prompts" : "No prompts added yet"}</h3>
-        <p>
-          ${query
-            ? "Try searching with another word."
-            : "New prompts will appear here soon!"}
-        </p>
-      </div>
-    `;
-
-    return;
+async function copyText(text){
+ try{
+  if(navigator.clipboard && window.isSecureContext){
+   await navigator.clipboard.writeText(text);
+  }else{
+   const input=document.createElement('textarea');
+   input.value=text;
+   document.body.appendChild(input);
+   input.select();
+   document.execCommand('copy');
+   input.remove();
   }
-
-  found.forEach(item=>{
-
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = "prompt-card";
-
-    const image = document.createElement("img");
-    image.src = item.image;
-    image.alt = item.name || "Prompt image";
-
-    const title = document.createElement("h3");
-    title.textContent = item.name;
-
-    card.append(image,title);
-
-    card.onclick = ()=>{
-      openDetail(item);
-    };
-
-    grid.appendChild(card);
-
-  });
-
+  alert('Copied successfully!');
+ }catch(e){alert('Copy failed. Please try again.');}
 }
 
-/* Prompt Search */
-
-document.getElementById("promptSearch").addEventListener(
-  "input",
-  function(){
-    renderPrompts(this.value.trim());
+async function shareCurrent(){
+ if(!currentItem)return;
+ const text=currentItem.name+'\n'+(currentItem.text||currentItem.file||'');
+ try{
+  if(navigator.share){
+   await navigator.share({title:currentItem.name,text});
+  }else{
+   await copyText(text);
   }
-);
-
-/* Gallery Back → Subcategory */
-
-document.getElementById("backGallery").onclick = ()=>{
-  showPage(subcategoryPage);
-};
-
-/* ================= 
+ }catch(e){}
+}
+</script>
+</body>
+</html>
