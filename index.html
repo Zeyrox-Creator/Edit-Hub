@@ -4,372 +4,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090611">
 <title>EDIT BY ZEYROX</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root{
+  --bg:#090611;
+  --panel:#171024;
+  --panel2:#211632;
+  --purple:#9b5cff;
+  --text:#fff;
+  --muted:#b9adc9;
+  --border:#38264f;
 }
-
-:root {
-  --bg: #080810;
-  --card: #171323;
-  --header: #11111d;
-  --purple: #a855f7;
-  --border: #7944b9;
-  --text: #ffffff;
-  --muted: #c3b5d5;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  min-height:100vh;
 }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  transition: 0.3s;
+button,input{font:inherit}
+button{cursor:pointer}
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 5%;
+  background:#120b1d;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:20;
 }
-
-body.light {
-  --bg: #f4efff;
-  --card: #ffffff;
-  --header: #ffffff;
-  --text: #171323;
-  --muted: #62536f;
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:45px;height:45px;object-fit:contain}
+.brand h2{font-size:18px;color:#c69aff}
+.brand p{font-size:11px;color:var(--muted);margin-top:4px}
+main{width:92%;max-width:1100px;margin:28px auto;min-height:65vh}
+.page{display:none}
+.page.active{display:block}
+h1{font-size:27px;margin-bottom:8px}
+.subtitle{color:var(--muted);margin-bottom:24px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:16px;
 }
-
-header {
-  max-width: 1100px;
-  width: 96%;
-  margin: 15px auto;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--header);
-  border: 1px solid #292039;
-  border-radius: 12px;
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px 12px;
+  text-align:center;
+  min-height:135px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  transition:.2s;
 }
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 20px;
-  font-weight: bold;
+.card:hover{transform:translateY(-3px);border-color:var(--purple)}
+.card .emoji{font-size:34px}
+.card h3{font-size:16px}
+.card p{font-size:12px;color:var(--muted)}
+.page-header{
+  display:grid;
+  grid-template-columns:85px minmax(0,1fr) 85px;
+  align-items:center;
+  gap:8px;
+  margin-bottom:18px;
 }
-
-.brand img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
+.page-header h2{text-align:center;font-size:20px}
+.back,.action{
+  padding:11px 14px;
+  color:white;
+  border:1px solid #7542a8;
+  border-radius:9px;
+  background:var(--panel2);
 }
-
-.brand span {
-  color: var(--purple);
+.back{justify-self:start;white-space:nowrap}
+.back:hover,.action:hover{background:#713bb0}
+.search{
+  display:block;
+  width:100%;
+  padding:14px;
+  margin:16px 0 20px;
+  border:1px solid #69418e;
+  border-radius:10px;
+  background:var(--panel);
+  color:white;
+  font-size:15px;
+  outline:none;
 }
-
-button {
-  cursor: pointer;
-  font: inherit;
+.search:focus{border-color:#b47aff}
+.prompt-card{
+  padding:0;
+  overflow:hidden;
+  text-align:left;
+  display:block;
+  width:100%;
+  background:var(--panel);
+  color:white;
+  border:1px solid var(--border);
+  border-radius:14px;
 }
-
-.theme {
-  padding: 12px 17px;
-  background: var(--card);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: 22px;
+.prompt-card:hover{border-color:var(--purple)}
+.prompt-card img{
+  width:100%;
+  height:145px;
+  object-fit:cover;
+  display:block;
 }
-
-.page {
-  max-width: 1100px;
-  width: 90%;
-  min-height: 65vh;
-  margin: 35px auto;
+.prompt-card h3{padding:13px;font-size:15px}
+.prompt-card p{padding:0 13px 14px;color:var(--muted);font-size:12px}
+.empty{
+  text-align:center;
+  padding:35px 12px;
+  border:1px dashed #65438a;
+  border-radius:12px;
+  color:var(--muted);
+  grid-column:1/-1;
 }
-
-.hidden {
-  display: none !important;
+.detail-box{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px;
 }
-
-.hero {
-  text-align: center;
-  padding: 55px 20px;
-  border-radius: 20px;
-  margin-bottom: 35px;
-  background: linear-gradient(135deg, #21113c, #100d20);
-  border: 1px solid #6936a6;
+.detail-box img{
+  width:100%;
+  max-height:350px;
+  object-fit:contain;
+  border-radius:10px;
+  margin:15px 0;
 }
-
-.hero h1 {
-  font-size: clamp(27px, 5vw, 45px);
-  margin-bottom: 15px;
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}
+.prompt-text{
+  background:#0d0815;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px;
+  line-height:1.7;
+  color:#e8dcf7;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
 }
-
-.hero h1 span {
-  color: #b477ff;
+.material-card{padding:12px}
+.material-card img{
+  width:100%;
+  height:130px;
+  object-fit:cover;
+  border-radius:9px;
 }
-
-.hero p {
-  color: #c3b5d5;
-  line-height: 1.6;
+.material-card h3{margin:10px 0}
+footer{
+  text-align:center;
+  padding:25px 10px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  margin-top:40px;
+  font-size:13px;
 }
-
-h2 {
-  font-size: 28px;
-  margin-bottom: 25px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
-
-.category-card {
-  background: linear-gradient(135deg, #281640, #171323);
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  padding: 25px;
-  min-height: 190px;
-  color: white;
-  text-align: left;
-  transition: 0.2s;
-}
-
-.category-card:hover {
-  transform: translateY(-4px);
-  border-color: #b477ff;
-}
-
-.category-card .emoji {
-  display: block;
-  font-size: 38px;
-  margin-bottom: 20px;
-}
-
-.category-card h3 {
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-
-.category-card p {
-  color: #c3b5d5;
-  font-size: 16px;
-}
-
-.back {
-  display: block;
-  padding: 12px 18px;
-  margin-bottom: 30px;
-  background: #211632;
-  color: white;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 17px;
-}
-
-.back:hover {
-  background: #7036b2;
-}
-
-.search {
-  width: 100%;
-  padding: 16px 20px;
-  margin: 5px 0 28px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--card);
-  color: var(--text);
-  font-size: 17px;
-  outline: none;
-}
-
-.search:focus {
-  border-color: #b477ff;
-}
-
-.empty {
-  text-align: center;
-  color: var(--muted);
-  font-size: 18px;
-  padding: 45px 10px;
-  grid-column: 1 / -1;
-}
-
-.material-card,
-.prompt-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 13px;
-  color: var(--text);
-  text-align: center;
-  overflow: hidden;
-}
-
-.material-card img,
-.prompt-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-}
-
-.material-card h3,
-.prompt-card h3 {
-  font-size: 16px;
-  margin: 12px 0;
-}
-
-.download {
-  display: inline-block;
-  text-decoration: none;
-  color: white;
-  background: #7136b2;
-  padding: 10px 16px;
-  border-radius: 9px;
-  margin: 5px;
-}
-
-.prompt-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-.prompt-header .back {
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.prompt-header h2 {
-  margin: 0;
-  font-size: 19px;
-  text-align: center;
-}
-
-.prompt-gallery {
-  margin-top: 20px;
-}
-
-.prompt-detail {
-  max-width: 520px;
-  margin: 25px auto;
-  text-align: center;
-}
-
-.prompt-detail h3 {
-  font-size: 23px;
-  margin-bottom: 18px;
-}
-
-.prompt-detail img {
-  width: 100%;
-  max-height: 400px;
-  object-fit: contain;
-  border-radius: 14px;
-  background: var(--card);
-}
-
-.copy-btn {
-  display: block;
-  width: 100%;
-  margin: 18px 0;
-  padding: 14px;
-  background: #8b5cf6;
-  color: white;
-  border: 0;
-  border-radius: 10px;
-  font-size: 17px;
-}
-
-.share-btn {
-  padding: 12px 20px;
-  background: #211632;
-  color: white;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-.prompt-text {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 17px;
-  text-align: left;
-  font-size: 15px;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
-  margin-bottom: 20px;
-}
-
-footer {
-  max-width: 1100px;
-  width: 90%;
-  margin: 50px auto 25px;
-  padding: 35px 15px;
-  background: var(--header);
-  color: #aaa;
-  text-align: center;
-  line-height: 1.7;
-}
-
-footer span {
-  color: var(--purple);
-}
-
-@media(max-width: 500px) {
-  .page {
-    width: 90%;
-    margin-top: 28px;
-  }
-
-  .grid {
-    gap: 13px;
-  }
-
-  .category-card {
-    padding: 18px;
-    min-height: 170px;
-  }
-
-  .category-card .emoji {
-    font-size: 32px;
-  }
-
-  .category-card h3 {
-    font-size: 17px;
-  }
-
-  .category-card p {
-    font-size: 14px;
-  }
-
-  .brand {
-    font-size: 16px;
-  }
-
-  .brand img {
-    width: 48px;
-    height: 48px;
-  }
-
-  .prompt-header h2 {
-    font-size: 16px;
-  }
-
-  .prompt-header .back {
-    padding: 10px;
-    font-size: 14px;
-  }
+@media(max-width:450px){
+  .brand h2{font-size:15px}
+  .page-header{grid-template-columns:75px minmax(0,1fr) 75px}
+  .page-header h2{font-size:17px}
+  .back{padding:10px;font-size:13px}
+  .grid{gap:11px}
 }
 </style>
 </head>
@@ -378,480 +182,406 @@ footer span {
 
 <header>
   <div class="brand">
-    <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Zeyrox Logo">
-    <div>EDIT BY <span>ZEYROX</span></div>
+    <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="EDIT BY ZEYROX Logo">
+    <div>
+      <h2>EDIT BY ZEYROX</h2>
+      <p>Everything You Need to Edit Better.</p>
+    </div>
   </div>
-  <button class="theme" id="themeBtn">☾</button>
 </header>
 
-<!-- HOME PAGE -->
-<main id="homePage" class="page">
+<main>
 
-  <section class="hero">
-    <h1>Welcome to <span>EDIT BY ZEYROX</span></h1>
-    <p>Everything You Need to Edit Better.</p>
-    <p>Explore AI Prompts, Templates, PNG and VFX Materials.</p>
-  </section>
-
-  <h2>Explore Categories</h2>
+<!-- HOME -->
+<section id="homePage" class="page active">
+  <h1>Welcome to EDIT BY ZEYROX</h1>
+  <p class="subtitle">Everything You Need to Edit Better.</p>
   <div class="grid" id="categoryGrid"></div>
+</section>
 
-</main>
-
-<!-- SUBCATEGORY PAGE -->
-<section id="subcategoryPage" class="page hidden">
-
-  <button class="back" id="backHome">← Back to Home</button>
-
-  <h2 id="subcategoryTitle">Subcategories</h2>
-
+<!-- SUBCATEGORIES -->
+<section id="subcategoryPage" class="page">
+  <div class="page-header">
+    <button class="back" id="backHome">← Back</button>
+    <h2 id="subcategoryTitle">Categories</h2>
+    <span></span>
+  </div>
   <div class="grid" id="subcategoryGrid"></div>
-
 </section>
 
-<!-- MATERIALS PAGE -->
-<section id="materialsPage" class="page hidden">
-
-  <button class="back" id="backSubcategory">← Back to Subcategories</button>
-
-  <h2 id="materialsTitle">Materials</h2>
-
-  <input
-    type="text"
-    class="search"
-    id="materialsSearch"
-    placeholder="Search materials..."
-  >
-
+<!-- MATERIALS -->
+<section id="materialsPage" class="page">
+  <div class="page-header">
+    <button class="back" id="backMaterials">← Back</button>
+    <h2 id="materialsTitle">Materials</h2>
+    <span></span>
+  </div>
+  <input id="materialSearch" class="search"
+    type="search" placeholder="🔍 Search materials...">
   <div class="grid" id="materialsGrid"></div>
-
-  <p class="empty hidden" id="materialsEmpty">
-    No materials found. Coming soon!
-  </p>
-
 </section>
 
-<!-- AI PROMPT GALLERY -->
-<section id="promptGalleryPage" class="page hidden">
-
-  <div class="prompt-header">
-    <button class="back" id="backPromptHome">← Back</button>
-    <h2 id="promptCategoryTitle">Trending</h2>
+<!-- PROMPT GALLERY -->
+<section id="galleryPage" class="page">
+  <div class="page-header">
+    <button class="back" id="backGallery">← Back</button>
+    <h2 id="galleryTitle">Gaming</h2>
     <span></span>
   </div>
 
-  <input
-    type="text"
-    class="search"
-    id="promptSearch"
-    placeholder="Search AI prompts..."
-  >
+  <input id="promptSearch" class="search"
+    type="search" placeholder="🔍 Search AI Prompts...">
 
-  <div class="grid prompt-gallery" id="promptGallery"></div>
-
+  <div class="grid" id="promptGrid"></div>
 </section>
 
-<!-- AI PROMPT DETAIL -->
-<section id="promptDetailPage" class="page hidden">
-
-  <div class="prompt-header">
-    <button class="back" id="backPromptGallery">← Back</button>
-    <h2 id="detailCategory">Trending</h2>
-    <button class="share-btn" id="sharePrompt">↗</button>
+<!-- PROMPT DETAIL -->
+<section id="detailPage" class="page">
+  <div class="page-header">
+    <button class="back" id="backDetail">← Back</button>
+    <h2>Prompt Details</h2>
+    <span></span>
   </div>
 
-  <div class="prompt-detail">
+  <div class="detail-box">
+    <h2 id="detailTitle">Prompt</h2>
+    <img id="detailImage" src="" alt="Prompt preview">
 
-    <h3 id="detailImageName">Prompt Name</h3>
+    <div class="actions">
+      <button class="action" id="copyButton">📋 Copy Prompt</button>
+      <button class="action" id="shareButton">↗ Share</button>
+    </div>
 
-    <img id="detailImage" src="" alt="AI Preview">
-
-    <button class="copy-btn" id="copyPrompt">
-      📋 1 Click Copy
-    </button>
-
-    <div class="prompt-text" id="detailPrompt"></div>
-
+    <div id="detailText" class="prompt-text"></div>
   </div>
-
 </section>
+
+</main>
 
 <footer>
-  © <span id="year"></span> EDIT BY ZEYROX. All Rights Reserved.
-  <p>Everything You Need to Edit Better.</p>
+  © 2026 EDIT BY ZEYROX. All Rights Reserved.
 </footer>
 
 <script>
 
-// MAIN CATEGORIES
+// ========== DATA ==========
+
 const mainCategories = [
-  {name:"AI Edit Prompt", icon:"✨"},
-  {name:"AI Template", icon:"🎨"},
-  {name:"PNG Material", icon:"🖼️"},
-  {name:"VFX Material", icon:"⚡"}
+  {name:"AI Edit Prompt",icon:"🤖",desc:"Explore AI prompts"},
+  {name:"AI Template",icon:"🎨",desc:"Explore templates"},
+  {name:"PNG Material",icon:"🖼️",desc:"Explore PNG materials"},
+  {name:"VFX Material",icon:"✨",desc:"Explore VFX materials"}
 ];
 
-// SUBCATEGORIES
 const subCategories = [
-  {name:"Trending", icon:"🔥"},
-  {name:"Gaming", icon:"🎮"},
-  {name:"Natural", icon:"🌿"},
-  {name:"Logo", icon:"💠"}
+  {name:"Trending",icon:"🔥"},
+  {name:"Gaming",icon:"🎮"},
+  {name:"Natural",icon:"🌿"},
+  {name:"Logo",icon:"💠"}
 ];
 
-// MATERIALS
+/*
+ADD YOUR PROMPTS HERE.
+
+Example:
+{
+  category:"Gaming",
+  name:"Neon Gaming Portrait",
+  image:"materials/png/chaotenkitty-neon-7440942_1920.png",
+  text:"Write your AI prompt here."
+}
+*/
+
+const prompts = [];
+
 const materials = [
   {
-    name:"Neon Material",
-    image:"materials/png/chaotenkitty-neon-7440942_1920.png",
-    download:"materials/png/chaotenkitty-neon-7440942_1920.png",
-    category:"PNG Material"
+    category:"PNG Material",
+    name:"Neon Kitty",
+    image:"materials/png/chaotenkitty-neon-7440942_1920.png"
   },
   {
-    name:"Art Material",
-    image:"materials/png/geralt-art-7036652_1920.jpg",
-    download:"materials/png/geralt-art-7036652_1920.jpg",
-    category:"PNG Material"
+    category:"PNG Material",
+    name:"Fantasy Art",
+    image:"materials/png/geralt-art-7036652_1920.jpg"
   },
   {
-    name:"Technology Material",
-    image:"materials/png/tungnguyen0905-technology-6701424_1920.jpg",
-    download:"materials/png/tungnguyen0905-technology-6701424_1920.jpg",
-    category:"PNG Material"
+    category:"PNG Material",
+    name:"Technology",
+    image:"materials/png/tungnguyen0905-technology-6701424_1920.jpg"
   }
 ];
 
-// ADD YOUR PROMPTS HERE LATER
-const prompts = [];
-
-// SELECTED ITEMS
 let selectedMain = "";
 let selectedSub = "";
 let currentPrompt = null;
 
-// PAGE ELEMENTS
-const home = document.getElementById("homePage");
-const subPage = document.getElementById("subcategoryPage");
-const matPage = document.getElementById("materialsPage");
-const galleryPage = document.getElementById("promptGalleryPage");
-const detailPage = document.getElementById("promptDetailPage");
+// ========== NAVIGATION ==========
 
-// SHOW PAGE
-function showPage(page) {
-  [home, subPage, matPage, galleryPage, detailPage]
-    .forEach(item => item.classList.add("hidden"));
+const pages = document.querySelectorAll(".page");
 
-  page.classList.remove("hidden");
+function showPage(page){
+  pages.forEach(p=>p.classList.remove("active"));
+  page.classList.add("active");
   window.scrollTo(0,0);
 }
 
-// CREATE CATEGORY CARD
-function makeCard(icon, name, description, callback) {
+// ========== HOME CATEGORY CARDS ==========
+
+const categoryGrid = document.getElementById("categoryGrid");
+
+mainCategories.forEach(item=>{
   const card = document.createElement("button");
-  card.className = "category-card";
+  card.className = "card";
+  card.type = "button";
 
   card.innerHTML = `
-    <span class="emoji">${icon}</span>
-    <h3>${name}</h3>
-    <p>${description}</p>
+    <div class="emoji">${item.icon}</div>
+    <h3>${item.name}</h3>
+    <p>${item.desc}</p>
   `;
 
-  card.addEventListener("click", callback);
-  return card;
-}
+  card.onclick = ()=>{
+    selectedMain = item.name;
+    document.getElementById("subcategoryTitle").textContent = item.name;
 
-// HOME CATEGORIES
-mainCategories.forEach(item => {
+    const grid = document.getElementById("subcategoryGrid");
+    grid.innerHTML = "";
 
-  document.getElementById("categoryGrid").appendChild(
-    makeCard(
-      item.icon,
-      item.name,
-      "Explore resources",
-      () => {
+    subCategories.forEach(sub=>{
+      const subCard = document.createElement("button");
+      subCard.className = "card";
+      subCard.type = "button";
 
-        selectedMain = item.name;
+      subCard.innerHTML = `
+        <div class="emoji">${sub.icon}</div>
+        <h3>${sub.name}</h3>
+        <p>Explore ${sub.name}</p>
+      `;
 
-        document.getElementById("subcategoryTitle").textContent = item.name;
+      subCard.onclick = ()=>{
+        selectedSub = sub.name;
 
-        const grid = document.getElementById("subcategoryGrid");
-        grid.innerHTML = "";
+        if(selectedMain === "AI Edit Prompt"){
+          openGallery();
+        }else{
+          openMaterials();
+        }
+      };
 
-        subCategories.forEach(sub => {
+      grid.appendChild(subCard);
+    });
 
-          grid.appendChild(
-            makeCard(
-              sub.icon,
-              sub.name,
-              "Explore " + sub.name,
-              () => {
+    showPage(document.getElementById("subcategoryPage"));
+  };
 
-                selectedSub = sub.name;
-
-                if(selectedMain === "AI Edit Prompt") {
-                  openPromptGallery();
-                } else {
-                  openMaterials();
-                }
-
-              }
-            )
-          );
-
-        });
-
-        showPage(subPage);
-
-      }
-    )
-  );
-
+  categoryGrid.appendChild(card);
 });
 
-// OPEN MATERIALS
-function openMaterials() {
+// ========== AI PROMPT GALLERY ==========
 
-  document.getElementById("materialsTitle").textContent =
-    selectedMain + " / " + selectedSub;
+function openGallery(){
+  document.getElementById("galleryTitle").textContent = selectedSub;
 
-  document.getElementById("materialsSearch").value = "";
-
-  const grid = document.getElementById("materialsGrid");
-  grid.innerHTML = "";
-
-  const found = materials.filter(item =>
-    item.category === selectedMain
-  );
-
-  renderMaterials(found);
-
-  showPage(matPage);
-}
-
-// RENDER MATERIALS
-function renderMaterials(items) {
-
-  const grid = document.getElementById("materialsGrid");
-  const empty = document.getElementById("materialsEmpty");
-
-  grid.innerHTML = "";
-
-  if(items.length === 0) {
-    empty.classList.remove("hidden");
-    return;
-  }
-
-  empty.classList.add("hidden");
-
-  items.forEach(item => {
-
-    const card = document.createElement("div");
-    card.className = "material-card";
-
-    card.innerHTML = `
-      <img src="${item.image}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <a class="download"
-         href="${item.download}"
-         download>
-         Download
-      </a>
-    `;
-
-    grid.appendChild(card);
-
-  });
-
-}
-
-// MATERIAL SEARCH
-document.getElementById("materialsSearch")
-.addEventListener("input", function() {
-
-  const value = this.value.toLowerCase();
-
-  const found = materials.filter(item =>
-    item.category === selectedMain &&
-    item.name.toLowerCase().includes(value)
-  );
-
-  renderMaterials(found);
-
-});
-
-// OPEN PROMPT GALLERY
-function openPromptGallery() {
-
-  document.getElementById("promptCategoryTitle").textContent =
-    selectedSub;
-
-  document.getElementById("promptSearch").value = "";
+  const search = document.getElementById("promptSearch");
+  search.value = "";
 
   renderPrompts("");
 
-  showPage(galleryPage);
-
+  showPage(document.getElementById("galleryPage"));
 }
 
-// RENDER PROMPTS
-function renderPrompts(searchValue) {
-
-  const grid = document.getElementById("promptGallery");
+function renderPrompts(searchValue){
+  const grid = document.getElementById("promptGrid");
   grid.innerHTML = "";
 
-  const found = prompts.filter(item =>
-    item.category === selectedSub &&
-    item.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  const query = searchValue.toLowerCase();
 
-  if(found.length === 0) {
+  const found = prompts.filter(item=>{
+    const category = (item.category || "").toLowerCase();
+    const name = (item.name || "").toLowerCase();
+    const description = (item.text || "").toLowerCase();
 
-    grid.innerHTML =
-      "<p class='empty'>No prompts added yet. Coming soon!</p>";
+    return category === selectedSub.toLowerCase() &&
+      (name.includes(query) || description.includes(query));
+  });
 
+  if(found.length === 0){
+    grid.innerHTML = `
+      <div class="empty">
+        <h3>${query ? "No matching prompts" : "No prompts added yet"}</h3>
+        <p>${query ? "Try another search." : "New prompts will appear here soon!"}</p>
+      </div>
+    `;
     return;
   }
 
-  found.forEach(item => {
-
+  found.forEach(item=>{
     const card = document.createElement("button");
     card.className = "prompt-card";
+    card.type = "button";
 
-    card.innerHTML = `
-      <img src="${item.image}" alt="${item.name}">
-      <h3>${item.name}</h3>
-    `;
+    const img = document.createElement("img");
+    img.src = item.image;
+    img.alt = item.name || "Prompt image";
 
-    card.addEventListener("click", () => openPromptDetail(item));
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+
+    const description = document.createElement("p");
+    description.textContent = "Tap to view prompt";
+
+    card.append(img,title,description);
+    card.onclick = ()=>openDetail(item);
 
     grid.appendChild(card);
-
   });
-
 }
 
-// PROMPT SEARCH
-document.getElementById("promptSearch")
-.addEventListener("input", function() {
-
-  renderPrompts(this.value);
-
+// Search listener: attached once, outside gallery function.
+document.getElementById("promptSearch").addEventListener("input",function(){
+  renderPrompts(this.value.trim());
 });
 
-// OPEN PROMPT DETAIL
-function openPromptDetail(item) {
+// Gallery Back → Subcategory page.
+document.getElementById("backGallery").onclick = ()=>{
+  showPage(document.getElementById("subcategoryPage"));
+};
 
+// ========== PROMPT DETAIL ==========
+
+function openDetail(item){
   currentPrompt = item;
 
-  document.getElementById("detailCategory").textContent =
-    selectedSub;
+  document.getElementById("detailTitle").textContent = item.name;
+  document.getElementById("detailImage").src = item.image;
+  document.getElementById("detailText").textContent = item.text;
 
-  document.getElementById("detailImageName").textContent =
-    item.name;
-
-  document.getElementById("detailImage").src =
-    item.image;
-
-  document.getElementById("detailPrompt").textContent =
-    item.prompt;
-
-  showPage(detailPage);
-
+  showPage(document.getElementById("detailPage"));
 }
 
-// BACK BUTTONS
-document.getElementById("backHome").onclick = () => {
-  showPage(home);
+// Detail Back → Gallery.
+// Gallery is not re-rendered, so its search remains intact.
+document.getElementById("backDetail").onclick = ()=>{
+  showPage(document.getElementById("galleryPage"));
 };
 
-document.getElementById("backSubcategory").onclick = () => {
-  showPage(subPage);
-};
+document.getElementById("copyButton").onclick = async ()=>{
+  if(!currentPrompt)return;
 
-document.getElementById("backPromptHome").onclick = () => {
-  showPage(subPage);
-};
-
-document.getElementById("backPromptGallery").onclick = () => {
-  showPage(galleryPage);
-};
-
-// COPY PROMPT
-document.getElementById("copyPrompt").onclick = async () => {
-
-  if(!currentPrompt) return;
-
-  const prompt = currentPrompt.prompt;
-
-  try {
-
-    await navigator.clipboard.writeText(prompt);
-
-    alert("Prompt copied successfully!");
-
-  } catch(error) {
-
+  try{
+    await navigator.clipboard.writeText(currentPrompt.text);
+    alert("Prompt copied!");
+  }catch(error){
     const area = document.createElement("textarea");
-    area.value = prompt;
+    area.value = currentPrompt.text;
     document.body.appendChild(area);
     area.select();
     document.execCommand("copy");
     area.remove();
-
     alert("Prompt copied!");
-
   }
-
 };
 
-// SHARE PROMPT
-document.getElementById("sharePrompt").onclick = async () => {
+document.getElementById("shareButton").onclick = async ()=>{
+  if(!currentPrompt)return;
 
-  if(!currentPrompt) return;
-
-  const data = {
-    title: currentPrompt.name,
-    text: currentPrompt.prompt
+  const shareData = {
+    title:currentPrompt.name,
+    text:currentPrompt.text,
+    url:window.location.href
   };
 
-  if(navigator.share) {
-
-    try {
-      await navigator.share(data);
-    } catch(error) {}
-
-  } else {
-
-    try {
+  if(navigator.share){
+    try{
+      await navigator.share(shareData);
+    }catch(error){}
+  }else{
+    try{
       await navigator.clipboard.writeText(
-        currentPrompt.name + "\n" + currentPrompt.prompt
+        currentPrompt.name + "\n\n" + currentPrompt.text
       );
-
-      alert("Prompt copied for sharing!");
-
-    } catch(error) {
-      alert("Sharing is not supported on this browser.");
+      alert("Prompt details copied for sharing!");
+    }catch(error){
+      alert("Sharing is not supported on this device.");
     }
+  }
+};
 
+// ========== MATERIALS ==========
+
+function openMaterials(){
+  document.getElementById("materialsTitle").textContent = selectedMain;
+  document.getElementById("materialSearch").value = "";
+
+  renderMaterials("");
+
+  showPage(document.getElementById("materialsPage"));
+}
+
+function renderMaterials(searchValue){
+  const grid = document.getElementById("materialsGrid");
+  grid.innerHTML = "";
+
+  const query = searchValue.toLowerCase();
+
+  const found = materials.filter(item=>
+    item.category === selectedMain &&
+    item.name.toLowerCase().includes(query)
+  );
+
+  if(found.length === 0){
+    grid.innerHTML = `
+      <div class="empty">
+        <h3>No materials added yet</h3>
+        <p>New materials will appear here soon.</p>
+      </div>
+    `;
+    return;
   }
 
+  found.forEach(item=>{
+    const card = document.createElement("div");
+    card.className = "card material-card";
+
+    const img = document.createElement("img");
+    img.src = item.image;
+    img.alt = item.name;
+
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+
+    const download = document.createElement("button");
+    download.className = "action";
+    download.textContent = "Download";
+
+    download.onclick = ()=>{
+      const link = document.createElement("a");
+      link.href = item.image;
+      link.download = item.image.split("/").pop();
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    };
+
+    card.append(img,title,download);
+    grid.appendChild(card);
+  });
+}
+
+document.getElementById("materialSearch").addEventListener("input",function(){
+  renderMaterials(this.value.trim());
+});
+
+// ========== BACK BUTTONS ==========
+
+document.getElementById("backHome").onclick = ()=>{
+  showPage(document.getElementById("homePage"));
 };
 
-// THEME BUTTON
-document.getElementById("themeBtn").onclick = () => {
-
-  document.body.classList.toggle("light");
-
-  const isLight = document.body.classList.contains("light");
-
-  document.getElementById("themeBtn").textContent =
-    isLight ? "☀" : "☾";
-
+document.getElementById("backMaterials").onclick = ()=>{
+  showPage(document.getElementById("subcategoryPage"));
 };
-
-// YEAR
-document.getElementById("year").textContent =
-  new Date().getFullYear();
 
 </script>
 
