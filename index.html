@@ -5,34 +5,236 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EDIT BY ZEYROX</title>
-  <style>
-/* AI PROMPT GALLERY */
-.prompt-gallery {
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #080810;
+  --card: #171323;
+  --header: #11111d;
+  --purple: #a855f7;
+  --border: #7944b9;
+  --text: #ffffff;
+  --muted: #c3b5d5;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  transition: 0.3s;
+}
+
+body.light {
+  --bg: #f4efff;
+  --card: #ffffff;
+  --header: #ffffff;
+  --text: #171323;
+  --muted: #62536f;
+}
+
+header {
+  max-width: 1100px;
+  width: 96%;
+  margin: 15px auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--header);
+  border: 1px solid #292039;
+  border-radius: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.brand img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.brand span {
+  color: var(--purple);
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+}
+
+.theme {
+  padding: 12px 17px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 22px;
+}
+
+.page {
+  max-width: 1100px;
+  width: 90%;
+  min-height: 65vh;
+  margin: 35px auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.hero {
+  text-align: center;
+  padding: 55px 20px;
+  border-radius: 20px;
+  margin-bottom: 35px;
+  background: linear-gradient(135deg, #21113c, #100d20);
+  border: 1px solid #6936a6;
+}
+
+.hero h1 {
+  font-size: clamp(27px, 5vw, 45px);
+  margin-bottom: 15px;
+}
+
+.hero h1 span {
+  color: #b477ff;
+}
+
+.hero p {
+  color: #c3b5d5;
+  line-height: 1.6;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 25px;
+  gap: 18px;
 }
 
-.prompt-card {
-  background: #171323;
-  border: 1px solid #6d28d9;
-  border-radius: 14px;
-  padding: 12px;
+.category-card {
+  background: linear-gradient(135deg, #281640, #171323);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 25px;
+  min-height: 190px;
+  color: white;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  border-color: #b477ff;
+}
+
+.category-card .emoji {
+  display: block;
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+.category-card h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.category-card p {
+  color: #c3b5d5;
+  font-size: 16px;
+}
+
+.back {
+  display: block;
+  padding: 12px 18px;
+  margin-bottom: 30px;
+  background: #211632;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 17px;
+}
+
+.back:hover {
+  background: #7036b2;
+}
+
+.search {
+  width: 100%;
+  padding: 16px 20px;
+  margin: 5px 0 28px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 17px;
+  outline: none;
+}
+
+.search:focus {
+  border-color: #b477ff;
+}
+
+.empty {
   text-align: center;
-  cursor: pointer;
+  color: var(--muted);
+  font-size: 18px;
+  padding: 45px 10px;
+  grid-column: 1 / -1;
 }
 
+.material-card,
+.prompt-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 13px;
+  color: var(--text);
+  text-align: center;
+  overflow: hidden;
+}
+
+.material-card img,
 .prompt-card img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 10px;
+  display: block;
 }
 
+.material-card h3,
 .prompt-card h3 {
-  font-size: 15px;
-  margin: 10px 0 4px;
+  font-size: 16px;
+  margin: 12px 0;
+}
+
+.download {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background: #7136b2;
+  padding: 10px 16px;
+  border-radius: 9px;
+  margin: 5px;
 }
 
 .prompt-header {
@@ -40,182 +242,134 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  width: 100%;
-  min-height: 45px;
+  margin-bottom: 25px;
 }
 
-#backPromptHome {
-  display: inline-block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 10;
-  color: white !important;
-  flex-shrink: 0;
-}
 .prompt-header .back {
-  display: block;
-  visibility: visible;
-  opacity: 1;
+  margin: 0;
   flex-shrink: 0;
 }
+
 .prompt-header h2 {
-  font-size: 18px;
+  margin: 0;
+  font-size: 19px;
   text-align: center;
 }
 
+.prompt-gallery {
+  margin-top: 20px;
+}
+
 .prompt-detail {
-  max-width: 480px;
-  margin: 22px auto;
+  max-width: 520px;
+  margin: 25px auto;
   text-align: center;
 }
 
 .prompt-detail h3 {
-  font-size: 20px;
+  font-size: 23px;
+  margin-bottom: 18px;
 }
 
 .prompt-detail img {
   width: 100%;
-  max-height: 380px;
+  max-height: 400px;
   object-fit: contain;
   border-radius: 14px;
+  background: var(--card);
 }
 
 .copy-btn {
-  margin: 15px 0;
-  padding: 12px 24px;
-  border: 0;
-  border-radius: 10px;
+  display: block;
+  width: 100%;
+  margin: 18px 0;
+  padding: 14px;
   background: #8b5cf6;
   color: white;
-  font-size: 15px;
-  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  font-size: 17px;
+}
+
+.share-btn {
+  padding: 12px 20px;
+  background: #211632;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
 .prompt-text {
-  background: #171323;
-  border: 1px solid #6d28d9;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 15px;
+  padding: 17px;
   text-align: left;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.7;
   overflow-wrap: anywhere;
+  margin-bottom: 20px;
+}
+
+footer {
+  max-width: 1100px;
+  width: 90%;
+  margin: 50px auto 25px;
+  padding: 35px 15px;
+  background: var(--header);
+  color: #aaa;
+  text-align: center;
+  line-height: 1.7;
+}
+
+footer span {
+  color: var(--purple);
 }
 
 @media(max-width: 500px) {
-  .prompt-gallery {
-    gap: 10px;
+  .page {
+    width: 90%;
+    margin-top: 28px;
   }
-}
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:#080810;color:white;
-  font-family:Arial,sans-serif;
-  min-height:100vh;
-}
-header{
-  padding:15px 6%;display:flex;
-  justify-content:space-between;align-items:center;
-  background:#11111d;border-bottom:1px solid #292039;
-}
-.brand{display:flex;align-items:center;gap:10px;font-weight:bold}
-.brand img{width:42px;height:42px;object-fit:contain}
-.brand span{color:#a45cff}
-button{cursor:pointer;font:inherit}
-.theme{
-  background:#211632;color:white;border:1px solid #7040a8;
-  padding:10px 13px;border-radius:10px;
-}
-.page{max-width:1100px;width:90%;margin:35px auto}
-.hidden{display:none!important}
 
-.hero{
-  text-align:center;padding:45px 15px;
-  border-radius:20px;margin-bottom:35px;
-  background:linear-gradient(135deg,#21113c,#101020);
-  border:1px solid #6936a6;
-}
-.hero h1{font-size:clamp(27px,5vw,45px);margin-bottom:12px}
-.hero h1 span{color:#b477ff}
-.hero p{color:#c3b5d5;line-height:1.6}
+  .grid {
+    gap: 13px;
+  }
 
-h2{font-size:23px;margin-bottom:22px}
-.grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:16px;
-}
-.category{
-  min-height:145px;padding:20px;
-  border:1px solid #7542b4;border-radius:17px;
-  background:linear-gradient(135deg,#291747,#151222);
-  color:white;text-align:left;
-  transition:.2s;
-}
-.category:hover{
-  transform:translateY(-4px);
-  background:linear-gradient(135deg,#7135b5,#32145c);
-  box-shadow:0 8px 25px #7135b544;
-}
-.category .emoji{font-size:30px;display:block;margin-bottom:12px}
-.category h3{font-size:16px;margin-bottom:7px}
-.category p{font-size:12px;color:#c9b9dd}
+  .category-card {
+    padding: 18px;
+    min-height: 170px;
+  }
 
-.back{
-  padding:12px 17px;margin-bottom:25px;
-  border:1px solid #7944b9;border-radius:10px;
-  background:#211632;color:white;
-}
-.back:hover{background:#7036b2}
+  .category-card .emoji {
+    font-size: 32px;
+  }
 
-.search{
-  width:100%;padding:14px;margin:10px 0 20px;
-  background:#151321;color:white;
-  border:1px solid #56347b;border-radius:10px;
-}
-.material{
-  padding:15px;background:#171321;
-  border:1px solid #4c326b;border-radius:14px;
-}
-.material img{
-  width:100%;height:145px;object-fit:cover;
-  border-radius:9px;
-}
-.material h3{margin:12px 0}
-.material a{
-  display:inline-block;margin-top:12px;
-  padding:10px 15px;background:#813ed0;
-  color:white;text-decoration:none;border-radius:8px;
-}
-.empty{color:#bbaacb;padding:20px;text-align:center}
+  .category-card h3 {
+    font-size: 17px;
+  }
 
-footer{
-  margin-top:50px;padding:25px;text-align:center;
-  background:#11111d;color:#aaa;
-}
-footer span{color:#a45cff}
+  .category-card p {
+    font-size: 14px;
+  }
 
-.light{
-  background:#f5f1fb;color:#171020;
-}
-.light header,.light footer{background:#fff}
-.light .hero{background:#e8d9ff}
-.light .category{color:#211331}
-.light .category p{color:#59446e}
-.light .material{background:#fff}
-.light .search{background:#fff;color:#171020}
+  .brand {
+    font-size: 16px;
+  }
 
-@media(max-width:500px){
-  header{padding:12px 4%}
-  .brand{font-size:13px}
-  .brand img{width:35px;height:35px}
-  .page{width:92%;margin:25px auto}
-  .hero{padding:35px 14px}
-  .category{min-height:125px;padding:14px}
-  .category h3{font-size:13px}
-  .category .emoji{font-size:25px}
-  .material img{height:110px}
+  .brand img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .prompt-header h2 {
+    font-size: 16px;
+  }
+
+  .prompt-header .back {
+    padding: 10px;
+    font-size: 14px;
+  }
 }
 </style>
 </head>
@@ -224,86 +378,91 @@ footer span{color:#a45cff}
 
 <header>
   <div class="brand">
-    <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Logo">
+    <img src="file_00000000e23c81fa9dfe6f55f7764bc5.png" alt="Zeyrox Logo">
     <div>EDIT BY <span>ZEYROX</span></div>
   </div>
   <button class="theme" id="themeBtn">☾</button>
 </header>
 
-<!-- HOMEPAGE -->
+<!-- HOME PAGE -->
 <main id="homePage" class="page">
+
   <section class="hero">
-    <h1>EDIT BY <span>ZEYROX</span></h1>
+    <h1>Welcome to <span>EDIT BY ZEYROX</span></h1>
     <p>Everything You Need to Edit Better.</p>
+    <p>Explore AI Prompts, Templates, PNG and VFX Materials.</p>
   </section>
 
   <h2>Explore Categories</h2>
   <div class="grid" id="categoryGrid"></div>
 
-  <section style="margin-top:40px">
-    <h2>Featured PNG Materials</h2>
-    <div class="grid">
-      <div class="material">
-        <img src="materials/png/chaotenkitty-neon-7440942_1920.png" alt="Neon material">
-        <h3>Neon Material</h3>
-      </div>
-      <div class="material">
-        <img src="materials/png/geralt-art-7036652_1920.jpg" alt="Art material">
-        <h3>Art Material</h3>
-      </div>
-      <div class="material">
-        <img src="materials/png/tungnguyen0905-technology-6701424_1920.jpg" alt="Technology material">
-        <h3>Technology Material</h3>
-      </div>
-    </div>
-  </section>
 </main>
 
 <!-- SUBCATEGORY PAGE -->
 <section id="subcategoryPage" class="page hidden">
+
   <button class="back" id="backHome">← Back to Home</button>
+
   <h2 id="subcategoryTitle">Subcategories</h2>
+
   <div class="grid" id="subcategoryGrid"></div>
+
 </section>
 
 <!-- MATERIALS PAGE -->
 <section id="materialsPage" class="page hidden">
+
   <button class="back" id="backSubcategory">← Back to Subcategories</button>
+
   <h2 id="materialsTitle">Materials</h2>
-  <input class="search" id="materialSearch" placeholder="Search materials...">
+
+  <input
+    type="text"
+    class="search"
+    id="materialsSearch"
+    placeholder="Search materials..."
+  >
+
   <div class="grid" id="materialsGrid"></div>
-  <p class="empty hidden" id="emptyState">No materials added yet. Coming soon!</p>
+
+  <p class="empty hidden" id="materialsEmpty">
+    No materials found. Coming soon!
+  </p>
+
+</section>
+
 <!-- AI PROMPT GALLERY -->
 <section id="promptGalleryPage" class="page hidden">
 
   <div class="prompt-header">
     <button class="back" id="backPromptHome">← Back</button>
-    <h2 id="promptCategoryTitle">Gaming</h2>
+    <h2 id="promptCategoryTitle">Trending</h2>
     <span></span>
   </div>
-<input
-  type="text"
-  id="promptSearch"
-  class="search"
-  placeholder="🔍 Search AI Prompts..."
->
+
+  <input
+    type="text"
+    class="search"
+    id="promptSearch"
+    placeholder="Search AI prompts..."
+  >
+
   <div class="grid prompt-gallery" id="promptGallery"></div>
 
 </section>
-
 
 <!-- AI PROMPT DETAIL -->
 <section id="promptDetailPage" class="page hidden">
 
   <div class="prompt-header">
     <button class="back" id="backPromptGallery">← Back</button>
-    <h2 id="detailCategory">Gaming</h2>
-    <button class="back" id="sharePrompt">↗</button>
+    <h2 id="detailCategory">Trending</h2>
+    <button class="share-btn" id="sharePrompt">↗</button>
   </div>
 
   <div class="prompt-detail">
 
-    <h3 id="detailImageName">Night Sky</h3>
+    <h3 id="detailImageName">Prompt Name</h3>
 
     <img id="detailImage" src="" alt="AI Preview">
 
@@ -311,224 +470,389 @@ footer span{color:#a45cff}
       📋 1 Click Copy
     </button>
 
-    <div class="prompt-text" id="detailPrompt">
-      Your AI prompt will appear here.
-    </div>
+    <div class="prompt-text" id="detailPrompt"></div>
 
   </div>
 
 </section>
+
 <footer>
   © <span id="year"></span> EDIT BY ZEYROX. All Rights Reserved.
+  <p>Everything You Need to Edit Better.</p>
 </footer>
 
 <script>
-const mainCategories=[
-  {name:"AI Edit Prompt",icon:"✨"},
-  {name:"AI Template",icon:"🎨"},
-  {name:"PNG Material",icon:"🖼️"},
-  {name:"VFX Material",icon:"⚡"}
+
+// MAIN CATEGORIES
+const mainCategories = [
+  {name:"AI Edit Prompt", icon:"✨"},
+  {name:"AI Template", icon:"🎨"},
+  {name:"PNG Material", icon:"🖼️"},
+  {name:"VFX Material", icon:"⚡"}
 ];
 
-const subCategories=[
-  {name:"Trending",icon:"🔥"},
-  {name:"Gaming",icon:"🎮"},
-  {name:"Natural",icon:"🌿"},
-  {name:"Logo",icon:"💠"}
+// SUBCATEGORIES
+const subCategories = [
+  {name:"Trending", icon:"🔥"},
+  {name:"Gaming", icon:"🎮"},
+  {name:"Natural", icon:"🌿"},
+  {name:"Logo", icon:"💠"}
 ];
 
-const materials=[];
+// MATERIALS
+const materials = [
+  {
+    name:"Neon Material",
+    image:"materials/png/chaotenkitty-neon-7440942_1920.png",
+    download:"materials/png/chaotenkitty-neon-7440942_1920.png",
+    category:"PNG Material"
+  },
+  {
+    name:"Art Material",
+    image:"materials/png/geralt-art-7036652_1920.jpg",
+    download:"materials/png/geralt-art-7036652_1920.jpg",
+    category:"PNG Material"
+  },
+  {
+    name:"Technology Material",
+    image:"materials/png/tungnguyen0905-technology-6701424_1920.jpg",
+    download:"materials/png/tungnguyen0905-technology-6701424_1920.jpg",
+    category:"PNG Material"
+  }
+];
+
+// ADD YOUR PROMPTS HERE LATER
 const prompts = [];
-let selectedMain="";
-let selectedSub="";
 
-const home=document.getElementById("homePage");
-const subPage=document.getElementById("subcategoryPage");
-const matPage=document.getElementById("materialsPage");
+// SELECTED ITEMS
+let selectedMain = "";
+let selectedSub = "";
+let currentPrompt = null;
 
-function showPage(page){
-  home.classList.add("hidden");
-  subPage.classList.add("hidden");
-  matPage.classList.add("hidden");
+// PAGE ELEMENTS
+const home = document.getElementById("homePage");
+const subPage = document.getElementById("subcategoryPage");
+const matPage = document.getElementById("materialsPage");
+const galleryPage = document.getElementById("promptGalleryPage");
+const detailPage = document.getElementById("promptDetailPage");
 
-  document.getElementById("promptGalleryPage").classList.add("hidden");
-  document.getElementById("promptDetailPage").classList.add("hidden");
+// SHOW PAGE
+function showPage(page) {
+  [home, subPage, matPage, galleryPage, detailPage]
+    .forEach(item => item.classList.add("hidden"));
 
   page.classList.remove("hidden");
   window.scrollTo(0,0);
 }
 
-function makeCard(icon,name,description,callback){
-  const card=document.createElement("button");
-  card.className="category";
-  card.innerHTML=`
+// CREATE CATEGORY CARD
+function makeCard(icon, name, description, callback) {
+  const card = document.createElement("button");
+  card.className = "category-card";
+
+  card.innerHTML = `
     <span class="emoji">${icon}</span>
     <h3>${name}</h3>
     <p>${description}</p>
   `;
-  card.addEventListener("click",callback);
+
+  card.addEventListener("click", callback);
   return card;
 }
 
-mainCategories.forEach(item=>{
+// HOME CATEGORIES
+mainCategories.forEach(item => {
+
   document.getElementById("categoryGrid").appendChild(
-    makeCard(item.icon,item.name,"Explore resources",()=>{
-      selectedMain=item.name;
-      document.getElementById("subcategoryTitle").textContent=item.name;
-      const grid=document.getElementById("subcategoryGrid");
-      grid.innerHTML="";
+    makeCard(
+      item.icon,
+      item.name,
+      "Explore resources",
+      () => {
 
-subCategories.forEach(sub=>{
-  grid.appendChild(
-    makeCard(sub.icon,sub.name,"Explore "+sub.name,()=>{
-      selectedSub=sub.name;
+        selectedMain = item.name;
 
-      if(selectedMain==="AI Edit Prompt"){
-        openPromptGallery();
-      } else {
-        openMaterials();
+        document.getElementById("subcategoryTitle").textContent = item.name;
+
+        const grid = document.getElementById("subcategoryGrid");
+        grid.innerHTML = "";
+
+        subCategories.forEach(sub => {
+
+          grid.appendChild(
+            makeCard(
+              sub.icon,
+              sub.name,
+              "Explore " + sub.name,
+              () => {
+
+                selectedSub = sub.name;
+
+                if(selectedMain === "AI Edit Prompt") {
+                  openPromptGallery();
+                } else {
+                  openMaterials();
+                }
+
+              }
+            )
+          );
+
+        });
+
+        showPage(subPage);
+
       }
-    })
+    )
   );
+
 });
 
-      showPage(subPage);
-    })
+// OPEN MATERIALS
+function openMaterials() {
+
+  document.getElementById("materialsTitle").textContent =
+    selectedMain + " / " + selectedSub;
+
+  document.getElementById("materialsSearch").value = "";
+
+  const grid = document.getElementById("materialsGrid");
+  grid.innerHTML = "";
+
+  const found = materials.filter(item =>
+    item.category === selectedMain
   );
-});
-function showPage(page){
-  home.classList.add("hidden");
-  subPage.classList.add("hidden");
-  matPage.classList.add("hidden");
 
-  document.getElementById("promptGalleryPage").classList.add("hidden");
-  document.getElementById("promptDetailPage").classList.add("hidden");
+  renderMaterials(found);
 
-  page.classList.remove("hidden");
-  window.scrollTo(0,0);
-}
-function openMaterials(){
-  document.getElementById("materialsTitle").textContent=
-    selectedMain+" / "+selectedSub;
-
-  document.getElementById("materialSearch").value="";
-  renderMaterials();
   showPage(matPage);
 }
 
-function renderMaterials(){
-  const grid=document.getElementById("materialsGrid");
-  const empty=document.getElementById("emptyState");
-  const query=document.getElementById("materialSearch").value.toLowerCase();
+// RENDER MATERIALS
+function renderMaterials(items) {
 
-  grid.innerHTML="";
+  const grid = document.getElementById("materialsGrid");
+  const empty = document.getElementById("materialsEmpty");
 
-  const found=materials.filter(item=>
-    item.main===selectedMain &&
-    item.sub===selectedSub &&
-    item.name.toLowerCase().includes(query)
-  );
+  grid.innerHTML = "";
 
-  if(found.length===0){
+  if(items.length === 0) {
     empty.classList.remove("hidden");
     return;
   }
 
   empty.classList.add("hidden");
 
-  found.forEach(item=>{
-    const card=document.createElement("div");
-    card.className="material";
-    card.innerHTML=`
+  items.forEach(item => {
+
+    const card = document.createElement("div");
+    card.className = "material-card";
+
+    card.innerHTML = `
       <img src="${item.image}" alt="${item.name}">
       <h3>${item.name}</h3>
-      <a href="${item.download}" download>⬇ Download</a>
+      <a class="download"
+         href="${item.download}"
+         download>
+         Download
+      </a>
     `;
+
     grid.appendChild(card);
+
   });
+
 }
-function openPromptGallery(){
-  document.getElementById("promptCategoryTitle").textContent=selectedSub;
 
-  const grid=document.getElementById("promptGallery");
-  grid.innerHTML="";
+// MATERIAL SEARCH
+document.getElementById("materialsSearch")
+.addEventListener("input", function() {
 
-  const found=prompts.filter(item=>item.category===selectedSub);
+  const value = this.value.toLowerCase();
 
-  if(found.length===0){
-    grid.innerHTML="<p class='empty'>No prompts added yet.</p>";
+  const found = materials.filter(item =>
+    item.category === selectedMain &&
+    item.name.toLowerCase().includes(value)
+  );
+
+  renderMaterials(found);
+
+});
+
+// OPEN PROMPT GALLERY
+function openPromptGallery() {
+
+  document.getElementById("promptCategoryTitle").textContent =
+    selectedSub;
+
+  document.getElementById("promptSearch").value = "";
+
+  renderPrompts("");
+
+  showPage(galleryPage);
+
+}
+
+// RENDER PROMPTS
+function renderPrompts(searchValue) {
+
+  const grid = document.getElementById("promptGallery");
+  grid.innerHTML = "";
+
+  const found = prompts.filter(item =>
+    item.category === selectedSub &&
+    item.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  if(found.length === 0) {
+
+    grid.innerHTML =
+      "<p class='empty'>No prompts added yet. Coming soon!</p>";
+
+    return;
   }
 
-  found.forEach(item=>{
-    const card=document.createElement("button");
-    card.className="prompt-card";
-    card.innerHTML=`
+  found.forEach(item => {
+
+    const card = document.createElement("button");
+    card.className = "prompt-card";
+
+    card.innerHTML = `
       <img src="${item.image}" alt="${item.name}">
       <h3>${item.name}</h3>
     `;
 
-    card.onclick=()=>openPromptDetail(item);
+    card.addEventListener("click", () => openPromptDetail(item));
+
     grid.appendChild(card);
+
   });
-const search = document.getElementById("promptSearch");
 
-search.value = "";
-
-search.oninput = function(){
-  const searchValue = this.value.toLowerCase();
-
-  document.querySelectorAll("#promptGallery .prompt-card").forEach(card=>{
-    card.style.display = card.textContent.toLowerCase().includes(searchValue)
-      ? ""
-      : "none";
-  });
-};
-  showPage(document.getElementById("promptGalleryPage"));
 }
 
-function openPromptDetail(item){
-  document.getElementById("detailCategory").textContent=item.category;
-  document.getElementById("detailImageName").textContent=item.name;
-  document.getElementById("detailImage").src=item.image;
-  document.getElementById("detailPrompt").textContent=item.prompt;
+// PROMPT SEARCH
+document.getElementById("promptSearch")
+.addEventListener("input", function() {
 
-  showPage(document.getElementById("promptDetailPage"));
+  renderPrompts(this.value);
+
+});
+
+// OPEN PROMPT DETAIL
+function openPromptDetail(item) {
+
+  currentPrompt = item;
+
+  document.getElementById("detailCategory").textContent =
+    selectedSub;
+
+  document.getElementById("detailImageName").textContent =
+    item.name;
+
+  document.getElementById("detailImage").src =
+    item.image;
+
+  document.getElementById("detailPrompt").textContent =
+    item.prompt;
+
+  showPage(detailPage);
+
 }
 
-document.getElementById("backPromptHome").onclick=()=>showPage(subPage);
-
-document.getElementById("backPromptGallery").onclick=()=>openPromptGallery();
-
-document.getElementById("copyPrompt").onclick=()=>{
-  const prompt=document.getElementById("detailPrompt").textContent;
-
-  navigator.clipboard.writeText(prompt).then(()=>{
-    document.getElementById("copyPrompt").textContent="✓ Copied!";
-  }).catch(()=>{
-    alert("Copy not supported. Please select and copy the prompt.");
-  });
+// BACK BUTTONS
+document.getElementById("backHome").onclick = () => {
+  showPage(home);
 };
 
-document.getElementById("sharePrompt").onclick=()=>{
-  const name=document.getElementById("detailImageName").textContent;
-  const prompt=document.getElementById("detailPrompt").textContent;
+document.getElementById("backSubcategory").onclick = () => {
+  showPage(subPage);
+};
 
-  if(navigator.share){
-    navigator.share({title:name,text:prompt});
-  }else{
-    navigator.clipboard.writeText(name+"\n"+prompt);
-    alert("Copied for sharing!");
+document.getElementById("backPromptHome").onclick = () => {
+  showPage(subPage);
+};
+
+document.getElementById("backPromptGallery").onclick = () => {
+  showPage(galleryPage);
+};
+
+// COPY PROMPT
+document.getElementById("copyPrompt").onclick = async () => {
+
+  if(!currentPrompt) return;
+
+  const prompt = currentPrompt.prompt;
+
+  try {
+
+    await navigator.clipboard.writeText(prompt);
+
+    alert("Prompt copied successfully!");
+
+  } catch(error) {
+
+    const area = document.createElement("textarea");
+    area.value = prompt;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand("copy");
+    area.remove();
+
+    alert("Prompt copied!");
+
   }
-};
-document.getElementById("backHome").onclick=()=>showPage(home);
-document.getElementById("backSubcategory").onclick=()=>showPage(subPage);
-document.getElementById("materialSearch").addEventListener("input",renderMaterials);
 
-document.getElementById("themeBtn").onclick=()=>{
+};
+
+// SHARE PROMPT
+document.getElementById("sharePrompt").onclick = async () => {
+
+  if(!currentPrompt) return;
+
+  const data = {
+    title: currentPrompt.name,
+    text: currentPrompt.prompt
+  };
+
+  if(navigator.share) {
+
+    try {
+      await navigator.share(data);
+    } catch(error) {}
+
+  } else {
+
+    try {
+      await navigator.clipboard.writeText(
+        currentPrompt.name + "\n" + currentPrompt.prompt
+      );
+
+      alert("Prompt copied for sharing!");
+
+    } catch(error) {
+      alert("Sharing is not supported on this browser.");
+    }
+
+  }
+
+};
+
+// THEME BUTTON
+document.getElementById("themeBtn").onclick = () => {
+
   document.body.classList.toggle("light");
+
+  const isLight = document.body.classList.contains("light");
+
+  document.getElementById("themeBtn").textContent =
+    isLight ? "☀" : "☾";
+
 };
 
-document.getElementById("year").textContent=new Date().getFullYear();
+// YEAR
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
 </script>
 
 </body>
