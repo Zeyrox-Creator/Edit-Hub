@@ -1,43 +1,23 @@
+// EDIT BY ZEYROX - script.js
+// Compatible with the index.html shared in this chat.
 
-// ==========================================
-// EDIT BY ZEYROX - COMPLETE WEBSITE SYSTEM
-// ==========================================
-
-// MAIN CATEGORIES
-const mainCategories = [
-  { name: "AI Edit Prompt", icon: "✨" },
-  { name: "AI Template", icon: "🎨" },
-  { name: "PNG Material", icon: "🖼️" },
-  { name: "VFX Material", icon: "⚡" }
+const categories = [
+  { name: "AI Edit Prompt", icon: "✨", cls: "cat1" },
+  { name: "AI Template", icon: "🎨", cls: "cat2" },
+  { name: "PNG Material", icon: "🖼️", cls: "cat3" },
+  { name: "VFX Material", icon: "⚡", cls: "cat4" }
 ];
-
-// SUB CATEGORIES
-const subCategories = [
-  { name: "Trending", icon: "🔥" },
-  { name: "Gaming", icon: "🎮" },
-  { name: "Natural", icon: "🌿" },
-  { name: "Logo", icon: "💠" }
-];
-
-// ==========================================
-// ALL MATERIALS
-// ==========================================
 
 const materials = [
-
-  // MATERIAL 01
   {
-    main: "AI Edit Prompt",
-    sub: "Trending",
     name: "ZAI TREND A01",
     searchName: "A01",
-    image: "materials/ai-prompts/trending/ZAI-Trend-A01.jpg",
-    download: "materials/ai-prompts/trending/ZAI-Trend-A01.jpg",
+    category: "AI Edit Prompt",
+    sub: "Trending",
+    file: "materials/ai-prompts/trending/ZAI-Trend-A01.jpg",
+    type: "prompt",
     description: "Cinematic Crimson Red Portrait Edit",
-    downloads: 0,
-    date: 6,
-
-    prompt: `Use the uploaded image as the main subject and transform it into a professional cinematic photo edit, matching the exact editing style and composition of my previously provided reference image.
+    text: `Use the uploaded image as the main subject and transform it into a professional cinematic photo edit, matching the exact editing style and composition of my previously provided reference image.
 
 Create a vertical 9:16 poster with a deep crimson-red textured background, a huge dramatic close-up of the subject's eyes at the top, five different black-and-white portrait panels of the same subject arranged vertically in the middle with thin white borders, and one large realistic full-colour portrait of the same subject sitting confidently in the foreground, wearing a black formal suit with one hand near the chin.
 
@@ -46,19 +26,15 @@ Preserve the uploaded person's original facial identity and recognizable feature
 Keep the same layered portrait arrangement, proportions, framing and overall visual style as the reference. Do not add any person's name or text. No watermark.`
   },
 
-  // MATERIAL 02
   {
-    main: "AI Edit Prompt",
-    sub: "Trending",
     name: "ZAI TREND A02",
     searchName: "A02",
-    image: "materials/ai-prompts/trending/ZAI-Trend-A02.jpg",
-    download: "materials/ai-prompts/trending/ZAI-Trend-A02.jpg",
+    category: "AI Edit Prompt",
+    sub: "Trending",
+    file: "materials/ai-prompts/trending/ZAI-Trend-A02.jpg",
+    type: "prompt",
     description: "Cinematic Three Panel Balcony Portrait",
-    downloads: 0,
-    date: 5,
-
-    prompt: `Use my uploaded photo as the ONLY identity reference. Create a highly realistic cinematic 3-panel vertical photo collage in a 9:16 aspect ratio.
+    text: `Use my uploaded photo as the ONLY identity reference. Create a highly realistic cinematic 3-panel vertical photo collage in a 9:16 aspect ratio.
 
 Top Panel: Show the same person standing near a beautiful outdoor balcony railing, photographed from behind at a three-quarter angle, one hand gently touching the back of the head, looking down to the side. Wear a light pink striped shirt with sleeves rolled up and black trousers.
 
@@ -73,19 +49,15 @@ IMPORTANT: All three panels must feature the exact same person from my uploaded 
 No text, no watermark, no logo, no social media interface, ultra-realistic, high detail, professional photography, 4K quality.`
   },
 
-  // MATERIAL 03
   {
-    main: "AI Edit Prompt",
-    sub: "Trending",
     name: "Trending DP Style for Boys & Girls (ZAI TREND A03)",
     searchName: "A03",
-    image: "materials/ai-prompts/trending/ZAI-Trend-A03.jpg",
-    download: "materials/ai-prompts/trending/ZAI-Trend-A03.jpg",
+    category: "AI Edit Prompt",
+    sub: "Trending",
+    file: "materials/ai-prompts/trending/ZAI-Trend-A03.jpg",
+    type: "prompt",
     description: "Professional Night Flash DP Portrait",
-    downloads: 0,
-    date: 4,
-
-    prompt: `Transform my uploaded photo into a realistic professional night-flash portrait while preserving my exact facial identity and recognizable features.
+    text: `Transform my uploaded photo into a realistic professional night-flash portrait while preserving my exact facial identity and recognizable features.
 
 Pose & Composition: Show me standing in a stylish natural pose, with my upper body slightly turned sideways and my face looking back towards the camera. One hand raised gently near my forehead, creating a fashionable pose. Capture a vertical full-body portrait in a 9:16 aspect ratio.
 
@@ -102,26 +74,21 @@ IMPORTANT: Use only the person in my uploaded photo. Preserve the original face,
 No text, no watermark, no logo, no social media interface. Ultra-realistic, high-quality 4K portrait.`
   },
 
-  // MATERIAL 04
   {
-    main: "AI Edit Prompt",
-    sub: "Trending",
     name: "ZAI TREND A04",
     searchName: "A04",
-    image: "materials/ai-prompts/trending/ZAI-Trend-A04.jpg",
-    download: "materials/ai-prompts/trending/ZAI-Trend-A04.jpg",
+    category: "AI Edit Prompt",
+    sub: "Trending",
+    file: "materials/ai-prompts/trending/ZAI-Trend-A04.jpg",
+    type: "prompt",
     description: "Pinterest Style Scrapbook Saree Collage",
-    downloads: 0,
-    date: 3,
-
-    prompt: `Create a beautiful aesthetic Pinterest-style scrapbook photo collage using my uploaded photo as the ONLY identity reference.
+    text: `Create a beautiful aesthetic Pinterest-style scrapbook photo collage using my uploaded photo as the ONLY identity reference.
 
 Layout: Create a vertical 9:16 collage containing 8–9 photographs of the same person, arranged in different sizes with one large central close-up portrait and multiple smaller portraits surrounding it.
 
 Outfit: A beautiful elegant black saree with a detailed golden embroidered border, matching blouse, delicate necklace, earrings and traditional accessories.
 
 Photo Poses: Include different natural poses:
-
 1. Full-body standing portrait.
 2. Side-profile portrait looking down.
 3. Sitting elegantly with one hand near the face.
@@ -139,24 +106,19 @@ Keep all photographs of the same person, with consistent identity, outfit and ha
 No watermark, ultra-realistic details, premium Pinterest-style design.`
   },
 
-  // MATERIAL 05
   {
-    main: "AI Edit Prompt",
-    sub: "Trending",
     name: "Make Your Friends Birthday in Style (ZAI TREND A05)",
     searchName: "A05",
-    image: "materials/ai-prompts/trending/ZAI-Trend-A05.jpg",
-    download: "materials/ai-prompts/trending/ZAI-Trend-A05.jpg",
+    category: "AI Edit Prompt",
+    sub: "Trending",
+    file: "materials/ai-prompts/trending/ZAI-Trend-A05.jpg",
+    type: "prompt",
     description: "Royal Purple Birthday Poster",
-    downloads: 0,
-    date: 2,
-
-    prompt: `Create a premium, ultra-realistic Indian birthday poster using the uploaded photo as the ONLY identity reference.
+    text: `Create a premium, ultra-realistic Indian birthday poster using the uploaded photo as the ONLY identity reference.
 
 IMPORTANT: Preserve the person's exact facial identity, facial features, skin tone, hairstyle and natural appearance. Do not change the face or create a different person.
 
 Poster Design & Composition:
-
 - Create a beautiful vertical 9:16 birthday poster.
 - Use a large close-up portrait of the person on the upper-left side, wearing stylish dark purple sunglasses.
 - Add a second full-body portrait on the right side, wearing an elegant, heavily embroidered royal purple Indian traditional outfit (purple lehenga or saree).
@@ -166,34 +128,26 @@ Poster Design & Composition:
 - Create a premium Photoshop-style photo manipulation with realistic lighting, professional retouching and smooth blending.
 
 Typography:
-
 - Write "Happy" in elegant black handwritten calligraphy.
 - Write "Birthday" in large, beautiful purple cursive typography.
 - Below it add this birthday message:
-
 "May your special day be as beautiful as your smile and as bright as your spirit. Here's to a year filled with happiness, love, and unforgettable memories."
-
 - Add a small purple heart decoration at the bottom.
 
-Final Quality:
-Professional birthday poster, photorealistic portraits, premium graphic design, detailed fabric texture, beautiful purple color grading, sharp facial details, 4K quality.
+Final Quality: Professional birthday poster, photorealistic portraits, premium graphic design, detailed fabric texture, beautiful purple color grading, sharp facial details, 4K quality.
 
 Do not crop important parts of the person. Keep the composition elegant and similar to the reference design.`
   },
 
-  // MATERIAL 06
   {
-    main: "AI Edit Prompt",
-    sub: "Trending",
     name: "Make Your Friends Birthday in Style (ZAI TREND A06)",
     searchName: "A06",
-    image: "materials/ai-prompts/trending/ZAI-Trend-A06.jpg",
-    download: "materials/ai-prompts/trending/ZAI-Trend-A06.jpg",
+    category: "AI Edit Prompt",
+    sub: "Trending",
+    file: "materials/ai-prompts/trending/ZAI-Trend-A06.jpg",
+    type: "prompt",
     description: "Black and Gold Birthday Poster",
-    downloads: 0,
-    date: 1,
-
-    prompt: `Use my uploaded photo as the main identity reference and create a premium, ultra-realistic birthday poster in exactly the same editing style as the reference image.
+    text: `Use my uploaded photo as the main identity reference and create a premium, ultra-realistic birthday poster in exactly the same editing style as the reference image.
 
 Main Portrait:
 Create a large, beautiful, soft-focus portrait of the same person on the LEFT side. Preserve the original face, facial features, skin tone, hairstyle and identity accurately.
@@ -202,7 +156,6 @@ Full Body Portrait:
 On the RIGHT side, create a realistic full-body version of the same person wearing a stylish elegant black outfit, black sunglasses and black boots. Give a confident fashion-model pose.
 
 Background & Design:
-
 - Clean ivory-white background.
 - Black and golden watercolor splashes.
 - Beautiful black floral illustrations with golden outlines.
@@ -212,343 +165,307 @@ Background & Design:
 
 Typography:
 Add large elegant black serif typography at the top right:
-
 "HAPPY BIRTHDAY"
 
 Below it write:
-
 "Celebrating your unique style & light"
 
 Quality:
 Ultra-realistic 4K quality, sharp facial details, realistic skin texture, elegant typography, balanced composition, professional Photoshop editing and premium birthday poster design.
 
 No extra text, no watermark, no logo.`
-  }
+  },
 
+  // Existing PNG materials
+  {
+    name: "Chaoten Kitty",
+    category: "PNG Material",
+    sub: "Trending",
+    file: "materials/png/chaotenkitty-neon-7440942_1920.png",
+    type: "image"
+  },
+
+  {
+    name: "Fantasy Artwork",
+    category: "PNG Material",
+    sub: "Natural",
+    file: "materials/png/geralt-art-7036652_1920.jpg",
+    type: "image"
+  },
+
+  {
+    name: "Technology Background",
+    category: "PNG Material",
+    sub: "Gaming",
+    file: "materials/png/tungnguyen0905-technology-6701424_1920.jpg",
+    type: "image"
+  }
 ];
 
-// ==========================================
-// PAGE ELEMENTS
-// ==========================================
-
-let selectedMain = "";
+let selectedCategory = "";
 let selectedSub = "";
+let currentItem = null;
 
-const homePage = document.getElementById("homePage");
-const subcategoryPage = document.getElementById("subcategoryPage");
-const materialsPage = document.getElementById("materialsPage");
+const pageIds = [
+  "home",
+  "categories",
+  "subcategories",
+  "gallery",
+  "detail"
+];
 
-const categoryGrid = document.getElementById("categoryGrid");
-const subcategoryGrid = document.getElementById("subcategoryGrid");
-const materialsGrid = document.getElementById("materialsGrid");
+function showPage(id) {
+  pageIds.forEach(pageId => {
+    const page = document.getElementById(pageId);
 
-const subcategoryTitle = document.getElementById("subcategoryTitle");
-const materialsTitle = document.getElementById("materialsTitle");
-
-const materialSearch = document.getElementById("materialSearch");
-const sortSelect = document.getElementById("sortSelect");
-const emptyState = document.getElementById("emptyState");
-
-const themeBtn = document.getElementById("themeBtn");
-
-// ==========================================
-// SHOW HOME PAGE
-// ==========================================
-
-function showHome() {
-  homePage.classList.remove("hidden");
-  subcategoryPage.classList.add("hidden");
-  materialsPage.classList.add("hidden");
-
-  selectedMain = "";
-  selectedSub = "";
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-// ==========================================
-// SHOW MAIN CATEGORIES
-// ==========================================
-
-function showMainCategories() {
-  categoryGrid.innerHTML = "";
-
-  mainCategories.forEach(category => {
-    const card = document.createElement("button");
-    card.className = "category-card";
-
-    card.innerHTML = `
-      <span class="category-icon">${category.icon}</span>
-      <h3>${category.name}</h3>
-      <p>Explore ${category.name} resources</p>
-    `;
-
-    card.addEventListener("click", () => {
-      openSubcategories(category.name);
-    });
-
-    categoryGrid.appendChild(card);
-  });
-}
-
-// ==========================================
-// OPEN SUBCATEGORIES PAGE
-// ==========================================
-
-function openSubcategories(mainName) {
-  selectedMain = mainName;
-
-  homePage.classList.add("hidden");
-  materialsPage.classList.add("hidden");
-  subcategoryPage.classList.remove("hidden");
-
-  subcategoryTitle.textContent = mainName;
-  subcategoryGrid.innerHTML = "";
-
-  subCategories.forEach(category => {
-    const card = document.createElement("button");
-    card.className = "category-card";
-
-    card.innerHTML = `
-      <span class="category-icon">${category.icon}</span>
-      <h3>${category.name}</h3>
-      <p>Explore ${category.name} materials</p>
-    `;
-
-    card.addEventListener("click", () => {
-      openMaterials(category.name);
-    });
-
-    subcategoryGrid.appendChild(card);
-  });
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-// ==========================================
-// OPEN MATERIALS PAGE
-// ==========================================
-
-function openMaterials(subName) {
-  selectedSub = subName;
-
-  homePage.classList.add("hidden");
-  subcategoryPage.classList.add("hidden");
-  materialsPage.classList.remove("hidden");
-
-  materialsTitle.textContent = selectedMain + " / " + selectedSub;
-
-  materialSearch.value = "";
-  sortSelect.value = "newest";
-
-  showMaterials();
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-// ==========================================
-// COPY PROMPT
-// ==========================================
-
-async function copyPrompt(prompt, button) {
-  try {
-    await navigator.clipboard.writeText(prompt);
-    button.textContent = "✓ Copied!";
-  } catch (error) {
-    const textArea = document.createElement("textarea");
-    textArea.value = prompt;
-    document.body.appendChild(textArea);
-    textArea.select();
-
-    try {
-      document.execCommand("copy");
-      button.textContent = "✓ Copied!";
-    } catch (copyError) {
-      button.textContent = "Copy failed";
+    if (page) {
+      page.classList.toggle("active", pageId === id);
     }
+  });
 
-    document.body.removeChild(textArea);
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+function makeCategoryCards(targetId) {
+  const target = document.getElementById(targetId);
+
+  if (!target) return;
+
+  target.innerHTML = "";
+
+  categories.forEach(category => {
+    const card = document.createElement("div");
+
+    card.className = `category-card ${category.cls}`;
+
+    card.innerHTML = `
+      <div class="category-icon">${category.icon}</div>
+      <h3>${category.name}</h3>
+    `;
+
+    card.addEventListener("click", () => {
+      openCategory(category.name);
+    });
+
+    target.appendChild(card);
+  });
+}
+
+function openCategory(name) {
+  selectedCategory = name;
+
+  const heading = document.getElementById("categoryHeading");
+
+  if (heading) {
+    heading.textContent = name;
   }
 
-  setTimeout(() => {
-    button.textContent = "📋 Copy Prompt";
-  }, 2000);
+  showPage("subcategories");
 }
 
-// ==========================================
-// DISPLAY MATERIALS
-// ==========================================
+function openGallery(sub) {
+  selectedSub = sub;
 
-function showMaterials() {
-  materialsGrid.innerHTML = "";
+  const heading = document.getElementById("galleryHeading");
+  const search = document.getElementById("searchInput");
 
-  const searchText = materialSearch.value.toLowerCase().trim();
+  if (heading) {
+    heading.textContent = `${selectedCategory} / ${sub}`;
+  }
 
-  let filtered = materials.filter(item => {
+  if (search) {
+    search.value = "";
+  }
+
+  renderGallery();
+  showPage("gallery");
+}
+
+function renderGallery() {
+  const grid = document.getElementById("itemGrid");
+  const search = document.getElementById("searchInput");
+
+  if (!grid || !search) return;
+
+  const query = search.value.toLowerCase().trim();
+
+  const results = materials.filter(item => {
+    const searchable = [
+      item.name || "",
+      item.searchName || "",
+      item.description || "",
+      item.category || "",
+      item.sub || ""
+    ].join(" ").toLowerCase();
+
     return (
-      item.main === selectedMain &&
+      item.category === selectedCategory &&
       item.sub === selectedSub &&
-      (
-        item.name.toLowerCase().includes(searchText) ||
-        item.searchName.toLowerCase().includes(searchText) ||
-        item.description.toLowerCase().includes(searchText)
-      )
+      searchable.includes(query)
     );
   });
 
-  if (sortSelect.value === "name") {
-    filtered.sort((a, b) => a.name.localeCompare(b.name));
-  }
+  grid.innerHTML = "";
 
-  if (sortSelect.value === "downloads") {
-    filtered.sort((a, b) => b.downloads - a.downloads);
-  }
-
-  if (sortSelect.value === "newest") {
-    filtered.sort((a, b) => b.date - a.date);
-  }
-
-  if (filtered.length === 0) {
-    emptyState.classList.remove("hidden");
+  if (results.length === 0) {
+    grid.innerHTML = `
+      <div class="empty">
+        No materials added here yet.
+      </div>
+    `;
     return;
   }
 
-  emptyState.classList.add("hidden");
-
-  filtered.forEach(item => {
+  results.forEach(item => {
     const card = document.createElement("div");
-    card.className = "material-card";
+    card.className = "item";
 
-    card.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" loading="lazy">
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+    card.appendChild(title);
 
-      <h3></h3>
-      <p></p>
+    const description = document.createElement("p");
+    description.textContent =
+      item.description || `${item.category} • ${item.sub}`;
 
-      <button type="button" class="show-prompt-btn">
-        👁 Show Prompt
-      </button>
+    card.appendChild(description);
 
-      <div class="prompt-content hidden">
-        <p class="prompt-text"></p>
+    if (item.type === "prompt") {
+      const view = document.createElement("button");
 
-        <button type="button" class="copy-prompt-btn">
-          📋 Copy Prompt
-        </button>
-      </div>
+      view.className = "action";
+      view.type = "button";
+      view.textContent = "👁 View Prompt";
 
-      <a href="${item.download}" download>
-        ⬇ Download
-      </a>
-    `;
+      view.addEventListener("click", () => {
+        openDetail(item);
+      });
 
-    card.querySelector("h3").textContent = item.name;
-    card.querySelector("p").textContent = item.description;
+      card.appendChild(view);
 
-    const promptContent = card.querySelector(".prompt-content");
-    const promptText = card.querySelector(".prompt-text");
-    const showPromptBtn = card.querySelector(".show-prompt-btn");
-    const copyPromptBtn = card.querySelector(".copy-prompt-btn");
+      const copy = document.createElement("button");
 
-    promptText.textContent = item.prompt;
+      copy.className = "action";
+      copy.type = "button";
+      copy.textContent = "📋 Copy Prompt";
 
-    showPromptBtn.addEventListener("click", () => {
-      const isHidden = promptContent.classList.toggle("hidden");
+      copy.addEventListener("click", () => {
+        copyText(item.text);
+      });
 
-      showPromptBtn.textContent = isHidden
-        ? "👁 Show Prompt"
-        : "✖ Hide Prompt";
-    });
+      card.appendChild(copy);
 
-    copyPromptBtn.addEventListener("click", () => {
-      copyPrompt(item.prompt, copyPromptBtn);
-    });
+    } else {
+      const download = document.createElement("a");
 
-    materialsGrid.appendChild(card);
+      download.className = "action";
+      download.href = item.file;
+      download.download = "";
+      download.textContent = "⬇ Download";
+
+      card.appendChild(download);
+
+      const view = document.createElement("button");
+
+      view.className = "action";
+      view.type = "button";
+      view.textContent = "View Details";
+
+      view.addEventListener("click", () => {
+        openDetail(item);
+      });
+
+      card.appendChild(view);
+    }
+
+    grid.appendChild(card);
   });
 }
 
-// ==========================================
-// BACK BUTTONS
-// ==========================================
+function openDetail(item) {
+  currentItem = item;
 
-document.getElementById("backHome").addEventListener("click", showHome);
+  document.getElementById("detailTitle").textContent =
+    item.name;
 
-document.getElementById("backSubcategory").addEventListener("click", () => {
-  materialsPage.classList.add("hidden");
-  subcategoryPage.classList.remove("hidden");
+  document.getElementById("detailText").textContent =
+    item.text || item.file || item.name;
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+  showPage("detail");
+}
 
-// ==========================================
-// HOME NAVIGATION
-// ==========================================
+async function copyText(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
 
-document.getElementById("homeLogo").addEventListener("click", event => {
-  event.preventDefault();
-  showHome();
-});
+    } else {
+      const textarea = document.createElement("textarea");
 
-document.getElementById("navHome").addEventListener("click", event => {
-  event.preventDefault();
-  showHome();
-});
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
 
-// ==========================================
-// MATERIAL SEARCH AND SORT
-// ==========================================
+      document.body.appendChild(textarea);
+      textarea.select();
 
-materialSearch.addEventListener("input", showMaterials);
-sortSelect.addEventListener("change", showMaterials);
+      const success = document.execCommand("copy");
 
-// ==========================================
-// HOME SEARCH
-// ==========================================
+      textarea.remove();
 
-document.getElementById("searchInput").addEventListener("input", event => {
-  const query = event.target.value.toLowerCase();
+      if (!success) {
+        throw new Error("Copy failed");
+      }
+    }
 
-  categoryGrid.querySelectorAll(".category-card").forEach(card => {
-    card.style.display = card.textContent.toLowerCase().includes(query)
-      ? ""
-      : "none";
-  });
-});
+    alert("Copied successfully!");
 
-// ==========================================
-// THEME TOGGLE
-// ==========================================
-
-function applyTheme() {
-  const savedTheme = localStorage.getItem("edithub-theme");
-
-  if (savedTheme === "light") {
-    document.body.classList.add("light-theme");
-    themeBtn.textContent = "☀";
-  } else {
-    document.body.classList.remove("light-theme");
-    themeBtn.textContent = "☾";
+  } catch (error) {
+    alert("Copy failed. Please try again.");
   }
 }
 
-themeBtn.addEventListener("click", () => {
-  const isLight = document.body.classList.toggle("light-theme");
+function copyCurrent() {
+  if (currentItem) {
+    copyText(currentItem.text || currentItem.name);
+  }
+}
 
-  localStorage.setItem("edithub-theme", isLight ? "light" : "dark");
-  themeBtn.textContent = isLight ? "☀" : "☾";
-});
+async function shareCurrent() {
+  if (!currentItem) return;
 
-// ==========================================
-// FOOTER YEAR
-// ==========================================
+  const text = `${currentItem.name}\n${currentItem.text || currentItem.file || ""}`;
 
-document.getElementById("year").textContent = new Date().getFullYear();
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: currentItem.name,
+        text: text
+      });
 
-// ==========================================
-// INITIALIZE WEBSITE
-// ==========================================
+    } else {
+      await copyText(text);
+    }
 
-showMainCategories();
-applyTheme();
-showHome();
+  } catch (error) {
+    // User cancelled sharing.
+  }
+}
+
+// Build homepage and categories page cards
+makeCategoryCards("homeCategories");
+makeCategoryCards("allCategories");
+
+// Make inline HTML onclick handlers available
+window.showPage = showPage;
+window.openCategory = openCategory;
+window.openGallery = openGallery;
+window.renderGallery = renderGallery;
+window.copyCurrent = copyCurrent;
+window.shareCurrent = shareCurrent;
+
+// Start on homepage
+showPage("home");
