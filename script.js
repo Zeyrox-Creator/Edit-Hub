@@ -1,245 +1,193 @@
-// EDIT BY ZEYROX - script.js
-// Compatible with the index.html shared in this chat.
+// ========================================
+// EDIT BY ZEYROX - WEBSITE SYSTEM
+// ========================================
 
+// MAIN CATEGORIES
 const categories = [
-  { name: "AI Edit Prompt", icon: "✨", cls: "cat1" },
-  { name: "AI Template", icon: "🎨", cls: "cat2" },
-  { name: "PNG Material", icon: "🖼️", cls: "cat3" },
-  { name: "VFX Material", icon: "⚡", cls: "cat4" }
+  { name: "AI Edit Prompt", icon: "✨" },
+  { name: "AI Template", icon: "🎨" },
+  { name: "PNG Material", icon: "🖼️" },
+  { name: "VFX Material", icon: "⚡" }
 ];
 
+// SUBCATEGORIES
+const subCategories = [
+  { name: "Trending", icon: "🔥" },
+  { name: "Gaming", icon: "🎮" },
+  { name: "Natural", icon: "🌿" },
+  { name: "Logo", icon: "💠" }
+];
+
+// MATERIALS
 const materials = [
   {
     name: "ZAI TREND A01",
-    searchName: "A01",
-    category: "AI Edit Prompt",
+    main: "AI Edit Prompt",
     sub: "Trending",
-    file: "materials/ai-prompts/trending/ZAI-Trend-A01.jpg",
-    type: "prompt",
     description: "Cinematic Crimson Red Portrait Edit",
-    text: `Use the uploaded image as the main subject and transform it into a professional cinematic photo edit, matching the exact editing style and composition of my previously provided reference image.
+    image: "materials/ai-prompts/trending/ZAI-Trend-A01.jpg",
+    type: "prompt",
+    prompt: `Use the uploaded image as the main subject and transform it into a professional cinematic photo edit.
 
-Create a vertical 9:16 poster with a deep crimson-red textured background, a huge dramatic close-up of the subject's eyes at the top, five different black-and-white portrait panels of the same subject arranged vertically in the middle with thin white borders, and one large realistic full-colour portrait of the same subject sitting confidently in the foreground, wearing a black formal suit with one hand near the chin.
+Create a vertical 9:16 poster with a deep crimson-red textured background, a dramatic close-up of the subject's eyes at the top, five black-and-white portrait panels in the middle and one large full-colour portrait in the foreground.
 
-Preserve the uploaded person's original facial identity and recognizable features as accurately as possible. Add dramatic red cinematic lighting, realistic skin texture, sharp details, deep shadows, professional Photoshop manipulation and high contrast.
+Preserve the original facial identity, hairstyle and recognizable features. Add dramatic red lighting, realistic skin texture, deep shadows and professional cinematic editing.
 
-Keep the same layered portrait arrangement, proportions, framing and overall visual style as the reference. Do not add any person's name or text. No watermark.`
+No watermark.`
   },
-
   {
     name: "ZAI TREND A02",
-    searchName: "A02",
-    category: "AI Edit Prompt",
+    main: "AI Edit Prompt",
     sub: "Trending",
-    file: "materials/ai-prompts/trending/ZAI-Trend-A02.jpg",
-    type: "prompt",
     description: "Cinematic Three Panel Balcony Portrait",
-    text: `Use my uploaded photo as the ONLY identity reference. Create a highly realistic cinematic 3-panel vertical photo collage in a 9:16 aspect ratio.
-
-Top Panel: Show the same person standing near a beautiful outdoor balcony railing, photographed from behind at a three-quarter angle, one hand gently touching the back of the head, looking down to the side. Wear a light pink striped shirt with sleeves rolled up and black trousers.
-
-Middle Panel: Create a close-up cinematic portrait of the same person, showing the face from a side angle, looking thoughtfully towards the left. Keep realistic facial details, natural hairstyle and soft expressions.
-
-Bottom Panel: Show the same person in a medium full-body shot, standing confidently near the same balcony railing, looking towards the left, wearing the same pink striped shirt and black trousers.
-
-Background & Style: Beautiful green garden, blurred trees, modern balcony, warm golden wall lights, subtle blue evening lighting, cinematic depth of field, natural skin texture, professional DSLR photography, soft bokeh and premium Instagram aesthetic.
-
-IMPORTANT: All three panels must feature the exact same person from my uploaded photo. Preserve their original facial identity, face shape and recognizable features. Maintain consistent clothing and hairstyle across all three panels. Make it look like three real photographs taken during the same photoshoot.
-
-No text, no watermark, no logo, no social media interface, ultra-realistic, high detail, professional photography, 4K quality.`
-  },
-
-  {
-    name: "Trending DP Style for Boys & Girls (ZAI TREND A03)",
-    searchName: "A03",
-    category: "AI Edit Prompt",
-    sub: "Trending",
-    file: "materials/ai-prompts/trending/ZAI-Trend-A03.jpg",
+    image: "materials/ai-prompts/trending/ZAI-Trend-A02.jpg",
     type: "prompt",
-    description: "Professional Night Flash DP Portrait",
-    text: `Transform my uploaded photo into a realistic professional night-flash portrait while preserving my exact facial identity and recognizable features.
+    prompt: `Create a realistic cinematic 3-panel vertical photo collage using my uploaded photo as the ONLY identity reference.
 
-Pose & Composition: Show me standing in a stylish natural pose, with my upper body slightly turned sideways and my face looking back towards the camera. One hand raised gently near my forehead, creating a fashionable pose. Capture a vertical full-body portrait in a 9:16 aspect ratio.
+Top panel: Person standing near a balcony railing, photographed from behind.
 
-Outfit: Keep my original outfit from the uploaded photo, unless I specifically request a change.
+Middle panel: Cinematic close-up portrait looking thoughtfully to the side.
 
-Lighting: Create a powerful warm camera-flash effect from behind and slightly to the side, producing beautiful golden rim lighting around my hair, face, shoulders and body. Add soft front flash illumination on the face, realistic highlights and natural shadows.
+Bottom panel: Medium full-body portrait near the same balcony.
 
-Background: Dark nighttime outdoor background with subtle texture, deep black tones and a cinematic atmosphere. Keep the background uncluttered.
+Use a pink striped shirt, black trousers, green garden background, warm lights, blue evening lighting, realistic skin texture and DSLR depth of field.
 
-Photography Style: Premium Instagram night-flash photography, realistic skin texture, sharp facial details, natural colors, DSLR quality, dramatic contrast, subtle film grain and professional photo editing.
-
-IMPORTANT: Use only the person in my uploaded photo. Preserve the original face, facial structure and identity. Do not replace the person with another model. Keep the result photorealistic.
-
-No text, no watermark, no logo, no social media interface. Ultra-realistic, high-quality 4K portrait.`
+All panels must show the same person. Preserve facial identity. No text or watermark.`
   },
+  {
+    name: "ZAI TREND A03",
+    main: "AI Edit Prompt",
+    sub: "Trending",
+    description: "Professional Night Flash DP Portrait",
+    image: "materials/ai-prompts/trending/ZAI-Trend-A03.jpg",
+    type: "prompt",
+    prompt: `Transform my uploaded photo into a realistic professional night-flash portrait.
 
+Show the person standing in a stylish natural pose, upper body slightly turned sideways and face looking back towards the camera.
+
+Create warm camera-flash lighting, golden rim lighting, dark nighttime outdoor background, realistic skin texture, sharp facial details and premium Instagram photography style.
+
+Preserve the original facial identity, hairstyle and appearance. No watermark.`
+  },
   {
     name: "ZAI TREND A04",
-    searchName: "A04",
-    category: "AI Edit Prompt",
+    main: "AI Edit Prompt",
     sub: "Trending",
-    file: "materials/ai-prompts/trending/ZAI-Trend-A04.jpg",
-    type: "prompt",
     description: "Pinterest Style Scrapbook Saree Collage",
-    text: `Create a beautiful aesthetic Pinterest-style scrapbook photo collage using my uploaded photo as the ONLY identity reference.
-
-Layout: Create a vertical 9:16 collage containing 8–9 photographs of the same person, arranged in different sizes with one large central close-up portrait and multiple smaller portraits surrounding it.
-
-Outfit: A beautiful elegant black saree with a detailed golden embroidered border, matching blouse, delicate necklace, earrings and traditional accessories.
-
-Photo Poses: Include different natural poses:
-1. Full-body standing portrait.
-2. Side-profile portrait looking down.
-3. Sitting elegantly with one hand near the face.
-4. Close-up portrait looking directly at the camera.
-5. Smiling portrait with eyes gently closed.
-6. Standing portrait holding the saree gracefully.
-7. A candid thoughtful pose.
-
-Scrapbook Design: Use an off-white vintage paper background with a subtle grid pattern. Add torn-paper photo borders, overlapping paper layers, small black bows, delicate butterflies, dried flowers, vintage paper textures and elegant scrapbook decorations.
-
-Create a premium Pinterest-style scrapbook aesthetic with balanced photo arrangements and beautiful decorative details.
-
-Keep all photographs of the same person, with consistent identity, outfit and hairstyle.
-
-No watermark, ultra-realistic details, premium Pinterest-style design.`
-  },
-
-  {
-    name: "Make Your Friends Birthday in Style (ZAI TREND A05)",
-    searchName: "A05",
-    category: "AI Edit Prompt",
-    sub: "Trending",
-    file: "materials/ai-prompts/trending/ZAI-Trend-A05.jpg",
+    image: "materials/ai-prompts/trending/ZAI-Trend-A04.jpg",
     type: "prompt",
+    prompt: `Create a beautiful Pinterest-style scrapbook collage using my uploaded photo as the ONLY identity reference.
+
+Create a vertical 9:16 layout with 8–9 photographs of the same person, including one large central portrait and smaller surrounding portraits.
+
+Outfit: Elegant black saree with golden embroidered border, matching blouse and delicate jewellery.
+
+Use an off-white vintage paper background, torn-paper photo borders, overlapping paper layers, black bows, butterflies, dried flowers and scrapbook decorations.
+
+Keep the same facial identity, outfit and hairstyle in every photo. Premium Pinterest aesthetic. No watermark.`
+  },
+  {
+    name: "ZAI TREND A05",
+    main: "AI Edit Prompt",
+    sub: "Trending",
     description: "Royal Purple Birthday Poster",
-    text: `Create a premium, ultra-realistic Indian birthday poster using the uploaded photo as the ONLY identity reference.
-
-IMPORTANT: Preserve the person's exact facial identity, facial features, skin tone, hairstyle and natural appearance. Do not change the face or create a different person.
-
-Poster Design & Composition:
-- Create a beautiful vertical 9:16 birthday poster.
-- Use a large close-up portrait of the person on the upper-left side, wearing stylish dark purple sunglasses.
-- Add a second full-body portrait on the right side, wearing an elegant, heavily embroidered royal purple Indian traditional outfit (purple lehenga or saree).
-- Keep both portraits of the SAME person with consistent facial identity.
-- Add elegant golden earrings and subtle jewellery.
-- Use a rich purple and lavender watercolor splash background with white areas and artistic paint splashes.
-- Create a premium Photoshop-style photo manipulation with realistic lighting, professional retouching and smooth blending.
-
-Typography:
-- Write "Happy" in elegant black handwritten calligraphy.
-- Write "Birthday" in large, beautiful purple cursive typography.
-- Below it add this birthday message:
-"May your special day be as beautiful as your smile and as bright as your spirit. Here's to a year filled with happiness, love, and unforgettable memories."
-- Add a small purple heart decoration at the bottom.
-
-Final Quality: Professional birthday poster, photorealistic portraits, premium graphic design, detailed fabric texture, beautiful purple color grading, sharp facial details, 4K quality.
-
-Do not crop important parts of the person. Keep the composition elegant and similar to the reference design.`
-  },
-
-  {
-    name: "Make Your Friends Birthday in Style (ZAI TREND A06)",
-    searchName: "A06",
-    category: "AI Edit Prompt",
-    sub: "Trending",
-    file: "materials/ai-prompts/trending/ZAI-Trend-A06.jpg",
+    image: "materials/ai-prompts/trending/ZAI-Trend-A05.jpg",
     type: "prompt",
-    description: "Black and Gold Birthday Poster",
-    text: `Use my uploaded photo as the main identity reference and create a premium, ultra-realistic birthday poster in exactly the same editing style as the reference image.
+    prompt: `Create a premium vertical 9:16 birthday poster using my uploaded photo as the ONLY identity reference.
 
-Main Portrait:
-Create a large, beautiful, soft-focus portrait of the same person on the LEFT side. Preserve the original face, facial features, skin tone, hairstyle and identity accurately.
+Show a large close-up portrait wearing stylish purple sunglasses and a second full-body portrait in an elegant royal purple traditional outfit.
 
-Full Body Portrait:
-On the RIGHT side, create a realistic full-body version of the same person wearing a stylish elegant black outfit, black sunglasses and black boots. Give a confident fashion-model pose.
+Use a purple and lavender watercolor background, golden decorative details and premium Photoshop-style editing.
 
-Background & Design:
-- Clean ivory-white background.
-- Black and golden watercolor splashes.
-- Beautiful black floral illustrations with golden outlines.
-- Soft golden paint textures around the portrait.
-- Small decorative pink flower near the headline.
-- Premium artistic birthday poster composition.
+Add the text:
+Happy Birthday
 
-Typography:
-Add large elegant black serif typography at the top right:
-"HAPPY BIRTHDAY"
+May your special day be as beautiful as your smile and as bright as your spirit.
 
-Below it write:
-"Celebrating your unique style & light"
-
-Quality:
-Ultra-realistic 4K quality, sharp facial details, realistic skin texture, elegant typography, balanced composition, professional Photoshop editing and premium birthday poster design.
-
-No extra text, no watermark, no logo.`
+Preserve the person's exact facial identity. No watermark.`
   },
+  {
+    name: "ZAI TREND A06",
+    main: "AI Edit Prompt",
+    sub: "Trending",
+    description: "Black and Gold Birthday Poster",
+    image: "materials/ai-prompts/trending/ZAI-Trend-A06.jpg",
+    type: "prompt",
+    prompt: `Create a premium birthday poster using my uploaded photo as the main identity reference.
 
-  // Existing PNG materials
+Place a large soft-focus portrait on the left and a full-body portrait on the right wearing a stylish black outfit and sunglasses.
+
+Use an ivory-white background, black and golden watercolor splashes, black floral illustrations and a small pink flower.
+
+Add the headline:
+HAPPY BIRTHDAY
+
+Add the subtitle:
+Celebrating your unique style & light
+
+Preserve the original face and identity. Ultra-realistic professional poster. No watermark.`
+  },
   {
     name: "Chaoten Kitty",
-    category: "PNG Material",
+    main: "PNG Material",
     sub: "Trending",
-    file: "materials/png/chaotenkitty-neon-7440942_1920.png",
+    description: "Neon Material",
+    image: "materials/png/chaotenkitty-neon-7440942_1920.png",
     type: "image"
   },
-
   {
     name: "Fantasy Artwork",
-    category: "PNG Material",
+    main: "PNG Material",
     sub: "Natural",
-    file: "materials/png/geralt-art-7036652_1920.jpg",
+    description: "Fantasy Editing Material",
+    image: "materials/png/geralt-art-7036652_1920.jpg",
     type: "image"
   },
-
   {
     name: "Technology Background",
-    category: "PNG Material",
+    main: "PNG Material",
     sub: "Gaming",
-    file: "materials/png/tungnguyen0905-technology-6701424_1920.jpg",
+    description: "Technology Editing Material",
+    image: "materials/png/tungnguyen0905-technology-6701424_1920.jpg",
     type: "image"
   }
 ];
 
-let selectedCategory = "";
+let selectedMain = "";
 let selectedSub = "";
-let currentItem = null;
+let currentMaterial = null;
 
-const pageIds = [
-  "home",
-  "categories",
-  "subcategories",
-  "gallery",
-  "detail"
-];
+// ========================================
+// PAGE NAVIGATION
+// ========================================
 
-function showPage(id) {
-  pageIds.forEach(pageId => {
-    const page = document.getElementById(pageId);
-
-    if (page) {
-      page.classList.toggle("active", pageId === id);
-    }
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
   });
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  const page = document.getElementById(pageId);
+
+  if (page) {
+    page.classList.add("active");
+  }
+
+  window.scrollTo(0, 0);
 }
 
-function makeCategoryCards(targetId) {
-  const target = document.getElementById(targetId);
+// ========================================
+// CATEGORY CARDS
+// ========================================
 
-  if (!target) return;
+function renderCategories(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-  target.innerHTML = "";
+  container.innerHTML = "";
 
   categories.forEach(category => {
     const card = document.createElement("div");
-
-    card.className = `category-card ${category.cls}`;
+    card.className = "category-card";
 
     card.innerHTML = `
       <div class="category-icon">${category.icon}</div>
@@ -250,12 +198,16 @@ function makeCategoryCards(targetId) {
       openCategory(category.name);
     });
 
-    target.appendChild(card);
+    container.appendChild(card);
   });
 }
 
+// ========================================
+// OPEN CATEGORY
+// ========================================
+
 function openCategory(name) {
-  selectedCategory = name;
+  selectedMain = name;
 
   const heading = document.getElementById("categoryHeading");
 
@@ -266,15 +218,20 @@ function openCategory(name) {
   showPage("subcategories");
 }
 
+// ========================================
+// OPEN MATERIAL GALLERY
+// ========================================
+
 function openGallery(sub) {
   selectedSub = sub;
 
   const heading = document.getElementById("galleryHeading");
-  const search = document.getElementById("searchInput");
 
   if (heading) {
-    heading.textContent = `${selectedCategory} / ${sub}`;
+    heading.textContent = selectedMain + " / " + sub;
   }
+
+  const search = document.getElementById("searchInput");
 
   if (search) {
     search.value = "";
@@ -284,188 +241,163 @@ function openGallery(sub) {
   showPage("gallery");
 }
 
+// ========================================
+// DISPLAY MATERIALS
+// ========================================
+
 function renderGallery() {
   const grid = document.getElementById("itemGrid");
+  if (!grid) return;
+
   const search = document.getElementById("searchInput");
+  const query = search ? search.value.toLowerCase() : "";
 
-  if (!grid || !search) return;
-
-  const query = search.value.toLowerCase().trim();
-
-  const results = materials.filter(item => {
-    const searchable = [
-      item.name || "",
-      item.searchName || "",
-      item.description || "",
-      item.category || "",
-      item.sub || ""
-    ].join(" ").toLowerCase();
-
-    return (
-      item.category === selectedCategory &&
-      item.sub === selectedSub &&
-      searchable.includes(query)
-    );
-  });
+  const filtered = materials.filter(item =>
+    item.main === selectedMain &&
+    item.sub === selectedSub &&
+    (
+      item.name.toLowerCase().includes(query) ||
+      item.description.toLowerCase().includes(query)
+    )
+  );
 
   grid.innerHTML = "";
 
-  if (results.length === 0) {
-    grid.innerHTML = `
-      <div class="empty">
-        No materials added here yet.
-      </div>
-    `;
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty">No materials available yet.</div>`;
     return;
   }
 
-  results.forEach(item => {
+  filtered.forEach(item => {
     const card = document.createElement("div");
     card.className = "item";
 
     const title = document.createElement("h3");
     title.textContent = item.name;
-    card.appendChild(title);
 
     const description = document.createElement("p");
-    description.textContent =
-      item.description || `${item.category} • ${item.sub}`;
+    description.textContent = item.description;
 
-    card.appendChild(description);
+    card.append(title, description);
 
     if (item.type === "prompt") {
       const view = document.createElement("button");
-
       view.className = "action";
-      view.type = "button";
-      view.textContent = "👁 View Prompt";
-
-      view.addEventListener("click", () => {
-        openDetail(item);
-      });
-
-      card.appendChild(view);
+      view.textContent = "View Prompt";
+      view.onclick = () => openDetail(item);
 
       const copy = document.createElement("button");
-
       copy.className = "action";
-      copy.type = "button";
-      copy.textContent = "📋 Copy Prompt";
+      copy.textContent = "Copy Prompt";
+      copy.onclick = () => copyText(item.prompt);
 
-      copy.addEventListener("click", () => {
-        copyText(item.text);
-      });
-
-      card.appendChild(copy);
-
+      card.append(view, copy);
     } else {
       const download = document.createElement("a");
-
       download.className = "action";
-      download.href = item.file;
+      download.href = item.image;
       download.download = "";
-      download.textContent = "⬇ Download";
+      download.textContent = "Download";
 
       card.appendChild(download);
-
-      const view = document.createElement("button");
-
-      view.className = "action";
-      view.type = "button";
-      view.textContent = "View Details";
-
-      view.addEventListener("click", () => {
-        openDetail(item);
-      });
-
-      card.appendChild(view);
     }
 
     grid.appendChild(card);
   });
 }
 
+// ========================================
+// MATERIAL DETAILS
+// ========================================
+
 function openDetail(item) {
-  currentItem = item;
+  currentMaterial = item;
 
-  document.getElementById("detailTitle").textContent =
-    item.name;
+  const title = document.getElementById("detailTitle");
+  const text = document.getElementById("detailText");
 
-  document.getElementById("detailText").textContent =
-    item.text || item.file || item.name;
+  if (title) title.textContent = item.name;
+  if (text) text.textContent = item.prompt || item.description;
 
   showPage("detail");
 }
 
-async function copyText(text) {
+// ========================================
+// COPY PROMPT
+// ========================================
+
+async function copyText(value) {
   try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-
-    } else {
-      const textarea = document.createElement("textarea");
-
-      textarea.value = text;
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-
-      document.body.appendChild(textarea);
-      textarea.select();
-
-      const success = document.execCommand("copy");
-
-      textarea.remove();
-
-      if (!success) {
-        throw new Error("Copy failed");
-      }
-    }
-
+    await navigator.clipboard.writeText(value);
     alert("Copied successfully!");
-
   } catch (error) {
-    alert("Copy failed. Please try again.");
+    const textarea = document.createElement("textarea");
+    textarea.value = value;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+    alert("Copied successfully!");
   }
 }
 
 function copyCurrent() {
-  if (currentItem) {
-    copyText(currentItem.text || currentItem.name);
+  if (currentMaterial) {
+    copyText(currentMaterial.prompt || currentMaterial.description);
   }
 }
+
+// ========================================
+// SHARE MATERIAL
+// ========================================
 
 async function shareCurrent() {
-  if (!currentItem) return;
+  if (!currentMaterial) return;
 
-  const text = `${currentItem.name}\n${currentItem.text || currentItem.file || ""}`;
+  const content = currentMaterial.prompt || currentMaterial.description;
 
-  try {
-    if (navigator.share) {
+  if (navigator.share) {
+    try {
       await navigator.share({
-        title: currentItem.name,
-        text: text
+        title: currentMaterial.name,
+        text: content
       });
-
-    } else {
-      await copyText(text);
-    }
-
-  } catch (error) {
-    // User cancelled sharing.
+    } catch (error) {}
+  } else {
+    copyText(content);
   }
 }
 
-// Build homepage and categories page cards
-makeCategoryCards("homeCategories");
-makeCategoryCards("allCategories");
+// ========================================
+// SEARCH
+// ========================================
 
-// Make inline HTML onclick handlers available
+function setupSearch() {
+  const search = document.getElementById("searchInput");
+
+  if (search) {
+    search.addEventListener("input", renderGallery);
+  }
+}
+
+// ========================================
+// START WEBSITE
+// ========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderCategories("homeCategories");
+  renderCategories("allCategories");
+  setupSearch();
+
+  showPage("home");
+});
+
+// HTML onclick support
 window.showPage = showPage;
 window.openCategory = openCategory;
 window.openGallery = openGallery;
 window.renderGallery = renderGallery;
+window.openDetail = openDetail;
 window.copyCurrent = copyCurrent;
 window.shareCurrent = shareCurrent;
-
-// Start on homepage
-showPage("home");
+window.copyText = copyText;
