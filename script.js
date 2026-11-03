@@ -1,4 +1,3 @@
-
 const categories = [
   { name: 'AI Edit Prompt', icon: '✨', cls: 'cat1' },
   { name: 'AI Template', icon: '🎨', cls: 'cat2' },
@@ -10,10 +9,10 @@ function makeCategoryCards(target) {
   const container = document.getElementById(target);
   if (!container) return;
 
-  container.innerHTML = categories.map((category, index) => `
-    <div class="category-card ${category.cls}" onclick="openCategory(${index})">
-      <div class="category-icon">${category.icon}</div>
-      <h3>${category.name}</h3>
+  container.innerHTML = categories.map((c, i) => `
+    <div class="category-card ${c.cls}" onclick="openCategory(${i})">
+      <div class="category-icon">${c.icon}</div>
+      <h3>${c.name}</h3>
     </div>
   `).join('');
 }
@@ -56,22 +55,17 @@ const pages = [
 
 function showPage(id) {
   pages.forEach(page => {
-    const element = document.getElementById(page);
-    if (element) element.classList.remove('active');
+    document.getElementById(page)?.classList.remove('active');
   });
 
-  const target = document.getElementById(id);
-  if (target) {
-    target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  document.getElementById(id)?.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function openCategory(index) {
   if (!categories[index]) return;
 
   selectedCategory = categories[index].name;
-
   document.getElementById('categoryHeading').textContent =
     selectedCategory;
 
@@ -82,7 +76,7 @@ function openGallery(sub) {
   selectedSub = sub;
 
   document.getElementById('galleryHeading').textContent =
-    selectedCategory + ' / ' + sub;
+    selectedCategory + ' / ' + selectedSub;
 
   document.getElementById('searchInput').value = '';
 
@@ -91,12 +85,10 @@ function openGallery(sub) {
 }
 
 function renderGallery() {
-  const searchInput = document.getElementById('searchInput');
+  const query = document.getElementById('searchInput')
+    .value.toLowerCase();
+
   const grid = document.getElementById('itemGrid');
-
-  if (!searchInput || !grid) return;
-
-  const query = searchInput.value.toLowerCase();
 
   const list = materials.filter(item =>
     item.category === selectedCategory &&
@@ -119,10 +111,10 @@ function renderGallery() {
     const title = document.createElement('h3');
     title.textContent = item.name;
 
-    const description = document.createElement('p');
-    description.textContent = item.category + ' • ' + item.sub;
+    const desc = document.createElement('p');
+    desc.textContent = item.category + ' • ' + item.sub;
 
-    card.append(title, description);
+    card.append(title, desc);
 
     if (item.type === 'prompt') {
       const view = document.createElement('button');
@@ -154,7 +146,9 @@ function renderGallery() {
 function openDetail(item) {
   currentItem = item;
 
-  document.getElementById('detailTitle').textContent = item.name;
+  document.getElementById('detailTitle').textContent =
+    item.name;
+
   document.getElementById('detailText').textContent =
     item.text || item.file || item.name;
 
@@ -163,7 +157,6 @@ function openDetail(item) {
 
 function copyCurrent() {
   if (!currentItem) return;
-
   copyText(currentItem.text || currentItem.name);
 }
 
@@ -189,8 +182,7 @@ async function copyText(text) {
 async function shareCurrent() {
   if (!currentItem) return;
 
-  const text =
-    currentItem.name + '\n' +
+  const text = currentItem.name + '\n' +
     (currentItem.text || currentItem.file || '');
 
   try {
@@ -203,11 +195,10 @@ async function shareCurrent() {
       await copyText(text);
     }
   } catch (error) {
-    // Sharing cancelled by user.
+    // User cancelled sharing.
   }
 }
 
-// Create category cards when the page is ready.
 function initializeWebsite() {
   makeCategoryCards('homeCategories');
   makeCategoryCards('allCategories');
@@ -219,7 +210,6 @@ if (document.readyState === 'loading') {
   initializeWebsite();
 }
 
-// Make functions available to HTML onclick attributes.
 window.showPage = showPage;
 window.openCategory = openCategory;
 window.openGallery = openGallery;
