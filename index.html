@@ -281,24 +281,6 @@ async function copyText(text){
    input.value=text;
    document.body.appendChild(input);
    input.select();
-   document.execCommand('copy');
-   input.remove();
-  }
-  alert('Copied successfully!');
- }catch(e){alert('Copy failed. Please try again.');}
-}
-
-async function shareCurrent(){
- if(!currentItem)return;
- const text=currentItem.name+'\n'+(currentItem.text||currentItem.file||'');
- try{
-  if(navigator.share){
-   await navigator.share({title:currentItem.name,text});
-  }else{
-   await copyText(text);
-  }
- }catch(e){}
-}
-</script>
+<script src="script.js"></script>
 </body>
 </html>
