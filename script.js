@@ -1,220 +1,233 @@
-
-// EDIT BY ZEYROX - script.js
-
 const categories = [
-  { name: "AI Edit Prompt", icon: "✨", cls: "cat1" },
-  { name: "AI Template", icon: "🎨", cls: "cat2" },
-  { name: "PNG Material", icon: "🖼️", cls: "cat3" },
-  { name: "VFX Material", icon: "⚡", cls: "cat4" }
+  { name: 'AI Edit Prompt', icon: '✨', cls: 'cat1' },
+  { name: 'AI Template', icon: '🎨', cls: 'cat2' },
+  { name: 'PNG Material', icon: '🖼️', cls: 'cat3' },
+  { name: 'VFX Material', icon: '⚡', cls: 'cat4' }
 ];
 
-const subCategories = [
-  { name: "Trending", icon: "🔥" },
-  { name: "Gaming", icon: "🎮" },
-  { name: "Natural", icon: "🌿" },
-  { name: "Logo", icon: "💠" }
-];
+function makeCategoryCards(target) {
+  document.getElementById(target).innerHTML = categories.map((c, i) => `
+    <div class="category-card ${c.cls}" onclick="openCategory(${i})">
+      <div class="category-icon">${c.icon}</div>
+      <h3>${c.name}</h3>
+    </div>
+  `).join('');
+}
+
+makeCategoryCards('homeCategories');
+makeCategoryCards('allCategories');
 
 const materials = [
   {
-    name: "Chaoten Kitty",
-    category: "PNG Material",
-    sub: "Trending",
-    file: "materials/png/chaotenkitty-neon-7440942_1920.png",
-    type: "image",
-    text: "Neon Editing Material"
+    name: 'Chaoten Kitty',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/chaotenkitty-neon-7440942_1920.png',
+    type: 'image'
   },
   {
-    name: "Fantasy Artwork",
-    category: "PNG Material",
-    sub: "Natural",
-    file: "materials/png/geralt-art-7036652_1920.jpg",
-    type: "image",
-    text: "Fantasy Editing Material"
+    name: 'Fantasy Artwork',
+    category: 'PNG Material',
+    sub: 'Natural',
+    file: 'materials/png/geralt-art-7036652_1920.jpg',
+    type: 'image'
   },
   {
-    name: "Technology Background",
-    category: "PNG Material",
-    sub: "Gaming",
-    file: "materials/png/tungnguyen0905-technology-6701424_1920.jpg",
-    type: "image",
-    text: "Technology Editing Material"
+    name: 'Technology Background',
+    category: 'PNG Material',
+    sub: 'Gaming',
+    file: 'materials/png/tungnguyen0905-technology-6701424_1920.jpg',
+    type: 'image'
   }
 ];
 
-let selectedCategory = "";
-let selectedSub = "";
-let currentItem = null;
-let previousPage = "gallery";
+/*
+ADD YOUR OWN CONTENT HERE.
 
-const pages = ["home", "categories", "subcategories", "gallery", "detail"];
-
-function showPage(page) {
-  pages.forEach(id => {
-    const section = document.getElementById(id);
-    if (section) section.classList.toggle("active", id === page);
-  });
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
+Prompt example:
+{
+  name: 'My Prompt',
+  category: 'AI Edit Prompt',
+  sub: 'Trending',
+  text: 'Write your complete prompt here.',
+  type: 'prompt'
 }
 
-function makeCategoryCards(target) {
-  const container = document.getElementById(target);
-  if (!container) return;
+Template example:
+{
+  name: 'My Template',
+  category: 'AI Template',
+  sub: 'Trending',
+  file: 'materials/templates/my-template.jpg',
+  type: 'image'
+}
 
-  container.innerHTML = categories.map((cat, index) => `
-    <div class="category-card ${cat.cls}" onclick="openCategory(${index})">
-      <div class="category-icon">${cat.icon}</div>
-      <h3>${cat.name}</h3>
-    </div>
-  `).join("");
+VFX example:
+{
+  name: 'My VFX',
+  category: 'VFX Material',
+  sub: 'Gaming',
+  file: 'materials/vfx/my-vfx.mp4',
+  type: 'file'
+}
+*/
+
+let selectedCategory = '';
+let selectedSub = '';
+let currentItem = null;
+let previousPage = 'gallery';
+
+const pages = [
+  'home',
+  'categories',
+  'subcategories',
+  'gallery',
+  'detail'
+];
+
+function showPage(id) {
+  pages.forEach(p => {
+    document.getElementById(p).classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function openCategory(index) {
-  const category = categories[index];
-  if (!category) return;
+  selectedCategory = categories[index].name;
 
-  selectedCategory = category.name;
+  document.getElementById('categoryHeading').textContent =
+    selectedCategory;
 
-  const heading = document.getElementById("categoryHeading");
-  if (heading) heading.textContent = category.name;
-
-  const container = document.getElementById("subcategories");
-  if (container) {
-    const grid = container.querySelector(".subcategory-grid") ||
-                 container.querySelector(".subcategories-grid") ||
-                 container.querySelector(".card-grid");
-
-    if (grid) {
-      grid.innerHTML = subCategories.map(sub => `
-        <div class="subcategory-card" onclick="openGallery('${sub.name}')">
-          <div class="category-icon">${sub.icon}</div>
-          <h3>${sub.name}</h3>
-        </div>
-      `).join("");
-    }
-  }
-
-  showPage("subcategories");
+  showPage('subcategories');
 }
 
 function openGallery(sub) {
   selectedSub = sub;
 
-  const heading = document.getElementById("galleryHeading");
-  if (heading) heading.textContent = selectedCategory + " / " + selectedSub;
+  document.getElementById('galleryHeading').textContent =
+    selectedCategory + ' / ' + sub;
 
-  const search = document.getElementById("searchInput");
-  if (search) search.value = "";
+  document.getElementById('searchInput').value = '';
 
   renderGallery();
-  showPage("gallery");
+  showPage('gallery');
 }
 
 function renderGallery() {
-  const grid = document.getElementById("itemGrid");
-  if (!grid) return;
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const grid = document.getElementById('itemGrid');
 
-  const searchInput = document.getElementById("searchInput");
-  const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
-
-  const filtered = materials.filter(item =>
-    item.category === selectedCategory &&
-    item.sub === selectedSub &&
-    item.name.toLowerCase().includes(query)
+  const list = materials.filter(x =>
+    x.category === selectedCategory &&
+    x.sub === selectedSub &&
+    x.name.toLowerCase().includes(query)
   );
 
-  if (filtered.length === 0) {
-    grid.innerHTML = `<p class="empty-message">No materials added here yet.</p>`;
+  grid.innerHTML = '';
+
+  if (!list.length) {
+    grid.innerHTML =
+      '<div class="empty">No materials added here yet.</div>';
     return;
   }
 
-  grid.innerHTML = filtered.map(item => {
-    const index = materials.indexOf(item);
+  list.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'item';
 
-    return `
-      <div class="material-card">
-        <img src="${item.file}" alt="${item.name}" loading="lazy">
-        <h3>${item.name}</h3>
-        <p>${item.text || ""}</p>
-        <a class="download-btn" href="${item.file}" download>
-          Download
-        </a>
-        <button onclick="openDetail(${index})">View Details</button>
-      </div>
-    `;
-  }).join("");
+    const title = document.createElement('h3');
+    title.textContent = item.name;
+
+    const desc = document.createElement('p');
+    desc.textContent = item.category + ' • ' + item.sub;
+
+    card.append(title, desc);
+
+    if (item.type === 'prompt') {
+      const view = document.createElement('button');
+      view.className = 'action';
+      view.textContent = 'View Prompt';
+      view.onclick = () => openDetail(item);
+
+      card.appendChild(view);
+    } else {
+      const link = document.createElement('a');
+      link.className = 'action';
+      link.href = item.file;
+      link.download = '';
+      link.textContent = 'Download';
+
+      card.appendChild(link);
+
+      if (item.type === 'image') {
+        const view = document.createElement('button');
+        view.className = 'action';
+        view.textContent = 'View Details';
+        view.onclick = () => openDetail(item);
+
+        card.appendChild(view);
+      }
+    }
+
+    grid.appendChild(card);
+  });
 }
 
-function openDetail(index) {
-  const item = materials[index];
-  if (!item) return;
-
+function openDetail(item) {
   currentItem = item;
-  previousPage = "gallery";
+  previousPage = 'gallery';
 
-  const title = document.getElementById("detailTitle");
-  const text = document.getElementById("detailText");
+  document.getElementById('detailTitle').textContent = item.name;
 
-  if (title) title.textContent = item.name;
-  if (text) text.textContent = item.text || item.file || item.name;
+  document.getElementById('detailText').textContent =
+    item.text || item.file || item.name;
 
-  showPage("detail");
+  showPage('detail');
 }
 
 function copyCurrent() {
   if (!currentItem) return;
-  copyText(currentItem.text || currentItem.file || currentItem.name);
+
+  copyText(currentItem.text || currentItem.name);
 }
 
-function copyText(text) {
-  if (!text) return;
-
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text)
-      .then(() => alert("Copied successfully!"))
-      .catch(() => fallbackCopy(text));
-  } else {
-    fallbackCopy(text);
-  }
-}
-
-function fallbackCopy(text) {
-  const area = document.createElement("textarea");
-  area.value = text;
-  document.body.appendChild(area);
-  area.select();
-
+async function copyText(text) {
   try {
-    document.execCommand("copy");
-    alert("Copied successfully!");
-  } catch (error) {
-    alert("Copy failed. Please copy manually.");
-  }
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const input = document.createElement('textarea');
+      input.value = text;
 
-  area.remove();
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input.remove();
+    }
+
+    alert('Copied successfully!');
+  } catch (e) {
+    alert('Copy failed. Please try again.');
+  }
 }
 
-function shareCurrent() {
+async function shareCurrent() {
   if (!currentItem) return;
 
-  const shareData = {
-    title: currentItem.name,
-    text: currentItem.text || currentItem.name,
-    url: window.location.href
-  };
+  const text =
+    currentItem.name + '\n' +
+    (currentItem.text || currentItem.file || '');
 
-  if (navigator.share) {
-    navigator.share(shareData).catch(() => {});
-  } else {
-    copyText(shareData.url);
-  }
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: currentItem.name,
+        text: text
+      });
+    } else {
+      await copyText(text);
+    }
+  } catch (e) {}
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  makeCategoryCards("homeCategories");
-  makeCategoryCards("allCategories");
-
-  const search = document.getElementById("searchInput");
-  if (search) search.addEventListener("input", renderGallery);
-});
