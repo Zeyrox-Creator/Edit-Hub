@@ -43,14 +43,22 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 #categories .category-grid{gap:24px}
 .page-heading{display:flex;align-items:center;gap:15px;margin-bottom:30px}
 .page-heading h2{font-size:25px}
-.sub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.sub-card{min-height:180px;padding:27px;border:1px solid #ffffff25;border-radius:19px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;transition:.2s}
-.sub-card h3{font-size:27px;margin-bottom:12px}
-.sub-card p{color:#eee}
-.trending{background:linear-gradient(135deg,#60300d,#e18a25)}
-.gaming{background:linear-gradient(135deg,#102b63,#167be7)}
-.natural{background:linear-gradient(135deg,#12452a,#20a66b)}
-.logo-card{background:linear-gradient(135deg,#472064,#b23bd1)}
+.sub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.sub-card{position:relative;isolation:isolate;overflow:hidden;min-height:220px;padding:22px 18px;border:1px solid var(--sub-glow);border-radius:24px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s;background:#0c0a16}
+.sub-card:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 12% 85%,var(--sub-glow),transparent 54%),linear-gradient(135deg,#171025,#090611 78%);opacity:.9}
+.sub-card:after{content:"";position:absolute;z-index:-1;width:120px;height:120px;right:-55px;top:-55px;border:1px solid var(--sub-glow);border-radius:50%;box-shadow:0 0 28px var(--sub-glow),inset 0 0 20px var(--sub-glow);opacity:.65}
+.sub-card:hover{transform:translateY(-5px);box-shadow:0 0 25px var(--sub-glow)}
+.sub-card h3{font-size:clamp(19px,3vw,27px);margin:0;color:#fff}
+.sub-card p{color:#e7dff2;font-size:14px;line-height:1.35;margin:0}
+.sub-icon{width:66px;height:66px;display:grid;place-items:center;font-size:39px;border-radius:20px;background:#ffffff12;border:1px solid var(--sub-glow);box-shadow:0 0 22px var(--sub-glow)}
+.sub-meta{position:absolute;right:13px;top:13px;padding:6px 10px;border-radius:999px;border:1px solid var(--sub-glow);background:#080611b8;color:#fff;font-size:11px;font-weight:700}
+.sub-explore{margin-top:4px;padding:8px 16px;border:1px solid var(--sub-glow);border-radius:999px;background:#ffffff0d;color:#fff;font-size:12px;font-weight:700;box-shadow:0 0 13px var(--sub-glow)}
+.trending{--sub-glow:#ff8b22}
+.gaming{--sub-glow:#168dff}
+.natural{--sub-glow:#20ef68}
+.logo-card{--sub-glow:#d52cff}
+#subcategories .page-heading{margin-bottom:28px}
+#subcategories .page-heading h2{font-size:clamp(25px,5vw,36px);letter-spacing:-.4px}
 .search{width:100%;padding:14px;margin-bottom:20px;background:#151020;border:1px solid #50366a;border-radius:10px;color:white;outline:none}
 .search:focus{border-color:#b15aff}
 .home-search{max-width:760px;display:block;margin:24px auto 10px}
@@ -73,7 +81,7 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 .detail-file{display:inline-block;margin:10px 0;color:#d5a8ff}
 footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f;margin-top:30px}
 @media(max-width:750px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.category-card{min-height:205px;padding:19px 10px}.category-icon{width:66px;height:66px;font-size:37px}.category-card p{font-size:11px}.category-explore{padding:8px 15px;font-size:12px}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.item{padding:8px}.item img{height:112px}.item h3{font-size:12px}.item p{font-size:10px}.hero{min-height:350px}}
-@media(max-width:480px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.category-card{min-height:190px;padding:16px 8px;border-radius:21px;gap:10px}.category-icon{width:60px;height:60px;font-size:34px;border-radius:18px}.category-card h3{font-size:15px}.category-card p{font-size:10px}.category-explore{padding:7px 13px;font-size:11px}.sub-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{padding:9px;border-radius:11px}.item img{height:130px}.item h3{font-size:13px}.item p{font-size:10px}.page{padding:20px 3%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}.detail-box{padding:11px}.detail-toolbar .page-heading h2{font-size:17px}.copy-btn{padding:10px 11px;font-size:12px}}
+@media(max-width:480px){.sub-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.sub-card{min-height:190px;padding:17px 12px;border-radius:21px;gap:9px}.sub-icon{width:56px;height:56px;font-size:32px;border-radius:17px}.sub-card h3{font-size:18px}.sub-card p{font-size:11px}.sub-meta{top:9px;right:9px;padding:5px 7px;font-size:9px}.sub-explore{padding:7px 12px;font-size:10px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.category-card{min-height:190px;padding:16px 8px;border-radius:21px;gap:10px}.category-icon{width:60px;height:60px;font-size:34px;border-radius:18px}.category-card h3{font-size:15px}.category-card p{font-size:10px}.category-explore{padding:7px 13px;font-size:11px}.sub-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{padding:9px;border-radius:11px}.item img{height:130px}.item h3{font-size:13px}.item p{font-size:10px}.page{padding:20px 3%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}.detail-box{padding:11px}.detail-toolbar .page-heading h2{font-size:17px}.copy-btn{padding:10px 11px;font-size:12px}}
 </style>
 </head>
 
@@ -114,10 +122,18 @@ footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f
   <h2 id="categoryHeading">Subcategories</h2>
  </div>
  <div class="sub-grid">
-  <div class="sub-card trending" onclick="openGallery('Trending')"><h3>🔥 Trending</h3><p>Explore trending edits</p></div>
-  <div class="sub-card gaming" onclick="openGallery('Gaming')"><h3>🎮 Gaming</h3><p>Explore gaming edits</p></div>
-  <div class="sub-card natural" onclick="openGallery('Natural')"><h3>🌿 Natural</h3><p>Explore natural edits</p></div>
-  <div class="sub-card logo-card" onclick="openGallery('Logo')"><h3>💜 Logo</h3><p>Explore logo edits</p></div>
+  <div class="sub-card trending" onclick="openGallery('Trending')">
+   <span class="sub-meta">🔥 Hot</span><div class="sub-icon">🔥</div><h3>Trending</h3><p>Explore trending edit prompts</p><span class="sub-explore">Explore&nbsp; →</span>
+  </div>
+  <div class="sub-card gaming" onclick="openGallery('Gaming')">
+   <span class="sub-meta">🎮 Popular</span><div class="sub-icon">🎮</div><h3>Gaming</h3><p>Explore gaming edit prompts</p><span class="sub-explore">Explore&nbsp; →</span>
+  </div>
+  <div class="sub-card natural" onclick="openGallery('Natural')">
+   <span class="sub-meta">🌿 Fresh</span><div class="sub-icon">🌿</div><h3>Natural</h3><p>Explore natural edit prompts</p><span class="sub-explore">Explore&nbsp; →</span>
+  </div>
+  <div class="sub-card logo-card" onclick="openGallery('Logo')">
+   <span class="sub-meta">💎 Creative</span><div class="sub-icon">💜</div><h3>Logo</h3><p>Explore logo edit prompts</p><span class="sub-explore">Explore&nbsp; →</span>
+  </div>
  </div>
 </section>
 
