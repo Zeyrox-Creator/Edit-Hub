@@ -45,17 +45,26 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 .logo-card{background:linear-gradient(135deg,#472064,#b23bd1)}
 .search{width:100%;padding:14px;margin-bottom:20px;background:#151020;border:1px solid #50366a;border-radius:10px;color:white;outline:none}
 .search:focus{border-color:#b15aff}
-.item-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.item{padding:18px;background:#151020;border:1px solid var(--line);border-radius:14px}
-.item h3{margin-bottom:10px}
-.item p{font-size:13px;color:#b9abc9;margin-bottom:10px}
+.item-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.item{min-width:0;padding:12px;background:#151020;border:1px solid var(--line);border-radius:14px;cursor:pointer;transition:.2s}
+.item:hover{border-color:#a85aff;transform:translateY(-2px)}
+.item img{display:block;width:100%;height:150px;object-fit:cover;border-radius:9px;margin-bottom:10px}
+.item h3{font-size:15px;line-height:1.3;margin-bottom:6px;overflow-wrap:anywhere}
+.item p{font-size:11px;color:#b9abc9;margin-bottom:0;overflow-wrap:anywhere}
 .action{display:inline-block;padding:10px 14px;border:0;border-radius:8px;background:#853bd4;color:white;text-decoration:none;margin:4px 4px 0 0}
 .empty{grid-column:1/-1;text-align:center;padding:40px 10px;color:#b9abc9}
-.detail-box{padding:25px;background:#151020;border:1px solid var(--line);border-radius:15px}
-.detail-box p{white-space:pre-wrap;line-height:1.6;margin:15px 0;color:#ddd}
+.detail-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.detail-toolbar .page-heading{margin:0}
+.detail-toolbar .page-heading h2{font-size:20px}
+.copy-btn{background:linear-gradient(100deg,#853aff,#d93bd0);color:white;border:0;border-radius:9px;padding:11px 16px;font-weight:bold;white-space:nowrap}
+.detail-box{padding:16px;background:#151020;border:1px solid var(--line);border-radius:15px}
+.detail-preview{display:block;width:100%;max-height:75vh;object-fit:contain;background:#090611;border-radius:12px;margin:0 auto 20px}
+.detail-box h2{font-size:21px;margin-bottom:12px}
+.detail-box p{white-space:pre-wrap;line-height:1.65;margin:12px 0;color:#ddd;overflow-wrap:anywhere}
+.detail-file{display:inline-block;margin:10px 0;color:#d5a8ff}
 footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f;margin-top:30px}
-@media(max-width:750px){.category-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,1fr)}.hero{min-height:350px}}
-@media(max-width:480px){.sub-grid,.item-grid{grid-template-columns:1fr}.page{padding:24px 4%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}}
+@media(max-width:750px){.category-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.item{padding:8px}.item img{height:112px}.item h3{font-size:12px}.item p{font-size:10px}.hero{min-height:350px}}
+@media(max-width:480px){.sub-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.item{padding:7px;border-radius:11px}.item img{height:100px}.item h3{font-size:11px}.item p{font-size:9px}.page{padding:20px 3%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}.detail-box{padding:11px}.detail-toolbar .page-heading h2{font-size:17px}.copy-btn{padding:10px 11px;font-size:12px}}
 </style>
 </head>
 
@@ -115,15 +124,18 @@ footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f
 
 <!-- DETAIL -->
 <section id="detail" class="page">
- <div class="page-heading">
-  <button class="back-btn" onclick="showPage('gallery')">← Back</button>
-  <h2>Material Details</h2>
+ <div class="detail-toolbar">
+  <div class="page-heading">
+   <button class="back-btn" onclick="backToGallery()">← Back</button>
+   <h2>Material Details</h2>
+  </div>
+  <button class="copy-btn" onclick="copyCurrent()">1 CLICK COPY</button>
  </div>
  <div class="detail-box">
   <h2 id="detailTitle"></h2>
+  <img id="detailPreview" class="detail-preview" alt="Full material preview" style="display:none">
   <p id="detailText"></p>
-  <button class="action" onclick="copyCurrent()">Copy</button>
-  <button class="action" onclick="shareCurrent()">Share</button>
+  <a id="detailFile" class="detail-file" style="display:none" target="_blank" rel="noopener">Open material file</a>
  </div>
 </section>
 
@@ -315,40 +327,22 @@ function renderGallery(){
  list.forEach(item=>{
   const card=document.createElement('div');
   card.className='item';
-  if(item.type==='prompt' && item.file){
- const preview=document.createElement('img');
- preview.src=item.file;
- preview.alt=item.name;
- preview.style.cssText='width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:12px;';
- card.appendChild(preview);
+  card.setAttribute('role','button');
+  card.tabIndex=0;
+  card.onclick=()=>openDetail(item);
+  card.onkeydown=(event)=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openDetail(item);}};
+  if(item.file && /\\.(png|jpe?g|gif|webp|svg)$/i.test(item.file)){
+   const preview=document.createElement('img');
+   preview.src=item.file;
+   preview.alt=item.name;
+   preview.loading='lazy';
+   card.appendChild(preview);
   }
   const title=document.createElement('h3');
   title.textContent=item.name;
   const desc=document.createElement('p');
   desc.textContent=item.category+' • '+item.sub;
   card.append(title,desc);
-
-  if(item.type==='prompt'){
-   const view=document.createElement('button');
-   view.className='action';
-   view.textContent='View Prompt';
-   view.onclick=()=>openDetail(item);
-   card.appendChild(view);
-  }else{
-   const link=document.createElement('a');
-   link.className='action';
-   link.href=item.file;
-   link.download='';
-   link.textContent='Download';
-   card.appendChild(link);
-   if(item.type==='image'){
-    const view=document.createElement('button');
-    view.className='action';
-    view.textContent='View Details';
-    view.onclick=()=>openDetail(item);
-    card.appendChild(view);
-   }
-  }
   grid.appendChild(card);
  });
 }
@@ -357,9 +351,20 @@ function openDetail(item){
  currentItem=item;
  previousPage='gallery';
  document.getElementById('detailTitle').textContent=item.name;
- document.getElementById('detailText').textContent=item.text||item.file||item.name;
+ document.getElementById('detailText').textContent=item.text||'No prompt is available for this material.';
+ const preview=document.getElementById('detailPreview');
+ const fileLink=document.getElementById('detailFile');
+ const isImage=item.file && /\\.(png|jpe?g|gif|webp|svg)$/i.test(item.file);
+ preview.style.display=isImage?'block':'none';
+ preview.removeAttribute('src');
+ if(isImage){preview.src=item.file;}
+ fileLink.style.display=item.file && !isImage?'inline-block':'none';
+ if(item.file && !isImage){fileLink.href=item.file;}
+ else{fileLink.removeAttribute('href');}
  showPage('detail');
 }
+
+function backToGallery(){showPage(previousPage||'gallery');}
 
 function copyCurrent(){
  if(!currentItem)return;
