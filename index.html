@@ -331,7 +331,7 @@ function renderGallery(){
   card.tabIndex=0;
   card.onclick=()=>openDetail(item);
   card.onkeydown=(event)=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openDetail(item);}};
-  if(item.file && /\\.(png|jpe?g|gif|webp|svg)$/i.test(item.file)){
+  if(item.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(item.file)){
    const preview=document.createElement('img');
    preview.src=item.file;
    preview.alt=item.name;
@@ -354,7 +354,7 @@ function openDetail(item){
  document.getElementById('detailText').textContent=item.text||'No prompt is available for this material.';
  const preview=document.getElementById('detailPreview');
  const fileLink=document.getElementById('detailFile');
- const isImage=item.file && /\\.(png|jpe?g|gif|webp|svg)$/i.test(item.file);
+ const isImage=item.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(item.file);
  preview.style.display=isImage?'block':'none';
  preview.removeAttribute('src');
  if(isImage){preview.src=item.file;}
