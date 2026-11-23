@@ -27,12 +27,20 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 .tagline{margin-top:17px;color:#d8c4ee;font-size:17px;letter-spacing:4px}
 .explore{margin-top:30px;padding:15px 36px;border:0;border-radius:11px;color:white;font-weight:bold;background:linear-gradient(100deg,#853aff,#d93bd0);box-shadow:0 0 24px #9b3dff55}
 .section-title{text-align:center;font-size:27px;margin:40px 0 24px}
-.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
-.category-card{min-height:155px;padding:22px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#151020;border:1px solid var(--line);border-radius:17px;text-align:center;cursor:pointer;transition:.2s}
-.category-card:hover,.sub-card:hover{transform:translateY(-5px);border-color:#b15aff}
-.category-icon{font-size:35px}
-.category-card h3{font-size:18px}
-.cat1 h3{color:#ff86cb}.cat2 h3{color:#b28cff}.cat3 h3{color:#67e9bb}.cat4 h3{color:#ffc16f}
+.category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.category-card{position:relative;isolation:isolate;overflow:hidden;min-height:245px;padding:25px 16px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;background:#100b1c;border:1px solid #7540a8;border-radius:25px;text-align:center;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s}
+.category-card:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.9;background:radial-gradient(circle at 15% 90%,var(--glow),transparent 48%),radial-gradient(circle at 90% 10%,var(--glow),transparent 42%),linear-gradient(135deg,#171025,#090611 78%)}
+.category-card:after{content:"";position:absolute;z-index:-1;width:150px;height:150px;border:1px solid var(--glow);border-radius:50%;right:-65px;top:-70px;box-shadow:0 0 28px var(--glow),inset 0 0 24px var(--glow);opacity:.6}
+.category-card:hover,.sub-card:hover{transform:translateY(-5px);border-color:var(--glow);box-shadow:0 0 24px var(--glow)}
+.category-icon{width:76px;height:76px;display:grid;place-items:center;font-size:43px;border-radius:22px;background:linear-gradient(145deg,#ffffff20,#ffffff05);border:1px solid var(--glow);box-shadow:0 0 22px var(--glow)}
+.category-card h3{font-size:clamp(16px,2.2vw,23px);line-height:1.25}
+.category-card p{font-size:13px;color:#d8cce7;line-height:1.4}
+.category-explore{margin-top:2px;padding:9px 19px;border-radius:999px;border:1px solid var(--glow);background:#ffffff0d;color:#fff;font-size:13px;font-weight:700;box-shadow:0 0 14px var(--glow)}
+.cat1{--glow:#d52cff}.cat2{--glow:#00cfff}.cat3{--glow:#19ed91}.cat4{--glow:#ff9b20}
+.cat1 h3{color:#f2b6ff}.cat2 h3{color:#a6f1ff}.cat3 h3{color:#9affc9}.cat4 h3{color:#ffd18a}
+#categories .page-heading{margin-bottom:32px}
+#categories .page-heading h2{font-size:clamp(27px,5vw,38px);letter-spacing:-.5px}
+#categories .category-grid{gap:24px}
 .page-heading{display:flex;align-items:center;gap:15px;margin-bottom:30px}
 .page-heading h2{font-size:25px}
 .sub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -64,8 +72,8 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 .detail-box p{white-space:pre-wrap;line-height:1.65;margin:12px 0;color:#ddd;overflow-wrap:anywhere}
 .detail-file{display:inline-block;margin:10px 0;color:#d5a8ff}
 footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f;margin-top:30px}
-@media(max-width:750px){.category-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.item{padding:8px}.item img{height:112px}.item h3{font-size:12px}.item p{font-size:10px}.hero{min-height:350px}}
-@media(max-width:480px){.sub-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{padding:9px;border-radius:11px}.item img{height:130px}.item h3{font-size:13px}.item p{font-size:10px}.page{padding:20px 3%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}.detail-box{padding:11px}.detail-toolbar .page-heading h2{font-size:17px}.copy-btn{padding:10px 11px;font-size:12px}}
+@media(max-width:750px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.category-card{min-height:205px;padding:19px 10px}.category-icon{width:66px;height:66px;font-size:37px}.category-card p{font-size:11px}.category-explore{padding:8px 15px;font-size:12px}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.item{padding:8px}.item img{height:112px}.item h3{font-size:12px}.item p{font-size:10px}.hero{min-height:350px}}
+@media(max-width:480px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.category-card{min-height:190px;padding:16px 8px;border-radius:21px;gap:10px}.category-icon{width:60px;height:60px;font-size:34px;border-radius:18px}.category-card h3{font-size:15px}.category-card p{font-size:10px}.category-explore{padding:7px 13px;font-size:11px}.sub-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{padding:9px;border-radius:11px}.item img{height:130px}.item h3{font-size:13px}.item p{font-size:10px}.page{padding:20px 3%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}.detail-box{padding:11px}.detail-toolbar .page-heading h2{font-size:17px}.copy-btn{padding:10px 11px;font-size:12px}}
 </style>
 </head>
 
@@ -144,16 +152,19 @@ footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f
 
 <script>
 const categories=[
- {name:'AI Edit Prompt',icon:'✨',cls:'cat1'},
- {name:'AI Template',icon:'🎨',cls:'cat2'},
- {name:'PNG Material',icon:'🖼️',cls:'cat3'},
- {name:'VFX Material',icon:'⚡',cls:'cat4'}
+ {name:'AI Edit Prompt',icon:'✨',cls:'cat1',desc:'Smart prompts for better edits'},
+ {name:'AI Template',icon:'🎨',cls:'cat2',desc:'Ready-to-use AI templates'},
+ {name:'PNG Material',icon:'🖼️',cls:'cat3',desc:'High-quality PNG resources'},
+ {name:'VFX Material',icon:'⚡',cls:'cat4',desc:'Creative effects for your edits'}
 ];
 
 function makeCategoryCards(target){
  document.getElementById(target).innerHTML=categories.map((c,i)=>`
   <div class="category-card ${c.cls}" onclick="openCategory(${i})">
-   <div class="category-icon">${c.icon}</div><h3>${c.name}</h3>
+   <div class="category-icon">${c.icon}</div>
+   <h3>${c.name}</h3>
+   <p>${c.desc}</p>
+   <span class="category-explore">Explore&nbsp; →</span>
   </div>`).join('');
 }
 makeCategoryCards('homeCategories');
