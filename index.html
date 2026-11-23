@@ -45,6 +45,7 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 .logo-card{background:linear-gradient(135deg,#472064,#b23bd1)}
 .search{width:100%;padding:14px;margin-bottom:20px;background:#151020;border:1px solid #50366a;border-radius:10px;color:white;outline:none}
 .search:focus{border-color:#b15aff}
+.home-search{max-width:760px;display:block;margin:24px auto 10px}
 .item-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .item{min-width:0;padding:12px;background:#151020;border:1px solid var(--line);border-radius:14px;cursor:pointer;transition:.2s}
 .item:hover{border-color:#a85aff;transform:translateY(-2px)}
@@ -85,6 +86,7 @@ footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f
   <p class="tagline">EDIT LIKE A PRO</p>
   <button class="explore" onclick="showPage('categories')">EXPLORE NOW →</button>
  </div>
+ <input id="homeSearchInput" class="search home-search" type="search" placeholder="Search all uploaded materials..." oninput="searchAllMaterials(this.value)" aria-label="Search all uploaded materials">
  <h2 class="section-title">EXPLORE CATEGORIES</h2>
  <div class="category-grid" id="homeCategories"></div>
 </section>
@@ -309,18 +311,26 @@ function openGallery(sub){
  showPage('gallery');
 }
 
+function searchAllMaterials(value){
+ const input=document.getElementById('searchInput');
+ input.value=value;
+ document.getElementById('galleryHeading').textContent=value.trim()?'Search Results':'All Materials';
+ renderGallery();
+ showPage('gallery');
+}
+
 function renderGallery(){
  const query=document.getElementById('searchInput').value.toLowerCase();
  const grid=document.getElementById('itemGrid');
- const list=materials.filter(x=>
-  x.category===selectedCategory &&
-  x.sub===selectedSub &&
-  x.name.toLowerCase().includes(query)
- );
+ const list=materials.filter(x=>{
+  const searchable=[x.name,x.searchName,x.category,x.sub,x.text].filter(Boolean).join(' ').toLowerCase();
+  const matches=searchable.includes(query);
+  return query ? matches : (x.category===selectedCategory && x.sub===selectedSub);
+ });
  grid.innerHTML='';
 
  if(!list.length){
-  grid.innerHTML='<div class="empty">No materials added here yet.</div>';
+  grid.innerHTML='<div class="empty">No matching materials found. Try another keyword.</div>';
   return;
  }
 
