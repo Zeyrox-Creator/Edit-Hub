@@ -59,6 +59,43 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 .logo-card{--sub-glow:#d52cff}
 #subcategories .page-heading{margin-bottom:28px}
 #subcategories .page-heading h2{font-size:clamp(25px,5vw,36px);letter-spacing:-.4px}
+
+/* AI Edit Prompt subcategory page: its own cinematic neon backdrop */
+#subcategories.ai-prompt-theme{
+ position:relative;
+ isolation:isolate;
+ background-color:#080510;
+ background-image:
+  radial-gradient(ellipse at 8% 18%,#7b2cff45 0,transparent 36%),
+  radial-gradient(ellipse at 92% 28%,#ff7a1830 0,transparent 34%),
+  radial-gradient(ellipse at 50% 100%,#142bff35 0,transparent 48%),
+  linear-gradient(145deg,#10091e 0%,#080510 55%,#0c0718 100%);
+}
+#subcategories.ai-prompt-theme:before{
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:-1;
+ pointer-events:none;
+ opacity:.2;
+ background-image:linear-gradient(#b68aff18 1px,transparent 1px),linear-gradient(90deg,#b68aff18 1px,transparent 1px);
+ background-size:34px 34px;
+ mask-image:linear-gradient(to bottom,black,transparent 88%);
+}
+#subcategories.ai-prompt-theme .sub-card{
+ min-height:220px;
+ border-color:var(--sub-glow);
+ box-shadow:inset 0 0 28px #ffffff0a,0 10px 28px #00000035;
+}
+#subcategories.ai-prompt-theme .sub-card:before{opacity:1}
+#subcategories.ai-prompt-theme .sub-card.trending:before{background:linear-gradient(135deg,#542707 0%,#a9530d 48%,#ed9225 100%)}
+#subcategories.ai-prompt-theme .sub-card.gaming:before{background:linear-gradient(135deg,#102b61 0%,#1456a9 48%,#1685ec 100%)}
+#subcategories.ai-prompt-theme .sub-card.natural:before{background:linear-gradient(135deg,#10492e 0%,#137b4c 48%,#20a86c 100%)}
+#subcategories.ai-prompt-theme .sub-card.logo-card:before{background:linear-gradient(135deg,#4b1d66 0%,#8125a3 48%,#b334cf 100%)}
+#subcategories.ai-prompt-theme .sub-card:after{opacity:.28}
+#subcategories.ai-prompt-theme .sub-icon{background:#09061155;border-color:#ffffff70;box-shadow:0 0 20px #ffffff20}
+#subcategories.ai-prompt-theme .sub-meta{background:#080611a8;border-color:#ffffff85}
+#subcategories.ai-prompt-theme .sub-explore{background:#ffffff18;border-color:#ffffff75;box-shadow:0 0 18px #ffffff20}
 .search{width:100%;padding:14px;margin-bottom:20px;background:#151020;border:1px solid #50366a;border-radius:10px;color:white;outline:none}
 .search:focus{border-color:#b15aff}
 .home-search{max-width:760px;display:block;margin:24px auto 10px}
@@ -326,6 +363,7 @@ function showPage(id){
 function openCategory(index){
  selectedCategory=categories[index].name;
  document.getElementById('categoryHeading').textContent=selectedCategory;
+ document.getElementById('subcategories').classList.toggle('ai-prompt-theme',selectedCategory==='AI Edit Prompt');
  showPage('subcategories');
 }
 
