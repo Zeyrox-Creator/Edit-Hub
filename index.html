@@ -102,7 +102,7 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 .item-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .item{min-width:0;padding:12px;background:#151020;border:1px solid var(--line);border-radius:14px;cursor:pointer;transition:.2s}
 .item:hover{border-color:#a85aff;transform:translateY(-2px)}
-.item img{display:block;width:100%;height:150px;object-fit:cover;border-radius:9px;margin-bottom:10px}
+.item img{display:block;width:100%;height:150px;object-fit:cover;border-radius:9px;margin-bottom:10px}.vfx-thumb{height:150px;border-radius:9px;margin-bottom:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:radial-gradient(circle at 25% 20%,#ffb34755,transparent 35%),radial-gradient(circle at 80% 80%,#a24cff66,transparent 40%),linear-gradient(135deg,#201238,#090611);border:1px solid #7540a8}.vfx-thumb span{font-size:42px;text-shadow:0 0 18px #b66aff}.vfx-thumb small{font-size:10px;letter-spacing:2px;color:#e6d5ff;font-weight:bold}.item .item-code{color:#d5a8ff;font-weight:bold;letter-spacing:.5px}
 .item h3{font-size:15px;line-height:1.3;margin-bottom:6px;overflow-wrap:anywhere}
 .item p{font-size:11px;color:#b9abc9;margin-bottom:0;overflow-wrap:anywhere}
 .action{display:inline-block;padding:10px 14px;border:0;border-radius:8px;background:#853bd4;color:white;text-decoration:none;margin:4px 4px 0 0}
@@ -117,8 +117,8 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 .detail-box p{white-space:pre-wrap;line-height:1.65;margin:12px 0;color:#ddd;overflow-wrap:anywhere}
 .detail-file{display:inline-block;margin:10px 0;color:#d5a8ff}
 footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f;margin-top:30px}
-@media(max-width:750px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.category-card{min-height:205px;padding:19px 10px}.category-icon{width:66px;height:66px;font-size:37px}.category-card p{font-size:11px}.category-explore{padding:8px 15px;font-size:12px}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.item{padding:8px}.item img{height:112px}.item h3{font-size:12px}.item p{font-size:10px}.hero{min-height:350px}}
-@media(max-width:480px){.sub-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.sub-card{min-height:190px;padding:17px 12px;border-radius:21px;gap:9px}.sub-icon{width:56px;height:56px;font-size:32px;border-radius:17px}.sub-card h3{font-size:18px}.sub-card p{font-size:11px}.sub-meta{top:9px;right:9px;padding:5px 7px;font-size:9px}.sub-explore{padding:7px 12px;font-size:10px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.category-card{min-height:190px;padding:16px 8px;border-radius:21px;gap:10px}.category-icon{width:60px;height:60px;font-size:34px;border-radius:18px}.category-card h3{font-size:15px}.category-card p{font-size:10px}.category-explore{padding:7px 13px;font-size:11px}.sub-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{padding:9px;border-radius:11px}.item img{height:130px}.item h3{font-size:13px}.item p{font-size:10px}.page{padding:20px 3%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}.detail-box{padding:11px}.detail-toolbar .page-heading h2{font-size:17px}.copy-btn{padding:10px 11px;font-size:12px}}
+@media(max-width:750px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.category-card{min-height:205px;padding:19px 10px}.category-icon{width:66px;height:66px;font-size:37px}.category-card p{font-size:11px}.category-explore{padding:8px 15px;font-size:12px}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.item{padding:8px}.item img{height:112px}.vfx-thumb{height:112px}.item h3{font-size:12px}.item p{font-size:10px}.hero{min-height:350px}}
+@media(max-width:480px){.sub-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.sub-card{min-height:190px;padding:17px 12px;border-radius:21px;gap:9px}.sub-icon{width:56px;height:56px;font-size:32px;border-radius:17px}.sub-card h3{font-size:18px}.sub-card p{font-size:11px}.sub-meta{top:9px;right:9px;padding:5px 7px;font-size:9px}.sub-explore{padding:7px 12px;font-size:10px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.category-card{min-height:190px;padding:16px 8px;border-radius:21px;gap:10px}.category-icon{width:60px;height:60px;font-size:34px;border-radius:18px}.category-card h3{font-size:15px}.category-card p{font-size:10px}.category-explore{padding:7px 13px;font-size:11px}.sub-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{padding:9px;border-radius:11px}.item img{height:130px}.vfx-thumb{height:130px}.item h3{font-size:13px}.item p{font-size:10px}.page{padding:20px 3%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}.detail-box{padding:11px}.detail-toolbar .page-heading h2{font-size:17px}.copy-btn{padding:10px 11px;font-size:12px}}
 </style>
 </head>
 
@@ -316,6 +316,15 @@ Restrictions: No text, no captions, no watermark, no logo, no social media inter
  }
 ];
 
+
+
+// Curated VFX links. Original clips remain hosted by their creators.
+const vfxAssets = [["Fireball - 005","Trending","fireball-005"],["Flame Burst - 001","Trending","flame-burst-001"],["Hallway Fire - 045","Trending","hallway-fire-045"],["High-Angle Fire - 041","Trending","high-angle-fire-041"],["Lamp Flame - 006","Trending","lamp-flame-006"],["Lamp Flame - Ignition - 003","Trending","lamp-flame-ignition-003"],["Match - Extinguish - Horizontal - 001","Trending","match-extinguish-horizontal-001"],["Match - Ignition - Horizontal - 002","Trending","match-ignition-horizontal-002"],["Match - Windy - Overhead - 004","Trending","match-windy-overhead-004"],["Match - Windy - Vertical - 003","Trending","match-windy-vertical-003"],["Windblown Fire - 050","Trending","windblown-fire-050"],["Burning Branch - 005c","Trending","burning-branch-005c"],["Burning Branch - 008a","Trending","burning-branch-008a"],["Burning Branch - 015","Trending","burning-branch-015"],["Candle - Extinguish - 007","Trending","candle-extinguish-007"],["Candle - Gentle Movement - 006","Trending","candle-gentlemovement-006"],["Candle - Trick - 004","Trending","candle-trick-004"],["Fire Torch - 012","Trending","fire-torch-012"],["Fire Torch - 026","Trending","fire-torch-026"],["Fire Torch - 063","Trending","fire-torch-063"],["Air Particles - 008","Gaming","air-particles-008"],["Atmosphere - 014","Gaming","atmosphere-014"],["Atmosphere - 028","Gaming","atmosphere-028"],["Atmosphere - 051","Gaming","atmosphere-051"],["Cosmos - 004","Gaming","cosmos-004"],["Lightning - Front - 004","Gaming","lightning-front-004"],["Lightning - Front - 015","Gaming","lightning-front-015"],["Lightning - Slow Motion - Front - 010","Gaming","lightning-slow-motion-front-010"],["Lightning - Slow Motion - Low Angle - 002","Gaming","lightning-slow-motion-low-angle-002"],["Falling Sparks - 018","Gaming","falling-sparks-018"],["Rising Sparks - 008","Gaming","rising-sparks-008"],["Spark Hit - Ground - 002a","Gaming","spark-hit-ground-002a"],["Spark Hit - Ground - 012c","Gaming","spark-hit-ground-012c"],["Spark Hit - Ground - 020b","Gaming","spark-hit-ground-020b"],["Lens Flare - 009","Gaming","lens-flare-009"],["Lens Flare - 015","Gaming","lens-flare-015"],["Lens Flare - 019","Gaming","lens-flare-019"],["Lens Flare - 024","Gaming","lens-flare-024"],["Lens Flare - 050","Gaming","lens-flare-050"],["Steam - 002","Gaming","steam-002"],["Birds Murmuration - Small Flock - Front - 002","Natural","birds-murmuration-small-flock-front-002"],["Birds Murmuration - Small Flock - Low Angle - 004","Natural","birds-murmuration-small-flock-lowangle-004"],["Birds Murmuration - Small Flock - Overhead - 003","Natural","birds-murmuration-small-flock-overhead-003"],["Pigeons Flock - Away - Low Angle - 001","Natural","pigeons-flock-away-low-angle-001"],["Crows Flock - Static - Away - 001","Natural","crows-flock-static-away-001"],["Crows Flock - Horizon - 001","Natural","crows-flock-horizon-001"],["Crows Flock - Circling - High Angle - 001","Natural","crows-flock-circling-high-angle-001"],["Falling Leaves - 009","Natural","falling-leaves-009"],["Falling Leaves - 026","Natural","falling-leaves-026"],["Cloud Tank - 002","Natural","cloud-tank-002"],["Cloud Tank - 012","Natural","cloud-tank-012"],["Distant Rain - 001","Natural","distant-rain-001"],["Rain - 011","Natural","rain-011"],["Rain - 022","Natural","rain-022"],["Rain On Glass - 004","Natural","rain-glass-004"],["Water Dripping - 007","Natural","water-dripping-007"],["Water Drops - 003","Natural","water-drops-003"],["Water Splash - 001","Natural","water-splash-001"],["Snow - 003","Natural","snow-003"],["Snow - 021","Natural","snow-021"],["Dust Hit - 002","Logo","dust-hit-002"],["Dust Storm - 013","Logo","dust-storm-013"],["Dust Storm - 022","Logo","dust-storm-022"],["Feather Hit - 003","Logo","feather-hit-003"],["Fire Debris - 001","Logo","fire-debris-001"],["Fire Debris - 003","Logo","fire-debris-003"],["Fire Debris - 022","Logo","fire-debris-022"],["Fog - 007","Logo","fog-007"],["Ground Fog - 022","Logo","ground-fog-022"],["Smoke Breath - Side - 010","Logo","smoke-breath-side-010"],["Smoke Plume - 006","Logo","smoke-plume-006"],["Windblown Smoke - 007","Logo","windblown-smoke-007"],["Windblown Smoke - 019","Logo","windblown-smoke-019"],["Steam - 018","Logo","steam-018"],["Steam Jet - 009","Logo","steamjet-009"],["Steam Jet - 016","Logo","steamjet-016"],["Tree Pollen - 002a","Logo","tree-pollen-002a"],["Optical Jitters - The Silent Era - 002","Logo","optical-jitters-silent-era-002"],["Light Leak - 004","Logo","light-leak-004"],["Light Leak - 011","Logo","light-leak-011"]].map((asset, index) => {
+ const code = 'A' + String(index + 5).padStart(2, '0');
+ return {name:asset[0],code,searchName:code,category:'VFX Material',sub:asset[1],file:'https://www.fxelements.com/products/clips/'+asset[2],type:'external',source:'FX Elements',text:code+' — '+asset[0]+'\n\nFree VFX resource from FX Elements. Open the source page to preview and download. The source site may require a free account or newsletter signup. Use the clip under the creator’s license. EDIT BY ZEYROX links to the source and does not rehost the original file.'};
+});
+materials.push(...vfxAssets);
+
 /*
 ADD YOUR OWN CONTENT HERE.
 
@@ -363,6 +372,7 @@ function showPage(id){
 function openCategory(index){
  selectedCategory=categories[index].name;
  document.getElementById('categoryHeading').textContent=selectedCategory;
+ document.querySelectorAll('#subcategories .sub-card p').forEach(el=>{el.textContent=selectedCategory==='VFX Material'?'Explore VFX overlays and effects':'Explore edit materials';});
  document.getElementById('subcategories').classList.toggle('ai-prompt-theme',selectedCategory==='AI Edit Prompt');
  showPage('subcategories');
 }
@@ -387,7 +397,7 @@ function renderGallery(){
  const query=document.getElementById('searchInput').value.toLowerCase();
  const grid=document.getElementById('itemGrid');
  const list=materials.filter(x=>{
-  const searchable=[x.name,x.searchName,x.category,x.sub,x.text].filter(Boolean).join(' ').toLowerCase();
+  const searchable=[x.name,x.code,x.searchName,x.category,x.sub,x.text].filter(Boolean).join(' ').toLowerCase();
   const matches=searchable.includes(query);
   return query ? matches : (x.category===selectedCategory && x.sub===selectedSub);
  });
@@ -411,11 +421,17 @@ function renderGallery(){
    preview.alt=item.name;
    preview.loading='lazy';
    card.appendChild(preview);
+  }else if(item.type==='external'){
+   const preview=document.createElement('div');
+   preview.className='vfx-thumb';
+   preview.innerHTML='<span>⚡</span><small>VFX RESOURCE</small>';
+   card.appendChild(preview);
   }
   const title=document.createElement('h3');
   title.textContent=item.name;
   const desc=document.createElement('p');
-  desc.textContent=item.category+' • '+item.sub;
+  desc.className='item-code';
+  desc.textContent=(item.code ? item.code+' • ' : '')+item.category+' • '+item.sub;
   card.append(title,desc);
   grid.appendChild(card);
  });
@@ -424,7 +440,7 @@ function renderGallery(){
 function openDetail(item){
  currentItem=item;
  previousPage='gallery';
- document.getElementById('detailTitle').textContent=item.name;
+ document.getElementById('detailTitle').textContent=(item.code ? item.code+' • ' : '')+item.name;
  document.getElementById('detailText').textContent=item.text||'No prompt is available for this material.';
  const preview=document.getElementById('detailPreview');
  const fileLink=document.getElementById('detailFile');
@@ -433,7 +449,7 @@ function openDetail(item){
  preview.removeAttribute('src');
  if(isImage){preview.src=item.file;}
  fileLink.style.display=item.file && !isImage?'inline-block':'none';
- if(item.file && !isImage){fileLink.href=item.file;}
+ if(item.file && !isImage){fileLink.href=item.file;fileLink.textContent=item.type==='external'?'Preview & download on source site ↗':'Open material file';}
  else{fileLink.removeAttribute('href');}
  showPage('detail');
 }
@@ -442,7 +458,7 @@ function backToGallery(){showPage(previousPage||'gallery');}
 
 function copyCurrent(){
  if(!currentItem)return;
- copyText(currentItem.text||currentItem.name);
+ copyText(currentItem.type==='external' ? currentItem.code : (currentItem.text||currentItem.name));
 }
 
 async function copyText(text){
