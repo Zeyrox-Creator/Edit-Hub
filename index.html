@@ -727,7 +727,7 @@ function openDetail(item, pushHistory=true){
  const getRelatedTokens = x => {
   const raw = [x.name,x.searchName,x.tags,x.relatedTags,x.sub,x.file].flat().filter(Boolean).join(' ').toLowerCase();
   const words = raw.match(/[a-z0-9]+/g) || [];
-  const tokens = new Set(words.filter(w => w.length > 2 && !/^\\d+$/.test(w) && !stopWords.has(w)));
+  const tokens = new Set(words.filter(w => w.length > 2 && !/^[0-9]+$/.test(w) && !stopWords.has(w)));
   if (/football|soccer|real\s*madrid|barcelona|manchester|juventus|chelsea|arsenal|liverpool|bayern|psg|fc\b/.test(raw)) tokens.add('football');
   if (/gaming|gamer|esports|free\s*fire|pubg|valorant/.test(raw)) tokens.add('gaming');
   if (/anime|naruto|dragon\s*ball|one\s*piece|demon\s*slayer/.test(raw)) tokens.add('anime');
