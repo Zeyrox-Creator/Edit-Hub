@@ -721,9 +721,19 @@ function openDetail(item, pushHistory=true){
  }
  const relatedGrid=document.getElementById('relatedGrid');
  relatedGrid.innerHTML='';
- const relatedItems = isImage && item.category==='PNG Material' && Array.isArray(item.related)
-  ? item.related.map(key => materials.find(x => x !== item && (x.file === key || x.name === key))).filter(x => x && x.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(x.file))
-  : [];
+ const isPngMaterial = isImage && item.category === 'PNG Material';
+ const imageFile = x => x && x.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(x.file);
+ let relatedItems = [];
+ if (isPngMaterial && Array.isArray(item.related) && item.related.length) {
+  // Explicitly assigned related items take priority. Match by file path or material name.
+  relatedItems = item.related
+   .map(key => materials.find(x => x !== item && (x.file === key || x.name === key)))
+   .filter(imageFile);
+ } else if (isPngMaterial && item.tags) {
+  // If no manual list exists yet, automatically show materials with the same tags.
+  relatedItems = materials.filter(x => x !== item && x.category === item.category && x.tags === item.tags && imageFile(x));
+ }
+ relatedItems = relatedItems.slice(0, 12);
  related.style.display = relatedItems.length ? 'block' : 'none';
  relatedItems.forEach(rel=>{
   const card=document.createElement('div'); card.className='related-card'; card.tabIndex=0; card.setAttribute('role','button');
