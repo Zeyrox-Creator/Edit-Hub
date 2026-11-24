@@ -721,18 +721,18 @@ function openDetail(item, pushHistory=true){
  }
  const relatedGrid=document.getElementById('relatedGrid');
  relatedGrid.innerHTML='';
- if(isImage && item.category==='PNG Material'){
-   const relatedItems=materials.filter(x=>x!==item && x.category===item.category && (item.tags ? x.tags===item.tags : x.sub===item.sub) && x.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(x.file));
-  relatedItems.forEach(rel=>{
-   const card=document.createElement('div'); card.className='related-card'; card.tabIndex=0; card.setAttribute('role','button');
-   const img=document.createElement('img'); img.src=rel.file; img.alt=rel.name; img.loading='lazy';
-   const label=document.createElement('p'); label.textContent=rel.name;
-   card.append(img,label); card.onclick=()=>openDetail(rel);
-   card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDetail(rel);}};
-   relatedGrid.appendChild(card);
-  });
-  if(!relatedItems.length) relatedGrid.innerHTML='<div class="empty">No related PNGs yet.</div>';
- }
+ const relatedItems = isImage && isImage && item.category==='PNG Material' && Array.isArray(item.related)
+  ? item.related.map(key => materials.find(x => x !== item && (x.file === key || x.name === key))).filter(x => x && x.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(x.file))
+  : [];
+ related.style.display = relatedItems.length ? 'block' : 'none';
+ relatedItems.forEach(rel=>{
+  const card=document.createElement('div'); card.className='related-card'; card.tabIndex=0; card.setAttribute('role','button');
+  const img=document.createElement('img'); img.src=rel.file; img.alt=rel.name; img.loading='lazy';
+  const label=document.createElement('p'); label.textContent=rel.name;
+  card.append(img,label); card.onclick=()=>openDetail(rel);
+  card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDetail(rel);}};
+  relatedGrid.appendChild(card);
+ });
  showPage('detail');
 }
 
