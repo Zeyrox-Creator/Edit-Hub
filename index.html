@@ -721,7 +721,7 @@ function openDetail(item, pushHistory=true){
  }
  const relatedGrid=document.getElementById('relatedGrid');
  relatedGrid.innerHTML='';
- const relatedItems = isImage && isImage && item.category==='PNG Material' && Array.isArray(item.related)
+ const relatedItems = isImage && item.category==='PNG Material' && Array.isArray(item.related)
   ? item.related.map(key => materials.find(x => x !== item && (x.file === key || x.name === key))).filter(x => x && x.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(x.file))
   : [];
  related.style.display = relatedItems.length ? 'block' : 'none';
