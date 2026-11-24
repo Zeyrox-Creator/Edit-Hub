@@ -119,6 +119,18 @@ header{height:74px;padding:10px 5%;display:flex;align-items:center;justify-conte
 footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f;margin-top:30px}
 @media(max-width:750px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.category-card{min-height:205px;padding:19px 10px}.category-icon{width:66px;height:66px;font-size:37px}.category-card p{font-size:11px}.category-explore{padding:8px 15px;font-size:12px}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.item{padding:8px}.item img{height:112px}.vfx-thumb{height:112px}.item h3{font-size:12px}.item p{font-size:10px}.hero{min-height:350px}}
 @media(max-width:480px){.sub-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.sub-card{min-height:190px;padding:17px 12px;border-radius:21px;gap:9px}.sub-icon{width:56px;height:56px;font-size:32px;border-radius:17px}.sub-card h3{font-size:18px}.sub-card p{font-size:11px}.sub-meta{top:9px;right:9px;padding:5px 7px;font-size:9px}.sub-explore{padding:7px 12px;font-size:10px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.category-card{min-height:190px;padding:16px 8px;border-radius:21px;gap:10px}.category-icon{width:60px;height:60px;font-size:34px;border-radius:18px}.category-card h3{font-size:15px}.category-card p{font-size:10px}.category-explore{padding:7px 13px;font-size:11px}.sub-grid{grid-template-columns:repeat(2,1fr)}.item-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{padding:9px;border-radius:11px}.item img{height:130px}.vfx-thumb{height:130px}.item h3{font-size:13px}.item p{font-size:10px}.page{padding:20px 3%}.brand h2{font-size:15px}.brand img{width:39px;height:39px}.hero{min-height:330px}.detail-box{padding:11px}.detail-toolbar .page-heading h2{font-size:17px}.copy-btn{padding:10px 11px;font-size:12px}}
+
+/* PNG light-stock detail and related gallery */
+.detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 22px}
+.detail-actions a,.detail-actions button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border:0;border-radius:10px;background:linear-gradient(100deg,#853aff,#d93bd0);color:#fff;text-decoration:none;font-weight:700}
+.related-section{margin-top:28px}
+.related-section h3{font-size:20px;margin:0 0 16px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.related-card{min-width:0;padding:9px;background:#151020;border:1px solid var(--line);border-radius:12px;cursor:pointer}
+.related-card img{display:block;width:100%;height:120px;object-fit:contain;background:#0a0810;border-radius:8px}
+.related-card p{font-size:12px;line-height:1.35;margin-top:8px;color:#eee;overflow-wrap:anywhere}
+@media(max-width:600px){.related-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.related-card img{height:112px}}
+
 </style>
 </head>
 
@@ -197,7 +209,15 @@ footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f
   <h2 id="detailTitle"></h2>
   <img id="detailPreview" class="detail-preview" alt="Full material preview" style="display:none">
   <p id="detailText"></p>
+  <div id="imageActions" class="detail-actions" style="display:none">
+   <a id="downloadMaterial" href="#" download>⬇ Download</a>
+   <button type="button" onclick="shareCurrent()">↗ Share</button>
+  </div>
   <a id="detailFile" class="detail-file" style="display:none" target="_blank" rel="noopener">Open material file</a>
+  <div id="relatedSection" class="related-section" style="display:none">
+   <h3>Related PNGs</h3>
+   <div id="relatedGrid" class="related-grid"></div>
+  </div>
  </div>
 </section>
 
@@ -227,6 +247,43 @@ const materials=[
  {name:'Chaoten Kitty',category:'PNG Material',sub:'Trending',file:'materials/png/chaotenkitty-neon-7440942_1920.png',type:'image'},
  {name:'Fantasy Artwork',category:'PNG Material',sub:'Natural',file:'materials/png/geralt-art-7036652_1920.jpg',type:'image'},
  {name:'Technology Background',category:'PNG Material',sub:'Gaming',file:'materials/png/tungnguyen0905-technology-6701424_1920.jpg',type:'image'},
+ {name:"Silver Diagonal Lens Flare",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497665586.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Soft Warm Star Glow",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497668175.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Spotlight Beam",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497670569.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Horizontal Lens Flare",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497672878.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Yellow Starburst Flare",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497678208.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Radial Light Rays",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497681155.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Yellow Starburst Glow",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497685894.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Horizontal Flare",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497689298.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Burst Effect",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497693629.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Spotlight Rays",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497698947.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Warm Fairy Light String",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497708107.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Starburst",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497713283.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Particle Cloud",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497715340.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Cinematic Light Burst",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497720054.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Particle Trail",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497724017.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Four-Point Flare",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497728495.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden String Lights",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497734991.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Multicolor Light Beams",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497751329.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Warm Bulb String Lights",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497757815.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Sparkle Spotlight",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497764024.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Amber Sun Glow",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497767174.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Blue Spotlight Beam",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497769331.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Hanging Lamp Cutout",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497771913.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Warm Hanging Bulb Glow",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497775363.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Light Sparkle",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497780756.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Pink Stage Spotlight",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497784860.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Yellow Light Bulb Icon",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497789645.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Glowing Light Bulb",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497791929.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Yellow Spotlight Beam",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497793810.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Light Beam",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497829167.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Spotlight Set",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497833897.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"White Light Rays",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497837641.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Particle Cloud 2",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497849655.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Bokeh Particles",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497859932.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Gold Sparkle Particles",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497865252.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Bokeh Overlay",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497868110.jpg",type:'image',tags:'light glow flare beam spotlight particles overlay'},
+ {name:"Golden Light Bokeh",category:'PNG Material',sub:'Trending',file:"materials/png/trending/light-stock/image_search_1795497870200.png",type:'image',tags:'light glow flare beam spotlight particles overlay'},
 
  {
   name:'ZAI TREND A01',searchName:'A01',
@@ -436,16 +493,41 @@ function openDetail(item){
  currentItem=item;
  previousPage='gallery';
  document.getElementById('detailTitle').textContent=(item.code ? item.code+' • ' : '')+item.name;
- document.getElementById('detailText').textContent=item.text||'No prompt is available for this material.';
+ const isImage=item.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(item.file);
+ document.getElementById('detailText').textContent=isImage?'Preview the selected material below. Download it directly from EDIT BY ZEYROX or share this material.':(item.text||'No prompt is available for this material.');
  const preview=document.getElementById('detailPreview');
  const fileLink=document.getElementById('detailFile');
- const isImage=item.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(item.file);
  preview.style.display=isImage?'block':'none';
  preview.removeAttribute('src');
  if(isImage){preview.src=item.file;}
  fileLink.style.display=item.file && !isImage?'inline-block':'none';
  if(item.file && !isImage){fileLink.href=item.file;fileLink.textContent=item.type==='external'?'Preview & download on source site ↗':'Open material file';}
  else{fileLink.removeAttribute('href');}
+ const actions=document.getElementById('imageActions');
+ const related=document.getElementById('relatedSection');
+ actions.style.display=isImage?'flex':'none';
+ related.style.display=(isImage && item.category==='PNG Material')?'block':'none';
+ if(isImage){
+  const download=document.getElementById('downloadMaterial');
+  download.href=item.file;
+  download.download=item.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.'+item.file.split('.').pop();
+ }
+ const copyButton=document.querySelector('.copy-btn');
+ if(copyButton) copyButton.style.display=isImage?'none':'inline-block';
+ const relatedGrid=document.getElementById('relatedGrid');
+ relatedGrid.innerHTML='';
+ if(isImage && item.category==='PNG Material'){
+  const relatedItems=materials.filter(x=>x!==item && x.category===item.category && x.sub===item.sub && x.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(x.file));
+  relatedItems.forEach(rel=>{
+   const card=document.createElement('div'); card.className='related-card'; card.tabIndex=0; card.setAttribute('role','button');
+   const img=document.createElement('img'); img.src=rel.file; img.alt=rel.name; img.loading='lazy';
+   const label=document.createElement('p'); label.textContent=rel.name;
+   card.append(img,label); card.onclick=()=>openDetail(rel);
+   card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDetail(rel);}};
+   relatedGrid.appendChild(card);
+  });
+  if(!relatedItems.length) relatedGrid.innerHTML='<div class="empty">No related PNGs yet.</div>';
+ }
  showPage('detail');
 }
 
