@@ -560,7 +560,7 @@ function openDetail(item, pushHistory=true){
  const relatedGrid=document.getElementById('relatedGrid');
  relatedGrid.innerHTML='';
  if(isImage && item.category==='PNG Material'){
-  const relatedItems=materials.filter(x=>x!==item && x.category===item.category && x.sub===item.sub && x.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(x.file));
+   const relatedItems=materials.filter(x=>x!==item && x.category===item.category && (item.tags ? x.tags===item.tags : x.sub===item.sub) && x.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(x.file));
   relatedItems.forEach(rel=>{
    const card=document.createElement('div'); card.className='related-card'; card.tabIndex=0; card.setAttribute('role','button');
    const img=document.createElement('img'); img.src=rel.file; img.alt=rel.name; img.loading='lazy';
