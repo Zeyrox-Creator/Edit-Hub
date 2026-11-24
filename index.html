@@ -729,9 +729,6 @@ function openDetail(item, pushHistory=true){
   relatedItems = item.related
    .map(key => materials.find(x => x !== item && (x.file === key || x.name === key)))
    .filter(imageFile);
- } else if (isPngMaterial && item.tags) {
-  // If no manual list exists yet, automatically show materials with the same tags.
-  relatedItems = materials.filter(x => x !== item && x.category === item.category && x.tags === item.tags && imageFile(x));
  }
  relatedItems = relatedItems.slice(0, 12);
  related.style.display = relatedItems.length ? 'block' : 'none';
