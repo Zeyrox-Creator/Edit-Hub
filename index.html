@@ -492,7 +492,15 @@ function renderGallery(){
 }
 
 function openDetail(item, pushHistory=true){
- if(pushHistory){history.pushState({view:'detail',key:item.file||item.name},'', '#material='+encodeURIComponent(item.file||item.name));}
+ if(pushHistory){
+  const key=item.file||item.name;
+  const params=new URLSearchParams();
+  params.set('material',key);
+  params.set('category',selectedCategory||item.category||'PNG Material');
+  params.set('sub',selectedSub||item.sub||'Trending');
+  window.location.href=window.location.pathname+'?'+params.toString();
+  return;
+ }
  currentItem=item;
  previousPage='gallery';
  document.getElementById('detailTitle').textContent=(item.code ? item.code+' • ' : '')+item.name;
@@ -534,7 +542,13 @@ function openDetail(item, pushHistory=true){
  showPage('detail');
 }
 
-function backToGallery(){if(history.state && history.state.view==='detail'){history.back();}else{showPage(previousPage||'gallery');}}
+function backToGallery(){
+ if(document.referrer && new URL(document.referrer).origin===location.origin){history.back();return;}
+ const params=new URLSearchParams();
+ params.set('category',selectedCategory||'PNG Material');
+ params.set('sub',selectedSub||'Trending');
+ window.location.href=window.location.pathname+'?'+params.toString();
+}
 
 window.addEventListener('popstate',function(event){
  const state=event.state;
@@ -583,6 +597,27 @@ async function shareCurrent(){
   }
  }catch(e){}
 }
+
+// Direct page routing: every material opens as its own URL/document view.
+(function(){
+ const params=new URLSearchParams(window.location.search);
+ const materialKey=params.get('material');
+ const category=params.get('category');
+ const sub=params.get('sub');
+ if(category) selectedCategory=category;
+ if(sub) selectedSub=sub;
+ if(materialKey){
+  const selected=materials.find(item=>(item.file||item.name)===materialKey);
+  if(selected){openDetail(selected,false);}
+  else{showPage('home');}
+ }else if(category && sub){
+  const categoryIndex=categories.findIndex(item=>item.name===category);
+  if(categoryIndex>=0) document.getElementById('categoryHeading').textContent=category;
+  document.getElementById('galleryHeading').textContent=category+' / '+sub;
+  renderGallery();
+  showPage('gallery');
+ }
+})();
 </script>
 </body>
 </html>
