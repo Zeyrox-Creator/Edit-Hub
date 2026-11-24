@@ -38,6 +38,230 @@ const materials = [
     sub: 'Gaming',
     file: 'materials/png/tungnguyen0905-technology-6701424_1920.jpg',
     type: 'image'
+  },
+  {
+    name: 'Smoke Effect 01',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503162928.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 02',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503171981.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 03',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503174866.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 04',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503177342.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 05',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503182122.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 06',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503187724.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 07',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503195595.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 08',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503198235.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 09',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503203220.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 10',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503206185.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 11',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503208487.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 12',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503210713.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 13',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503219465.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 14',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503225480.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 15',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503229780.webp',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 16',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503235944.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 17',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503241827.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 18',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503246816.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 19',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503266438.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 20',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503279213.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 21',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503282712.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 22',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503288980.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 23',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503291121.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 24',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503293985.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 25',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503305142.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 26',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503307419.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 27',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503311943.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 28',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503374852.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 29',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503380800.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 30',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503383527.jpg',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 31',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503385996.png',
+    type: 'image'
+  },
+  {
+    name: 'Smoke Effect 32',
+    category: 'PNG Material',
+    sub: 'Trending',
+    file: 'materials/png/image_search_1795503400799.jpg',
+    type: 'image'
   }
 ];
 
