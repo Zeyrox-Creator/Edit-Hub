@@ -432,6 +432,7 @@ function openCategory(index){
 
 function openGallery(sub){
  selectedSub=sub;
+ history.replaceState({view:'gallery',sub},'', '#gallery='+encodeURIComponent(sub));
  document.getElementById('galleryHeading').textContent=selectedCategory+' / '+sub;
  document.getElementById('searchInput').value='';
  renderGallery();
@@ -490,7 +491,8 @@ function renderGallery(){
  });
 }
 
-function openDetail(item){
+function openDetail(item, pushHistory=true){
+ if(pushHistory){history.pushState({view:'detail',key:item.file||item.name},'', '#material='+encodeURIComponent(item.file||item.name));}
  currentItem=item;
  previousPage='gallery';
  document.getElementById('detailTitle').textContent=(item.code ? item.code+' • ' : '')+item.name;
@@ -532,7 +534,22 @@ function openDetail(item){
  showPage('detail');
 }
 
-function backToGallery(){showPage(previousPage||'gallery');}
+function backToGallery(){if(history.state && history.state.view==='detail'){history.back();}else{showPage(previousPage||'gallery');}}
+
+window.addEventListener('popstate',function(event){
+ const state=event.state;
+ if(state && state.view==='detail'){
+  const item=materials.find(x=>(x.file||x.name)===state.key);
+  if(item){openDetail(item,false);return;}
+ }
+ if(state && state.view==='gallery'){
+  selectedSub=state.sub||selectedSub;
+  renderGallery();
+  showPage('gallery');
+  return;
+ }
+ showPage('home');
+});
 
 function copyCurrent(){
  if(!currentItem)return;
