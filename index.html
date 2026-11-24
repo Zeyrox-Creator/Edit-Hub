@@ -131,6 +131,15 @@ footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f
 .related-card p{font-size:12px;line-height:1.35;margin-top:8px;color:#eee;overflow-wrap:anywhere}
 @media(max-width:600px){.related-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.related-card img{height:112px}}
 
+
+/* AI prompt detail: preview, action buttons, then the complete prompt */
+.prompt-actions{display:flex;gap:11px;flex-wrap:wrap;margin:16px 0 20px}
+.prompt-actions button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 19px;border:0;border-radius:11px;color:#fff;font-weight:800;font-size:13px;cursor:pointer}
+.prompt-copy-btn{background:linear-gradient(100deg,#853aff,#bd39d5);box-shadow:0 5px 18px #853aff35}
+.prompt-share-btn{background:linear-gradient(100deg,#1769c2,#168fc5);box-shadow:0 5px 18px #168fc535}
+#detailText.full-prompt{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;color:#eee4f7;font-size:14px;padding:18px;margin-top:4px;background:#0d0916;border:1px solid #38264d;border-radius:13px}
+@media(max-width:480px){.prompt-actions button{flex:1;padding:12px 10px;font-size:12px}#detailText.full-prompt{font-size:13px;padding:14px;line-height:1.75}}
+
 </style>
 </head>
 
@@ -203,11 +212,14 @@ footer{text-align:center;padding:24px;color:#9e8eaf;border-top:1px solid #30203f
    <button class="back-btn" onclick="backToGallery()">← Back</button>
    <h2>Material Details</h2>
   </div>
-  <button class="copy-btn" onclick="copyCurrent()">1 CLICK COPY</button>
  </div>
  <div class="detail-box">
   <h2 id="detailTitle"></h2>
   <img id="detailPreview" class="detail-preview" alt="Full material preview" style="display:none">
+  <div id="promptActions" class="prompt-actions" style="display:none">
+   <button type="button" class="prompt-copy-btn" onclick="copyCurrent()">1 CLICK COPY</button>
+   <button type="button" class="prompt-share-btn" onclick="shareCurrent()">↗ Share</button>
+  </div>
   <p id="detailText"></p>
   <div id="imageActions" class="detail-actions" style="display:none">
    <a id="downloadMaterial" href="#" download>⬇ Download</a>
@@ -585,8 +597,10 @@ function openDetail(item, pushHistory=true){
  currentItem=item;
  previousPage='gallery';
  document.getElementById('detailTitle').textContent=(item.code ? item.code+' • ' : '')+item.name;
+ const isPrompt=item.type==='prompt';
  const isImage=item.file && /\.(png|jpe?g|gif|webp|svg)$/i.test(item.file);
- document.getElementById('detailText').textContent=isImage?'Preview the selected material below. Download it directly from EDIT BY ZEYROX or share this material.':(item.text||'No prompt is available for this material.');
+ document.getElementById('detailText').textContent=isPrompt?(item.text||'No prompt is available for this material.'):(isImage?'Preview the selected material below. Download it directly from EDIT BY ZEYROX or share this material.':(item.text||'No prompt is available for this material.'));
+ document.getElementById('detailText').classList.toggle('full-prompt',isPrompt);
  const preview=document.getElementById('detailPreview');
  const fileLink=document.getElementById('detailFile');
  preview.style.display=isImage?'block':'none';
@@ -596,16 +610,16 @@ function openDetail(item, pushHistory=true){
  if(item.file && !isImage){fileLink.href=item.file;fileLink.textContent=item.type==='external'?'Preview & download on source site ↗':'Open material file';}
  else{fileLink.removeAttribute('href');}
  const actions=document.getElementById('imageActions');
+ const promptActions=document.getElementById('promptActions');
  const related=document.getElementById('relatedSection');
- actions.style.display=isImage?'flex':'none';
- related.style.display=(isImage && item.category==='PNG Material')?'block':'none';
- if(isImage){
+ actions.style.display=(isImage && !isPrompt)?'flex':'none';
+ promptActions.style.display=isPrompt?'flex':'none';
+ related.style.display=(isImage && !isPrompt && item.category==='PNG Material')?'block':'none';
+ if(isImage && !isPrompt){
   const download=document.getElementById('downloadMaterial');
   download.href=item.file;
   download.download=item.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.'+item.file.split('.').pop();
  }
- const copyButton=document.querySelector('.copy-btn');
- if(copyButton) copyButton.style.display=isImage?'none':'inline-block';
  const relatedGrid=document.getElementById('relatedGrid');
  relatedGrid.innerHTML='';
  if(isImage && item.category==='PNG Material'){
